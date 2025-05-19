@@ -1,0 +1,161 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { useLanguage } from "../contexts/LanguageContext"
+
+const ContactPopup = ({ onClose }) => {
+  const { t } = useLanguage()
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    service: "",
+    message: "",
+  })
+  const [formStatus, setFormStatus] = useState({
+    submitted: false,
+    success: false,
+    message: "",
+  })
+
+  useEffect(() => {
+    // Prevent scrolling when popup is open
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setFormStatus({ submitted: true, success: true, message: t("contact.success") })
+
+    // Reset form after successful submission
+    setTimeout(() => {
+      onClose()
+    }, 2000)
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-70">
+      <div
+        className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{t("cta.freeQuote")}</h3>
+            <button
+              onClick={onClose}
+              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+              aria-label={t("popup.close")}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <p className="text-gray-600 dark:text-gray-400 mb-6">{t("popup.quoteInfo")}</p>
+
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="popup-name" className="block text-gray-700 dark:text-gray-300 mb-2">
+                {t("contact.name")}
+              </label>
+              <input
+                type="text"
+                id="popup-name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="popup-email" className="block text-gray-700 dark:text-gray-300 mb-2">
+                {t("contact.email")}
+              </label>
+              <input
+                type="email"
+                id="popup-email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="popup-service" className="block text-gray-700 dark:text-gray-300 mb-2">
+                {t("contact.serviceInterest")}
+              </label>
+              <select
+                id="popup-service"
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">{t("contact.selectService")}</option>
+                <option value="web-development">{t("services.webDev.title")}</option>
+                <option value="seo">{t("services.seo.title")}</option>
+                <option value="content">{t("services.content.title")}</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div className="mb-6">
+              <label htmlFor="popup-message" className="block text-gray-700 dark:text-gray-300 mb-2">
+                {t("contact.message")}
+              </label>
+              <textarea
+                id="popup-message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={4}
+                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              ></textarea>
+            </div>
+
+            {formStatus.submitted && (
+              <div
+                className={`mb-6 p-4 rounded-lg ${formStatus.success ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+              >
+                {formStatus.message}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              {t("popup.submitRequest")}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ContactPopup
