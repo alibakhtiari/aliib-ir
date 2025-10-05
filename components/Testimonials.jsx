@@ -2,10 +2,12 @@
 
 import { useEffect, useRef } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 
 const Testimonials = () => {
   const { language } = useLanguage()
+  const t = useTranslations()
   const isRTL = language === "ar" || language === "fa"
   const scrollerRef = useRef(null)
 

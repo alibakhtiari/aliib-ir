@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { useTranslations } from "next-intl"
 import Head from "next/head"
 
 // Define SEO content for each language

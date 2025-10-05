@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 
 const Hero = ({ toggleContactPopup }) => {
-  const { t, language } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations()
   const heroRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
   const isRTL = language === "ar" || language === "fa"
@@ -48,43 +50,43 @@ const Hero = ({ toggleContactPopup }) => {
           </svg>
         </div>
         <div
-          className="parallax absolute -top-20 -right-20 w-96 h-96 bg-blue-200 dark:bg-blue-900 rounded-full opacity-20 blur-3xl"
+          className="absolute bg-blue-200 rounded-full parallax -top-20 -right-20 w-96 h-96 dark:bg-blue-900 opacity-20 blur-3xl"
           data-speed="0.2"
         ></div>
         <div
-          className="parallax absolute top-1/3 left-1/4 w-64 h-64 bg-purple-200 dark:bg-purple-900 rounded-full opacity-20 blur-3xl"
+          className="absolute w-64 h-64 bg-purple-200 rounded-full parallax top-1/3 left-1/4 dark:bg-purple-900 opacity-20 blur-3xl"
           data-speed="0.3"
         ></div>
         <div
-          className="parallax absolute bottom-1/4 right-1/3 w-80 h-80 bg-teal-200 dark:bg-teal-900 rounded-full opacity-20 blur-3xl"
+          className="absolute bg-teal-200 rounded-full parallax bottom-1/4 right-1/3 w-80 h-80 dark:bg-teal-900 opacity-20 blur-3xl"
           data-speed="0.1"
         ></div>
       </div>
 
-      <div className="container mx-auto px-4 h-full flex items-center relative z-10 py-24 md:py-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
+      <div className="container relative z-10 flex items-center h-full px-4 py-24 mx-auto md:py-32">
+        <div className="grid items-center w-full grid-cols-1 gap-12 md:grid-cols-2">
           {/* Hero Content */}
           <div className={`${isVisible ? "animate-fadeIn" : "opacity-0"} transition-all duration-1000 ease-out`}>
-            <div className="inline-block px-4 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 font-medium text-sm mb-6">
+            <div className="inline-block px-4 py-1 mb-6 text-sm font-medium text-blue-600 bg-blue-100 rounded-full dark:bg-blue-900/30 dark:text-blue-400">
               {t("hero.greeting")}
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+            <h1 className="mb-4 text-4xl font-bold leading-tight text-gray-900 md:text-6xl dark:text-white">
               {t("hero.name")}
             </h1>
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-6">
+            <h2 className="mb-6 text-2xl font-semibold text-gray-700 md:text-3xl dark:text-gray-300">
               {t("hero.title")}
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl leading-relaxed">
+            <p className="max-w-2xl mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
               {t("hero.description")}
             </p>
 
             {/* Stats - Icon-based design */}
             <div className="flex flex-wrap gap-6 mb-8">
               <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 bg-yellow-100 dark:bg-yellow-900/30 rounded-full mr-3">
+                <div className="flex items-center justify-center w-12 h-12 mr-3 bg-yellow-100 rounded-full dark:bg-yellow-900/30">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-yellow-500"
+                    className="w-6 h-6 text-yellow-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -104,10 +106,10 @@ const Hero = ({ toggleContactPopup }) => {
               </div>
 
               <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full mr-3">
+                <div className="flex items-center justify-center w-12 h-12 mr-3 bg-green-100 rounded-full dark:bg-green-900/30">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-green-500"
+                    className="w-6 h-6 text-green-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -127,10 +129,10 @@ const Hero = ({ toggleContactPopup }) => {
               </div>
 
               <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full mr-3">
+                <div className="flex items-center justify-center w-12 h-12 mr-3 bg-blue-100 rounded-full dark:bg-blue-900/30">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-blue-500"
+                    className="w-6 h-6 text-blue-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -153,12 +155,12 @@ const Hero = ({ toggleContactPopup }) => {
             <div className="flex flex-wrap gap-4">
               <button
                 onClick={toggleContactPopup}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full transition-colors font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300 flex items-center"
+                className="flex items-center px-8 py-4 font-medium text-white transition-colors duration-300 transform bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1"
               >
                 {t("cta.freeQuote")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
+                  className="w-5 h-5 ml-2"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -171,7 +173,7 @@ const Hero = ({ toggleContactPopup }) => {
               </button>
               <Link
                 href="#portfolio"
-                className="bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 px-8 py-4 rounded-full transition-colors font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300 flex items-center"
+                className="flex items-center px-8 py-4 font-medium text-blue-600 transition-colors duration-300 transform bg-white border-2 border-blue-600 rounded-full shadow-lg dark:bg-gray-800 dark:text-blue-400 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 hover:shadow-xl hover:-translate-y-1"
                 onClick={(e) => {
                   e.preventDefault()
                   document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" })
@@ -180,7 +182,7 @@ const Hero = ({ toggleContactPopup }) => {
                 {t("cta.learnMore")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
+                  className="w-5 h-5 ml-2"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -199,28 +201,28 @@ const Hero = ({ toggleContactPopup }) => {
             className={`${isVisible ? "animate-fadeInRight" : "opacity-0 translate-x-10"} transition-all duration-1000 ease-out delay-300 hidden md:block`}
           >
             <div className="relative">
-              <div className="absolute -inset-4 bg-blue-100 dark:bg-blue-900/30 rounded-xl -z-10 transform -rotate-3"></div>
-              <div className="absolute -inset-4 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl -z-10 transform rotate-3 translate-x-2 translate-y-2"></div>
+              <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-xl -z-10 -rotate-3"></div>
+              <div className="absolute transform translate-x-2 translate-y-2 bg-indigo-100 -inset-4 dark:bg-indigo-900/30 rounded-xl -z-10 rotate-3"></div>
               <div className="relative w-full max-w-md mx-auto h-[600px]">
-                <Image src="/placeholder.svg" alt={t("hero.name")} fill className="rounded-lg shadow-lg object-cover" />
+                <Image src="/placeholder.svg" alt={t("hero.name")} fill className="object-cover rounded-lg shadow-lg" />
               </div>
 
               {/* Floating badges */}
-              <div className="absolute -left-6 top-1/4 bg-white dark:bg-gray-800 rounded-full py-2 px-4 shadow-lg animate-float">
+              <div className="absolute px-4 py-2 bg-white rounded-full shadow-lg -left-6 top-1/4 dark:bg-gray-800 animate-float">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   <span className="font-medium">SEO Expert</span>
                 </div>
               </div>
 
-              <div className="absolute -right-6 top-2/3 bg-white dark:bg-gray-800 rounded-full py-2 px-4 shadow-lg animate-float delay-150">
+              <div className="absolute px-4 py-2 delay-150 bg-white rounded-full shadow-lg -right-6 top-2/3 dark:bg-gray-800 animate-float">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                   <span className="font-medium">Web Developer</span>
                 </div>
               </div>
 
-              <div className="absolute left-1/4 -bottom-6 bg-white dark:bg-gray-800 rounded-full py-2 px-4 shadow-lg animate-float delay-300">
+              <div className="absolute px-4 py-2 delay-300 bg-white rounded-full shadow-lg left-1/4 -bottom-6 dark:bg-gray-800 animate-float">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
                   <span className="font-medium">Content Writer</span>

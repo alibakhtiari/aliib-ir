@@ -1,14 +1,13 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     domains: ['placeholder.com'],
     unoptimized: true,
-  },
-  i18n: {
-    locales: ['en', 'fa', 'ar'],
-    defaultLocale: 'en',
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   eslint: {
@@ -19,4 +18,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

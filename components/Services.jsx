@@ -1,9 +1,11 @@
 "use client"
 
 import { useLanguage } from "@/contexts/LanguageContext"
+import { useTranslations } from "next-intl"
 
 const Services = () => {
-  const { t, language } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations()
 
   const services = [
     {

@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { useTranslations } from "next-intl"
 
 const ContactPopup = ({ onClose }) => {
-  const { t } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,16 +52,16 @@ const ContactPopup = ({ onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center justify-between mb-6">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{t("cta.freeQuote")}</h3>
             <button
               onClick={onClose}
-              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+              className="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
               aria-label="Close"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -69,13 +71,13 @@ const ContactPopup = ({ onClose }) => {
             </button>
           </div>
 
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
+          <p className="mb-6 text-gray-600 dark:text-gray-400">
             Fill out the form below to get a free quote for your project.
           </p>
 
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="popup-name" className="block text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="popup-name" className="block mb-2 text-gray-700 dark:text-gray-300">
                 {t("contact.name")}
               </label>
               <input
@@ -85,12 +87,12 @@ const ContactPopup = ({ onClose }) => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <div className="mb-4">
-              <label htmlFor="popup-email" className="block text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="popup-email" className="block mb-2 text-gray-700 dark:text-gray-300">
                 {t("contact.email")}
               </label>
               <input
@@ -100,12 +102,12 @@ const ContactPopup = ({ onClose }) => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <div className="mb-4">
-              <label htmlFor="popup-service" className="block text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="popup-service" className="block mb-2 text-gray-700 dark:text-gray-300">
                 Service Interested In
               </label>
               <select
@@ -114,7 +116,7 @@ const ContactPopup = ({ onClose }) => {
                 value={formData.service}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select a service</option>
                 <option value="web-development">Web Development</option>
@@ -125,7 +127,7 @@ const ContactPopup = ({ onClose }) => {
             </div>
 
             <div className="mb-6">
-              <label htmlFor="popup-message" className="block text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="popup-message" className="block mb-2 text-gray-700 dark:text-gray-300">
                 {t("contact.message")}
               </label>
               <textarea
@@ -135,7 +137,7 @@ const ContactPopup = ({ onClose }) => {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg resize-none bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               ></textarea>
             </div>
 
@@ -149,7 +151,7 @@ const ContactPopup = ({ onClose }) => {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              className="w-full px-6 py-3 font-medium text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
             >
               Submit Request
             </button>

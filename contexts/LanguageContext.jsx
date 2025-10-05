@@ -1,50 +1,36 @@
 "use client"
 
 import { createContext, useState, useContext, useEffect } from "react"
-import enTranslations from "@/locales/en.json"
-import faTranslations from "@/locales/fa.json"
-import arTranslations from "@/locales/ar.json"
-
-const translations = {
-  en: enTranslations,
-  fa: faTranslations,
-  ar: arTranslations,
-}
+import { useRouter, usePathname } from "next/navigation"
+import { useLocale } from "next-intl"
 
 const LanguageContext = createContext()
 
-export const useLanguage = () => useContext(LanguageContext)
+export const useLanguage = () => {
+  const context = useContext(LanguageContext)
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider')
+  }
+  return context
+}
 
 const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en")
+  const locale = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
+  const [language, setLanguage] = useState(locale)
 
   useEffect(() => {
-    // First check URL for language code
-    const pathLang = window.location.pathname.match(/^\/(en|fa|ar)\//) || []
-    const pathLanguage = pathLang[1]
+    setLanguage(locale)
 
-    // Then check localStorage
-    const savedLang = localStorage.getItem("language")
-
-    // Then check browser language
-    const browserLang = navigator.language.split("-")[0]
-
-    // Return the first valid language found, or default to English
-    const initialLang =
-      pathLanguage || savedLang || (browserLang && ["en", "fa", "ar"].includes(browserLang) ? browserLang : "en")
-
-    setLanguage(initialLang)
-  }, [])
-
-  useEffect(() => {
     // Set HTML dir attribute for RTL languages
-    document.documentElement.dir = language === "ar" || language === "fa" ? "rtl" : "ltr"
+    document.documentElement.dir = locale === "ar" || locale === "fa" ? "rtl" : "ltr"
 
     // Set HTML lang attribute
-    document.documentElement.lang = language
+    document.documentElement.lang = locale
 
     // Apply the appropriate font family based on language
-    if (language === "ar" || language === "fa") {
+    if (locale === "ar" || locale === "fa") {
       document.body.classList.add("font-rtl")
       document.body.classList.remove("font-sans")
     } else {
@@ -53,31 +39,20 @@ const LanguageProvider = ({ children }) => {
     }
 
     // Save language preference
-    localStorage.setItem("language", language)
-  }, [language])
+    localStorage.setItem("language", locale)
+  }, [locale])
 
   const changeLanguage = (lang) => {
-    if (translations[lang]) {
-      setLanguage(lang)
+    if (lang && ['en', 'fa', 'ar'].includes(lang)) {
+      // Get current path without locale prefix
+      const currentPath = pathname.replace(/^\/(en|fa|ar)/, '')
+
+      // Navigate to new locale with current path
+      router.push(`/${lang}${currentPath}`)
     }
   }
 
-  const t = (key) => {
-    const keys = key.split(".")
-    let result = translations[language]
-
-    for (const k of keys) {
-      if (result && result[k]) {
-        result = result[k]
-      } else {
-        return key // Fallback to key if translation not found
-      }
-    }
-
-    return result
-  }
-
-  return <LanguageContext.Provider value={{ language, changeLanguage, t }}>{children}</LanguageContext.Provider>
+  return <LanguageContext.Provider value={{ language, changeLanguage }}>{children}</LanguageContext.Provider>
 }
 
 export { LanguageProvider }

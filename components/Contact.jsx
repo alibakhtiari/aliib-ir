@@ -2,9 +2,11 @@
 
 import { useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { useTranslations } from "next-intl"
 
 const Contact = () => {
-  const { t, language } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -66,25 +68,25 @@ const Contact = () => {
         language === "ar" || language === "fa" ? "text-right" : "text-left"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-blue-600 dark:text-blue-400 text-lg font-medium mb-2">{t("contact.title")}</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t("contact.subtitle")}</h3>
+      <div className="container px-4 mx-auto">
+        <div className="max-w-3xl mx-auto mb-16 text-center">
+          <h2 className="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{t("contact.title")}</h2>
+          <h3 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{t("contact.subtitle")}</h3>
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-12">
+          <div className="flex flex-col gap-12 md:flex-row">
             {/* Contact Info */}
             <div className="md:w-2/5">
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 h-full">
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Contact Information</h4>
+              <div className="h-full p-8 bg-white shadow-lg dark:bg-gray-900 rounded-xl">
+                <h4 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">Contact Information</h4>
 
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full mr-4">
+                    <div className="p-3 mr-4 bg-blue-100 rounded-full dark:bg-blue-900/30">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-blue-600 dark:text-blue-400"
+                        className="w-6 h-6 text-blue-600 dark:text-blue-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -98,16 +100,16 @@ const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <h5 className="text-gray-900 dark:text-white font-medium">Phone</h5>
+                      <h5 className="font-medium text-gray-900 dark:text-white">Phone</h5>
                       <p className="text-gray-600 dark:text-gray-400">+1 (123) 456-7890</p>
                     </div>
                   </div>
 
                   <div className="flex items-start">
-                    <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full mr-4">
+                    <div className="p-3 mr-4 bg-blue-100 rounded-full dark:bg-blue-900/30">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-blue-600 dark:text-blue-400"
+                        className="w-6 h-6 text-blue-600 dark:text-blue-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -121,16 +123,16 @@ const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <h5 className="text-gray-900 dark:text-white font-medium">Email</h5>
+                      <h5 className="font-medium text-gray-900 dark:text-white">Email</h5>
                       <p className="text-gray-600 dark:text-gray-400">contact@alibakhtiari.com</p>
                     </div>
                   </div>
 
                   <div className="flex items-start">
-                    <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full mr-4">
+                    <div className="p-3 mr-4 bg-blue-100 rounded-full dark:bg-blue-900/30">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-blue-600 dark:text-blue-400"
+                        className="w-6 h-6 text-blue-600 dark:text-blue-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -150,25 +152,25 @@ const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <h5 className="text-gray-900 dark:text-white font-medium">Location</h5>
+                      <h5 className="font-medium text-gray-900 dark:text-white">Location</h5>
                       <p className="text-gray-600 dark:text-gray-400">San Francisco, CA</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-8">
-                  <h5 className="text-gray-900 dark:text-white font-medium mb-4">Follow Me</h5>
+                  <h5 className="mb-4 font-medium text-gray-900 dark:text-white">Follow Me</h5>
                   <div className="flex space-x-4">
                     {["twitter", "linkedin", "github", "instagram"].map((social) => (
                       <a
                         key={social}
                         href="#"
-                        className="bg-gray-100 dark:bg-gray-800 p-3 rounded-full text-gray-600 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="p-3 text-gray-600 transition-colors bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400"
                         aria-label={`Follow on ${social}`}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -189,11 +191,11 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div className="md:w-3/5">
-              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
+              <div className="p-8 bg-white shadow-lg dark:bg-gray-900 rounded-xl">
                 <form onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2">
+                      <label htmlFor="name" className="block mb-2 text-gray-700 dark:text-gray-300">
                         {t("contact.name")}
                       </label>
                       <input
@@ -203,11 +205,11 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2">
+                      <label htmlFor="email" className="block mb-2 text-gray-700 dark:text-gray-300">
                         {t("contact.email")}
                       </label>
                       <input
@@ -217,13 +219,13 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                   </div>
 
                   <div className="mb-6">
-                    <label htmlFor="subject" className="block text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="subject" className="block mb-2 text-gray-700 dark:text-gray-300">
                       Subject
                     </label>
                     <input
@@ -233,12 +235,12 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
 
                   <div className="mb-6">
-                    <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="message" className="block mb-2 text-gray-700 dark:text-gray-300">
                       {t("contact.message")}
                     </label>
                     <textarea
@@ -248,7 +250,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                      className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg resize-none bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     ></textarea>
                   </div>
 
@@ -262,7 +264,7 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                    className="w-full px-6 py-3 font-medium text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
                   >
                     {t("contact.submit")}
                   </button>

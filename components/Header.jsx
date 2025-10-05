@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
+import { useTranslations } from "next-intl"
 import LanguageSwitcher from "./LanguageSwitcher"
 import ThemeToggle from "./ThemeToggle"
 import Link from "next/link"
 
 const Header = ({ toggleContactPopup }) => {
-  const { t, language } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const isRTL = language === "ar" || language === "fa"
@@ -70,13 +72,13 @@ const Header = ({ toggleContactPopup }) => {
           </div>
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex items-center justify-center mx-auto">
+          <nav className="items-center justify-center hidden mx-auto md:flex">
             <div className="flex space-x-2">
               {navItems.map((item) => (
                 <Link
                   key={item.id}
                   href={`#${item.id}`}
-                  className="px-5 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="px-5 py-2 text-gray-700 transition-colors rounded-full dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800"
                   onClick={(e) => {
                     e.preventDefault()
                     scrollToSection(item.id)
@@ -94,7 +96,7 @@ const Header = ({ toggleContactPopup }) => {
             <ThemeToggle />
             <button
               onClick={toggleContactPopup}
-              className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full transition-colors text-sm"
+              className="hidden px-5 py-2 text-sm text-white transition-colors bg-blue-600 rounded-full md:flex hover:bg-blue-700"
               aria-label={t("cta.freeQuote")}
             >
               {t("cta.freeQuote")}
@@ -104,12 +106,12 @@ const Header = ({ toggleContactPopup }) => {
             <div className="md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none"
+                className="p-2 text-gray-700 rounded-full dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
+                  className="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -128,14 +130,14 @@ const Header = ({ toggleContactPopup }) => {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="absolute top-full mt-2 left-4 right-4 md:hidden bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden">
+        <div className="absolute mt-2 overflow-hidden bg-white shadow-lg top-full left-4 right-4 md:hidden dark:bg-gray-900 rounded-xl">
           <div className="p-4">
             <nav className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <Link
                   key={item.id}
                   href={`#${item.id}`}
-                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="px-4 py-2 text-gray-700 transition-colors rounded-lg dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800"
                   onClick={(e) => {
                     e.preventDefault()
                     scrollToSection(item.id)
@@ -150,7 +152,7 @@ const Header = ({ toggleContactPopup }) => {
                     toggleContactPopup()
                     setMobileMenuOpen(false)
                   }}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                  className="w-full px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
                 >
                   {t("cta.freeQuote")}
                 </button>
