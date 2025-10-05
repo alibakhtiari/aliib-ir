@@ -32,12 +32,15 @@ const seoContent = {
   },
 }
 
-const SEO = ({ canonicalUrl = "https://alibakhtiari.com" }) => {
+const SEO = ({ path = "/", canonicalUrl }) => {
   const { language } = useLanguage()
   const content = seoContent[language] || seoContent.en
 
   // Base URL for the website
   const baseUrl = "https://alibakhtiari.com"
+
+  // Construct dynamic canonical URL
+  const dynamicCanonicalUrl = canonicalUrl || `${baseUrl}${path.startsWith('/') ? path : '/' + path}`
 
   useEffect(() => {
     // Set document title
@@ -59,26 +62,47 @@ const SEO = ({ canonicalUrl = "https://alibakhtiari.com" }) => {
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:url" content={dynamicCanonicalUrl} />
       <meta property="og:title" content={content.ogTitle} />
       <meta property="og:description" content={content.ogDescription} />
       <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={canonicalUrl} />
+      <meta property="twitter:url" content={dynamicCanonicalUrl} />
       <meta property="twitter:title" content={content.ogTitle} />
       <meta property="twitter:description" content={content.ogDescription} />
       <meta property="twitter:image" content={`${baseUrl}/og-image.jpg`} />
 
       {/* Canonical URL */}
-      <link rel="canonical" href={canonicalUrl} />
+      <link rel="canonical" href={dynamicCanonicalUrl} />
 
       {/* Alternate language versions */}
-      <link rel="alternate" href={`${baseUrl}/en`} hrefLang="en" />
-      <link rel="alternate" href={`${baseUrl}/fa`} hrefLang="fa" />
-      <link rel="alternate" href={`${baseUrl}/ar`} hrefLang="ar" />
-      <link rel="alternate" href={baseUrl} hrefLang="x-default" />
+      <link rel="alternate" href={`${baseUrl}/${language === 'en' ? '' : language}${path}`} hrefLang={language} />
+      {['en', 'fa', 'ar'].map((lang) => (
+        <link key={lang} rel="alternate" href={`${baseUrl}/${lang === 'en' ? '' : lang}${path}`} hrefLang={lang} />
+      ))}
+      <link rel="alternate" href={`${baseUrl}${path}`} hrefLang="x-default" />
+
+      {/* Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": content.title,
+            "description": content.description,
+            "url": dynamicCanonicalUrl,
+            "inLanguage": language,
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "Ali Bakhtiari Portfolio",
+              "url": baseUrl
+            }
+          })
+        }}
+      />
     </Head>
   )
 }

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import Header from "@/components/Header"
 import Hero from "@/components/Hero"
 import About from "@/components/About"
@@ -17,6 +18,7 @@ import SEO from "@/components/SEO"
 export default function Home() {
   const [showContactPopup, setShowContactPopup] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const pathname = usePathname()
 
   useEffect(() => {
     // Simulate loading critical resources
@@ -38,7 +40,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen transition-colors duration-300">
-      <SEO />
+      <SEO path={pathname} />
       <Header toggleContactPopup={toggleContactPopup} />
       <main>
         <Hero toggleContactPopup={toggleContactPopup} />

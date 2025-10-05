@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { useLanguage } from "@/contexts/LanguageContext"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
@@ -12,6 +13,7 @@ import SEO from "@/components/SEO"
 export default function ProjectsLayout({ children }) {
   const { language } = useLanguage()
   const [showContactPopup, setShowContactPopup] = useState(false)
+  const pathname = usePathname()
 
   const toggleContactPopup = () => {
     setShowContactPopup(!showContactPopup)
@@ -24,7 +26,7 @@ export default function ProjectsLayout({ children }) {
 
   return (
     <div className="min-h-screen transition-colors duration-300">
-      <SEO canonicalUrl={`https://alibakhtiari.com/projects`} />
+      <SEO path={pathname} />
       <Header toggleContactPopup={toggleContactPopup} />
       <main>{children}</main>
       <Footer />

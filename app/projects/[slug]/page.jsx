@@ -1,15 +1,17 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useParams, useRouter } from "next/navigation"
+import { useParams, useRouter, usePathname } from "next/navigation"
 import { useLanguage } from "@/contexts/LanguageContext"
 import projects from "@/data/projects"
 import Image from "next/image"
 import Link from "next/link"
+import SEO from "@/components/SEO"
 
 export default function ProjectDetail() {
   const { slug } = useParams()
   const router = useRouter()
+  const pathname = usePathname()
   const { language, t } = useLanguage()
   const [project, setProject] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -42,8 +44,8 @@ export default function ProjectDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600"></div>
+      <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
+        <div className="w-16 h-16 border-t-4 border-b-4 border-blue-600 rounded-full animate-spin"></div>
       </div>
     )
   }
@@ -55,8 +57,13 @@ export default function ProjectDetail() {
   const projectContent = project.translations[language] || project.translations.en
 
   return (
-    <div className={`pt-24 pb-16 bg-white dark:bg-gray-900 ${isRTL ? "text-right" : "text-left"}`}>
-      <div className="container mx-auto px-4">
+    <>
+      <SEO
+        path={pathname}
+        canonicalUrl={`https://alibakhtiari.com${pathname}`}
+      />
+      <div className={`pt-24 pb-16 bg-white dark:bg-gray-900 ${isRTL ? "text-right" : "text-left"}`}>
+        <div className="container px-4 mx-auto">
         {/* Breadcrumb */}
         <div className="mb-8">
           <nav className="flex" aria-label="Breadcrumb">
@@ -134,40 +141,40 @@ export default function ProjectDetail() {
 
         {/* Project Header */}
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">{projectContent.title}</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl">{projectContent.description}</p>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">{projectContent.title}</h1>
+          <p className="max-w-3xl text-xl text-gray-600 dark:text-gray-400">{projectContent.description}</p>
         </div>
 
         {/* Project Image */}
-        <div className="mb-12 relative rounded-xl overflow-hidden shadow-xl">
+        <div className="relative mb-12 overflow-hidden shadow-xl rounded-xl">
           <div className="aspect-w-16 aspect-h-9 relative h-[500px]">
             <Image src={project.image || "/placeholder.svg"} alt={projectContent.title} fill className="object-cover" />
           </div>
         </div>
 
         {/* Project Details */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+        <div className="grid grid-cols-1 gap-12 mb-16 md:grid-cols-3">
           <div className="md:col-span-2">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t("projects.title")}</h2>
+            <div className="p-8 bg-white shadow-lg dark:bg-gray-800 rounded-xl">
+              <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">{t("projects.title")}</h2>
 
               <div className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{t("popup.challenge")}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">{projectContent.challenge}</p>
+                <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{t("popup.challenge")}</h3>
+                <p className="mb-6 text-gray-600 dark:text-gray-400">{projectContent.challenge}</p>
 
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{t("popup.solution")}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">{projectContent.solution}</p>
+                <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{t("popup.solution")}</h3>
+                <p className="mb-6 text-gray-600 dark:text-gray-400">{projectContent.solution}</p>
 
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{t("popup.results")}</h3>
+                <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{t("popup.results")}</h3>
                 <p className="text-gray-600 dark:text-gray-400">{projectContent.results}</p>
               </div>
 
               {/* Project Gallery */}
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{t("portfolio.gallery")}</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{t("portfolio.gallery")}</h3>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {project.gallery.map((image, index) => (
-                    <div key={index} className="rounded-lg overflow-hidden shadow-md">
+                    <div key={index} className="overflow-hidden rounded-lg shadow-md">
                       <div className="relative h-48">
                         <Image
                           src={image || "/placeholder.svg"}
@@ -184,38 +191,38 @@ export default function ProjectDetail() {
           </div>
 
           <div className="md:col-span-1">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 sticky top-24">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+            <div className="sticky p-8 bg-white shadow-lg dark:bg-gray-800 rounded-xl top-24">
+              <h3 className="mb-6 text-xl font-semibold text-gray-900 dark:text-white">
                 {t("portfolio.projectDetails")}
               </h3>
 
               <div className="space-y-4">
                 <div>
-                  <h4 className="text-gray-500 dark:text-gray-400 text-sm font-medium">{t("portfolio.client")}</h4>
-                  <p className="text-gray-900 dark:text-white font-medium">{project.client}</p>
+                  <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">{t("portfolio.client")}</h4>
+                  <p className="font-medium text-gray-900 dark:text-white">{project.client}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-gray-500 dark:text-gray-400 text-sm font-medium">{t("portfolio.year")}</h4>
-                  <p className="text-gray-900 dark:text-white font-medium">{project.year}</p>
+                  <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">{t("portfolio.year")}</h4>
+                  <p className="font-medium text-gray-900 dark:text-white">{project.year}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-gray-500 dark:text-gray-400 text-sm font-medium">{t("portfolio.category")}</h4>
-                  <p className="text-gray-900 dark:text-white font-medium">
+                  <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">{t("portfolio.category")}</h4>
+                  <p className="font-medium text-gray-900 dark:text-white">
                     {t(`portfolio.categories.${project.category}`)}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="text-gray-500 dark:text-gray-400 text-sm font-medium">
+                  <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400">
                     {t("portfolio.technologies")}
                   </h4>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {project.technologies.map((tech, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm"
+                        className="px-3 py-1 text-sm text-blue-600 bg-blue-100 rounded-full dark:bg-blue-900/30 dark:text-blue-400"
                       >
                         {tech}
                       </span>
@@ -229,7 +236,7 @@ export default function ProjectDetail() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-medium py-3 px-6 rounded-lg transition-colors"
+                      className="inline-block w-full px-6 py-3 font-medium text-center text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
                     >
                       {t("portfolio.viewLive")}
                     </a>
@@ -303,5 +310,6 @@ export default function ProjectDetail() {
         </div>
       </div>
     </div>
+    </>
   )
 }
