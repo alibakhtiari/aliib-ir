@@ -18,27 +18,12 @@ export const useLanguage = () => useContext(LanguageContext)
 
 const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
-    // First check URL for language code
-    const urlParams = new URLSearchParams(window.location.search)
-    const langParam = urlParams.get("lang")
-
     // Check if URL path contains language code
-    const pathLang = window.location.pathname.match(/^\/(en|fa|ar)\//)
+    const pathLang = window.location.pathname.match(/^\/(en|fa|ar)/)
     const pathLanguage = pathLang ? pathLang[1] : null
 
-    // Then check localStorage
-    const savedLang = localStorage.getItem("language")
-
-    // Then check browser language
-    const browserLang = navigator.language.split("-")[0]
-
-    // Return the first valid language found, or default to English
-    return (
-      langParam ||
-      pathLanguage ||
-      savedLang ||
-      (browserLang && ["en", "fa", "ar"].includes(browserLang) ? browserLang : "en")
-    )
+    // Return the language from URL, or default to Persian
+    return pathLanguage || "fa"
   })
 
   useEffect(() => {
@@ -57,11 +42,7 @@ const LanguageProvider = ({ children }) => {
       document.body.classList.remove("font-rtl")
     }
 
-    // Save language preference
-    localStorage.setItem("language", language)
 
-    // Update URL to reflect language
-    updateBrowserUrlForLanguage(language)
   }, [language])
 
   const changeLanguage = (lang) => {

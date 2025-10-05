@@ -2,9 +2,12 @@
 
 import { useState } from "react"
 import { useLanguage } from "../contexts/LanguageContext"
+import { useRouter, usePathname } from "next/navigation"
 
 const LanguageSwitcher = () => {
-  const { language, changeLanguage } = useLanguage()
+  const { language: currentLanguage } = useLanguage()
+  const router = useRouter()
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
   const languages = [
@@ -13,7 +16,7 @@ const LanguageSwitcher = () => {
     { code: "ar", name: "العربية", flag: "🇸🇦", nativeName: "العربية" },
   ]
 
-  const currentLanguage = languages.find((lang) => lang.code === language) || languages[0]
+  const currentLanguageInfo = languages.find((lang) => lang.code === currentLanguage) || languages[0]
 
   return (
     <div className="relative">
@@ -24,7 +27,7 @@ const LanguageSwitcher = () => {
         aria-haspopup="true"
         aria-label="Change language"
       >
-        <span className="text-lg">{currentLanguage.flag}</span>
+        <span className="text-lg">{currentLanguageInfo.flag}</span>
       </button>
 
       {isOpen && (
@@ -34,11 +37,22 @@ const LanguageSwitcher = () => {
               <button
                 key={lang.code}
                 onClick={() => {
-                  changeLanguage(lang.code)
+                  // Use Next.js router to change URL without affecting language state
+                  const currentPath = pathname
+                  console.log('Current path:', currentPath)
+
+                  // Remove language prefix and get the rest of the path
+                  const pathWithoutLang = currentPath.replace(/^\/(en|fa|ar)/, '') || '/'
+
+                  // Construct new path
+                  const newPath = lang.code === "en" ? pathWithoutLang : `/${lang.code}${pathWithoutLang}`
+
+                  console.log('New path:', newPath)
+                  router.push(newPath)
                   setIsOpen(false)
                 }}
                 className={`w-full text-left px-4 py-2 text-sm ${
-                  language === lang.code
+                  currentLanguage === lang.code
                     ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}
