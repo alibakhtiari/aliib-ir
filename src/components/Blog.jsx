@@ -7,30 +7,27 @@ const Blog = () => {
   const posts = [
     {
       id: 1,
-      title: "The Importance of Mobile-First Design",
-      excerpt:
-        "Learn why designing for mobile devices first can improve your overall user experience and SEO rankings.",
-      date: "June 15, 2023",
+      title: t("blog.posts.mobileFirst.title"),
+      excerpt: t("blog.posts.mobileFirst.excerpt"),
+      date: t("blog.posts.mobileFirst.date"),
       image: "/placeholder.svg?height=400&width=600",
-      category: "Web Design",
+      category: t("blog.posts.mobileFirst.category"),
     },
     {
       id: 2,
-      title: "SEO Strategies for 2023",
-      excerpt:
-        "Discover the latest search engine optimization techniques that will help your website rank higher this year.",
-      date: "May 22, 2023",
+      title: t("blog.posts.seoStrategies.title"),
+      excerpt: t("blog.posts.seoStrategies.excerpt"),
+      date: t("blog.posts.seoStrategies.date"),
       image: "/placeholder.svg?height=400&width=600",
-      category: "SEO",
+      category: t("blog.posts.seoStrategies.category"),
     },
     {
       id: 3,
-      title: "Writing Content That Converts",
-      excerpt:
-        "Tips and tricks for creating compelling content that not only engages readers but also drives conversions.",
-      date: "April 10, 2023",
+      title: t("blog.posts.contentConverts.title"),
+      excerpt: t("blog.posts.contentConverts.excerpt"),
+      date: t("blog.posts.contentConverts.date"),
       image: "/placeholder.svg?height=400&width=600",
-      category: "Content Writing",
+      category: t("blog.posts.contentConverts.category"),
     },
   ]
 
@@ -41,43 +38,43 @@ const Blog = () => {
         language === "ar" || language === "fa" ? "text-right" : "text-left"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-blue-600 dark:text-blue-400 text-lg font-medium mb-2">Blog</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Latest Articles</h3>
+      <div className="container px-4 mx-auto">
+        <div className="max-w-3xl mx-auto mb-16 text-center">
+          <h2 className="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{t("blog.title")}</h2>
+          <h3 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{t("blog.subtitle")}</h3>
           <p className="text-gray-600 dark:text-gray-400">
-            Insights, tips, and strategies to help you improve your online presence.
+            {t("blog.description")}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <article
               key={post.id}
-              className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-transform hover:-translate-y-2 duration-300"
+              className="overflow-hidden transition-transform duration-300 bg-white shadow-lg dark:bg-gray-900 rounded-xl hover:-translate-y-2"
             >
               <div className="overflow-hidden">
                 <img
                   src={post.image || "/placeholder.svg"}
                   alt={post.title}
-                  className="w-full h-48 object-cover transition-transform hover:scale-105 duration-500"
+                  className="object-cover w-full h-48 transition-transform duration-500 hover:scale-105"
                 />
               </div>
               <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">{post.category}</span>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">{post.category}</span>
                   <span className="text-sm text-gray-500 dark:text-gray-400">{post.date}</span>
                 </div>
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{post.title}</h4>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{post.excerpt}</p>
+                <h4 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">{post.title}</h4>
+                <p className="mb-4 text-gray-600 dark:text-gray-400">{post.excerpt}</p>
                 <a
                   href="#"
-                  className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline"
+                  className="inline-flex items-center font-medium text-blue-600 dark:text-blue-400 hover:underline"
                 >
-                  Read More
+                  {t("blog.readMore")}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 ml-2"
+                    className="w-4 h-4 ml-2"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -90,12 +87,12 @@ const Blog = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="mt-12 text-center">
           <a
             href="#"
-            className="inline-block bg-transparent border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 px-8 py-3 rounded-full transition-colors font-medium"
+            className="inline-block px-8 py-3 font-medium text-blue-600 transition-colors bg-transparent border-2 border-blue-600 rounded-full dark:text-blue-400 dark:border-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900"
           >
-            View All Articles
+            {t("blog.viewAll")}
           </a>
         </div>
       </div>

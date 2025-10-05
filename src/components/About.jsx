@@ -25,7 +25,7 @@ const About = () => {
               <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-xl -z-10 -rotate-3"></div>
               <img
                 src="/placeholder.svg?height=600&width=500"
-                alt="Ali Bakhtiari"
+                alt={t("hero.name")}
                 className="w-full max-w-md mx-auto rounded-lg shadow-lg"
               />
             </div>

@@ -102,6 +102,13 @@
       "uiUxDesign": "UI/UX Design",
       "ecommerceSolutions": "E-commerce Solutions",
       "selectService": "Select a service"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Subscribe to my newsletter for the latest updates and insights.",
+      "placeholder": "Your email",
+      "submit": "Subscribe",
+      "yourEmail": "Your email"
     }
   },
   "testimonials": {
@@ -110,6 +117,11 @@
     "experience": "10+ Years Experience",
     "projects": "100+ Projects Completed",
     "clients": "50+ Happy Clients",
+    "stats": {
+      "experience": "Years Experience",
+      "projects": "Projects Completed",
+      "clients": "Happy Clients"
+    },
     "testimonialClients": {
       "sarahJohnson": {
         "name": "Sarah Johnson",
@@ -179,5 +191,32 @@
       }
     },
     "viewDetails": "View Details"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Latest Articles",
+    "description": "Insights, tips, and strategies to help you improve your online presence.",
+    "readMore": "Read More",
+    "viewAll": "View All Articles",
+    "posts": {
+      "mobileFirst": {
+        "title": "The Importance of Mobile-First Design",
+        "excerpt": "Learn why designing for mobile devices first can improve your overall user experience and SEO rankings.",
+        "category": "Web Design",
+        "date": "June 15, 2023"
+      },
+      "seoStrategies": {
+        "title": "SEO Strategies for 2023",
+        "excerpt": "Discover the latest search engine optimization techniques that will help your website rank higher this year.",
+        "category": "SEO",
+        "date": "May 22, 2023"
+      },
+      "contentConverts": {
+        "title": "Writing Content That Converts",
+        "excerpt": "Tips and tricks for creating compelling content that not only engages readers but also drives conversions.",
+        "category": "Content Writing",
+        "date": "April 10, 2023"
+      }
+    }
   }
 }

@@ -19,11 +19,14 @@ const Footer = () => {
           <div className="md:col-span-1">
             <div className="mb-4">
               <Link href="#home" className="text-2xl font-bold">
-                Ali<span className="text-blue-400">Bakhtiari</span>
+                {language === "ar" || language === "fa" ? "علی" : "Ali"}
+                <span className="text-blue-400">
+                  {language === "ar" || language === "fa" ? "بختیاری" : "Bakhtiari"}
+                </span>
               </Link>
             </div>
             <p className="mb-6 text-gray-400">
-              Creating stunning, high-performance websites optimized for search engines and user experience.
+              {t("hero.description")}
             </p>
             <div className="flex space-x-4">
               {["twitter", "linkedin", "github", "instagram"].map((social) => (
@@ -54,9 +57,15 @@ const Footer = () => {
 
           {/* Services */}
           <div className="md:col-span-1">
-            <h4 className="mb-4 text-lg font-semibold">Services</h4>
+            <h4 className="mb-4 text-lg font-semibold">{t("services.title")}</h4>
             <ul className="space-y-2">
-              {["Web Development", "SEO Optimization", "Content Writing", "UI/UX Design", "E-commerce Solutions"].map(
+              {[
+                t("footer.services.webDevelopment"),
+                t("footer.services.seoOptimization"),
+                t("footer.services.contentWriting"),
+                t("footer.services.uiUxDesign"),
+                t("footer.services.ecommerceSolutions")
+              ].map(
                 (service, index) => (
                   <li key={index}>
                     <Link href="#services" className="text-gray-400 transition-colors hover:text-blue-400">
@@ -90,13 +99,13 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div className="md:col-span-1">
-            <h4 className="mb-4 text-lg font-semibold">Newsletter</h4>
-            <p className="mb-4 text-gray-400">Subscribe to my newsletter for the latest updates and insights.</p>
+            <h4 className="mb-4 text-lg font-semibold">{t("footer.newsletter.title")}</h4>
+            <p className="mb-4 text-gray-400">{t("footer.newsletter.description")}</p>
             <form className="mb-4">
               <div className="flex">
                 <input
                   type="email"
-                  placeholder="Your email"
+                  placeholder={t("footer.newsletter.placeholder")}
                   className="w-full px-4 py-2 text-white bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button

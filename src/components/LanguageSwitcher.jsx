@@ -8,9 +8,9 @@ const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const languages = [
-    { code: "en", name: "English", flag: "🇺🇸" },
-    { code: "fa", name: "فارسی", flag: "🇮🇷" },
-    { code: "ar", name: "العربية", flag: "🇸🇦" },
+    { code: "en", name: "English", flag: "🇺🇸", nativeName: "English" },
+    { code: "fa", name: "فارسی", flag: "🇮🇷", nativeName: "فارسی" },
+    { code: "ar", name: "العربية", flag: "🇸🇦", nativeName: "العربية" },
   ]
 
   const currentLanguage = languages.find((lang) => lang.code === language) || languages[0]
@@ -19,7 +19,7 @@ const LanguageSwitcher = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-9 h-9 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        className="flex items-center justify-center text-gray-700 transition-colors rounded-full w-9 h-9 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Change language"
@@ -28,7 +28,7 @@ const LanguageSwitcher = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute mt-2 w-40 bg-white dark:bg-gray-800 rounded-md shadow-lg z-50 right-0">
+        <div className="absolute right-0 z-50 w-40 mt-2 bg-white rounded-md shadow-lg dark:bg-gray-800">
           <div className="py-1">
             {languages.map((lang) => (
               <button
