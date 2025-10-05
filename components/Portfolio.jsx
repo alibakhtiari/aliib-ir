@@ -9,54 +9,54 @@ const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState("all")
 
   const filters = [
-    { id: "all", label: "All" },
-    { id: "web", label: "Web Development" },
-    { id: "seo", label: "SEO" },
-    { id: "content", label: "Content" },
+    { id: "all", label: t("portfolio.filters.all") },
+    { id: "web", label: t("portfolio.filters.web") },
+    { id: "seo", label: t("portfolio.filters.seo") },
+    { id: "content", label: t("portfolio.filters.content") },
   ]
 
   const projects = [
     {
       id: 1,
-      title: "E-commerce Website",
+      title: t("portfolio.projects.ecommerce.title"),
       category: "web",
       image: "/placeholder.svg",
-      description: "A fully responsive e-commerce platform with advanced filtering and payment integration.",
+      description: t("portfolio.projects.ecommerce.description"),
     },
     {
       id: 2,
-      title: "SEO Optimization Campaign",
+      title: t("portfolio.projects.seoCampaign.title"),
       category: "seo",
       image: "/placeholder.svg",
-      description: "Increased organic traffic by 200% through comprehensive SEO strategy.",
+      description: t("portfolio.projects.seoCampaign.description"),
     },
     {
       id: 3,
-      title: "Corporate Blog",
+      title: t("portfolio.projects.corporateBlog.title"),
       category: "content",
       image: "/placeholder.svg",
-      description: "Created engaging content strategy that boosted user engagement and conversions.",
+      description: t("portfolio.projects.corporateBlog.description"),
     },
     {
       id: 4,
-      title: "Portfolio Website",
+      title: t("portfolio.projects.portfolioWebsite.title"),
       category: "web",
       image: "/placeholder.svg",
-      description: "Modern portfolio website with animations and responsive design.",
+      description: t("portfolio.projects.portfolioWebsite.description"),
     },
     {
       id: 5,
-      title: "Local Business SEO",
+      title: t("portfolio.projects.localBusinessSEO.title"),
       category: "seo",
       image: "/placeholder.svg",
-      description: "Improved local search rankings for a small business, increasing foot traffic.",
+      description: t("portfolio.projects.localBusinessSEO.description"),
     },
     {
       id: 6,
-      title: "Product Descriptions",
+      title: t("portfolio.projects.productDescriptions.title"),
       category: "content",
       image: "/placeholder.svg",
-      description: "Crafted compelling product descriptions that increased conversion rates.",
+      description: t("portfolio.projects.productDescriptions.description"),
     },
   ]
 
@@ -70,10 +70,10 @@ const Portfolio = () => {
         language === "ar" || language === "fa" ? "text-right" : "text-left"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-blue-600 dark:text-blue-400 text-lg font-medium mb-2">Portfolio</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">My Recent Work</h3>
+      <div className="container px-4 mx-auto">
+        <div className="max-w-3xl mx-auto mb-12 text-center">
+          <h2 className="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{t("portfolio.title")}</h2>
+          <h3 className="mb-8 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{t("portfolio.subtitle")}</h3>
 
           {/* Filters */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -94,27 +94,27 @@ const Portfolio = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 duration-300"
+              className="overflow-hidden transition-all duration-300 shadow-lg group bg-gray-50 dark:bg-gray-800 rounded-xl hover:-translate-y-2"
             >
-              <div className="relative overflow-hidden h-64">
+              <div className="relative h-64 overflow-hidden">
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-blue-600/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button className="bg-white text-blue-600 px-6 py-2 rounded-full font-medium transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    View Details
+                <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 bg-blue-600/80 group-hover:opacity-100">
+                  <button className="px-6 py-2 font-medium text-blue-600 transition-transform duration-300 transform -translate-y-4 bg-white rounded-full group-hover:translate-y-0">
+                    {t("portfolio.viewDetails")}
                   </button>
                 </div>
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h4>
+                <h4 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">{project.title}</h4>
                 <p className="text-gray-600 dark:text-gray-400">{project.description}</p>
               </div>
             </div>

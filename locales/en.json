@@ -30,15 +30,47 @@
     "subtitle": "What I Offer",
     "webDev": {
       "title": "Web Development",
-      "description": "Custom, responsive websites built with modern technologies and best practices for optimal performance."
+      "description": "Custom, responsive websites built with modern technologies and best practices for optimal performance.",
+      "features": {
+        "responsive": "Responsive Design",
+        "performance": "Performance Optimization",
+        "custom": "Custom Functionality",
+        "ecommerce": "E-commerce Solutions"
+      }
     },
     "seo": {
       "title": "SEO Optimization",
-      "description": "Strategic optimization to improve search engine rankings and drive organic traffic to your website."
+      "description": "Strategic optimization to improve search engine rankings and drive organic traffic to your website.",
+      "features": {
+        "keyword": "Keyword Research",
+        "onpage": "On-page Optimization",
+        "technical": "Technical SEO",
+        "linkbuilding": "Link Building Strategies"
+      }
     },
     "content": {
       "title": "Content Writing",
-      "description": "Engaging, SEO-friendly content that resonates with your audience and supports your business goals."
+      "description": "Engaging, SEO-friendly content that resonates with your audience and supports your business goals.",
+      "features": {
+        "blog": "Blog Posts",
+        "website": "Website Copy",
+        "product": "Product Descriptions",
+        "email": "Email Campaigns"
+      }
+    },
+    "serviceFeatures": {
+      "responsiveDesign": "Responsive Design",
+      "performanceOptimization": "Performance Optimization",
+      "customFunctionality": "Custom Functionality",
+      "ecommerceSolutions": "E-commerce Solutions",
+      "keywordResearch": "Keyword Research",
+      "onpageOptimization": "On-page Optimization",
+      "technicalSeo": "Technical SEO",
+      "linkBuildingStrategies": "Link Building Strategies",
+      "blogPosts": "Blog Posts",
+      "websiteCopy": "Website Copy",
+      "productDescriptions": "Product Descriptions",
+      "emailCampaigns": "Email Campaigns"
     }
   },
   "contact": {
@@ -55,5 +87,49 @@
     "rights": "All Rights Reserved",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "What Clients Say",
+    "experience": "10+ Years Experience",
+    "projects": "100+ Projects Completed",
+    "clients": "50+ Happy Clients"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "My Recent Work",
+    "filters": {
+      "all": "All",
+      "web": "Web Development",
+      "seo": "SEO",
+      "content": "Content"
+    },
+    "projects": {
+      "ecommerce": {
+        "title": "E-commerce Website",
+        "description": "A fully responsive e-commerce platform with advanced filtering and payment integration."
+      },
+      "seoCampaign": {
+        "title": "SEO Optimization Campaign",
+        "description": "Increased organic traffic by 200% through comprehensive SEO strategy."
+      },
+      "corporateBlog": {
+        "title": "Corporate Blog",
+        "description": "Created engaging content strategy that boosted user engagement and conversions."
+      },
+      "portfolioWebsite": {
+        "title": "Portfolio Website",
+        "description": "Modern portfolio website with animations and responsive design."
+      },
+      "localBusinessSEO": {
+        "title": "Local Business SEO",
+        "description": "Improved local search rankings for a small business, increasing foot traffic."
+      },
+      "productDescriptions": {
+        "title": "Product Descriptions",
+        "description": "Crafted compelling product descriptions that increased conversion rates."
+      }
+    },
+    "viewDetails": "View Details"
   }
 }

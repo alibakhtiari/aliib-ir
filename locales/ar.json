@@ -30,15 +30,47 @@
     "subtitle": "ما أقدمه",
     "webDev": {
       "title": "تطوير الويب",
-      "description": "مواقع ويب مخصصة ومتجاوبة مبنية بتقنيات حديثة وأفضل الممارسات للأداء الأمثل."
+      "description": "مواقع ويب مخصصة ومتجاوبة مبنية بتقنيات حديثة وأفضل الممارسات للأداء الأمثل.",
+      "features": {
+        "responsive": "",
+        "performance": "",
+        "custom": "",
+        "ecommerce": ""
+      }
     },
     "seo": {
       "title": "تحسين محركات البحث",
-      "description": "تحسين استراتيجي لتحسين ترتيب محركات البحث وجذب حركة المرور العضوية إلى موقع الويب الخاص بك."
+      "description": "تحسين استراتيجي لتحسين ترتيب محركات البحث وجذب حركة المرور العضوية إلى موقع الويب الخاص بك.",
+      "features": {
+        "keyword": "",
+        "onpage": "",
+        "technical": "",
+        "linkbuilding": ""
+      }
     },
     "content": {
       "title": "كتابة المحتوى",
-      "description": "محتوى جذاب وصديق لمحركات البحث يتردد صداه مع جمهورك ويدعم أهداف عملك."
+      "description": "محتوى جذاب وصديق لمحركات البحث يتردد صداه مع جمهورك ويدعم أهداف عملك.",
+      "features": {
+        "blog": "",
+        "website": "",
+        "product": "",
+        "email": ""
+      }
+    },
+    "serviceFeatures": {
+      "responsiveDesign": "",
+      "performanceOptimization": "",
+      "customFunctionality": "",
+      "ecommerceSolutions": "",
+      "keywordResearch": "",
+      "onpageOptimization": "",
+      "technicalSeo": "",
+      "linkBuildingStrategies": "",
+      "blogPosts": "",
+      "websiteCopy": "",
+      "productDescriptions": "",
+      "emailCampaigns": ""
     }
   },
   "contact": {
@@ -55,5 +87,49 @@
     "rights": "جميع الحقوق محفوظة",
     "privacy": "سياسة الخصوصية",
     "terms": "شروط الخدمة"
+  },
+  "testimonials": {
+    "title": "",
+    "subtitle": "",
+    "experience": "",
+    "projects": "",
+    "clients": ""
+  },
+  "portfolio": {
+    "title": "",
+    "subtitle": "",
+    "filters": {
+      "all": "",
+      "web": "",
+      "seo": "",
+      "content": ""
+    },
+    "projects": {
+      "ecommerce": {
+        "title": "",
+        "description": ""
+      },
+      "seoCampaign": {
+        "title": "",
+        "description": ""
+      },
+      "corporateBlog": {
+        "title": "",
+        "description": ""
+      },
+      "portfolioWebsite": {
+        "title": "",
+        "description": ""
+      },
+      "localBusinessSEO": {
+        "title": "",
+        "description": ""
+      },
+      "productDescriptions": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "viewDetails": ""
   }
 }

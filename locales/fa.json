@@ -30,15 +30,47 @@
     "subtitle": "آنچه ارائه می‌دهم",
     "webDev": {
       "title": "توسعه وب",
-      "description": "وب‌سایت‌های سفارشی و واکنش‌گرا که با فناوری‌های مدرن و بهترین شیوه‌ها برای عملکرد بهینه ساخته شده‌اند."
+      "description": "وب‌سایت‌های سفارشی و واکنش‌گرا که با فناوری‌های مدرن و بهترین شیوه‌ها برای عملکرد بهینه ساخته شده‌اند.",
+      "features": {
+        "responsive": "",
+        "performance": "",
+        "custom": "",
+        "ecommerce": ""
+      }
     },
     "seo": {
       "title": "بهینه‌سازی سئو",
-      "description": "بهینه‌سازی استراتژیک برای بهبود رتبه‌بندی موتورهای جستجو و هدایت ترافیک ارگانیک به وب‌سایت شما."
+      "description": "بهینه‌سازی استراتژیک برای بهبود رتبه‌بندی موتورهای جستجو و هدایت ترافیک ارگانیک به وب‌سایت شما.",
+      "features": {
+        "keyword": "",
+        "onpage": "",
+        "technical": "",
+        "linkbuilding": ""
+      }
     },
     "content": {
       "title": "نوشتن محتوا",
-      "description": "محتوای جذاب و سئو-دوستانه که با مخاطبان شما ارتباط برقرار می‌کند و از اهداف کسب‌وکار شما پشتیبانی می‌کند."
+      "description": "محتوای جذاب و سئو-دوستانه که با مخاطبان شما ارتباط برقرار می‌کند و از اهداف کسب‌وکار شما پشتیبانی می‌کند.",
+      "features": {
+        "blog": "",
+        "website": "",
+        "product": "",
+        "email": ""
+      }
+    },
+    "serviceFeatures": {
+      "responsiveDesign": "",
+      "performanceOptimization": "",
+      "customFunctionality": "",
+      "ecommerceSolutions": "",
+      "keywordResearch": "",
+      "onpageOptimization": "",
+      "technicalSeo": "",
+      "linkBuildingStrategies": "",
+      "blogPosts": "",
+      "websiteCopy": "",
+      "productDescriptions": "",
+      "emailCampaigns": ""
     }
   },
   "contact": {
@@ -55,5 +87,49 @@
     "rights": "تمامی حقوق محفوظ است",
     "privacy": "سیاست حفظ حریم خصوصی",
     "terms": "شرایط استفاده از خدمات"
+  },
+  "testimonials": {
+    "title": "",
+    "subtitle": "",
+    "experience": "",
+    "projects": "",
+    "clients": ""
+  },
+  "portfolio": {
+    "title": "",
+    "subtitle": "",
+    "filters": {
+      "all": "",
+      "web": "",
+      "seo": "",
+      "content": ""
+    },
+    "projects": {
+      "ecommerce": {
+        "title": "",
+        "description": ""
+      },
+      "seoCampaign": {
+        "title": "",
+        "description": ""
+      },
+      "corporateBlog": {
+        "title": "",
+        "description": ""
+      },
+      "portfolioWebsite": {
+        "title": "",
+        "description": ""
+      },
+      "localBusinessSEO": {
+        "title": "",
+        "description": ""
+      },
+      "productDescriptions": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "viewDetails": ""
   }
 }
