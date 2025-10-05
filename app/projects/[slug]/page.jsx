@@ -8,6 +8,26 @@ import Image from "next/image"
 import Link from "next/link"
 import SEO from "@/components/SEO"
 
+// Generate breadcrumbs for project pages
+const generateBreadcrumbs = (project, language, t) => {
+  const projectContent = project.translations[language] || project.translations.en
+
+  return [
+    {
+      name: t("nav.home"),
+      url: `https://alibakhtiari.ir/`
+    },
+    {
+      name: t("portfolio.title"),
+      url: `https://alibakhtiari.ir/#portfolio`
+    },
+    {
+      name: projectContent.title,
+      url: `https://alibakhtiari.ir/projects/${project.id}`
+    }
+  ]
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams()
   const router = useRouter()
@@ -60,7 +80,11 @@ export default function ProjectDetail() {
     <>
       <SEO
         path={pathname}
-        canonicalUrl={`https://alibakhtiari.ir${pathname}`}
+        schemaType="project"
+        schemaData={{
+          project,
+          breadcrumbs: generateBreadcrumbs(project, language, t)
+        }}
       />
       <div className={`pt-24 pb-16 bg-white dark:bg-gray-900 ${isRTL ? "text-right" : "text-left"}`}>
         <div className="container px-4 mx-auto">

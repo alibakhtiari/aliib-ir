@@ -40,7 +40,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen transition-colors duration-300">
-      <SEO path={pathname} />
+      <SEO
+        path={pathname}
+        schemaType="person"
+      />
       <Header toggleContactPopup={toggleContactPopup} />
       <main>
         <Hero toggleContactPopup={toggleContactPopup} />

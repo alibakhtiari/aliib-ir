@@ -26,7 +26,10 @@ export default function ProjectsLayout({ children }) {
 
   return (
     <div className="min-h-screen transition-colors duration-300">
-      <SEO path={pathname} />
+      <SEO
+        path={pathname}
+        schemaType="organization"
+      />
       <Header toggleContactPopup={toggleContactPopup} />
       <main>{children}</main>
       <Footer />
