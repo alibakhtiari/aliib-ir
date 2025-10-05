@@ -23,7 +23,9 @@
     "description": "With extensive experience in web development, SEO, and content writing, I help businesses establish a strong online presence. My approach combines technical expertise with creative solutions to deliver results that exceed expectations.",
     "experience": "Years of Experience",
     "projects": "Projects Completed",
-    "clients": "Satisfied Clients"
+    "clients": "Satisfied Clients",
+    "skills": "Skills",
+    "skillsList": ["HTML5", "CSS3", "JavaScript", "React", "SEO", "Content Writing", "UI/UX", "Responsive Design"]
   },
   "services": {
     "title": "My Services",
@@ -81,19 +83,65 @@
     "message": "Your Message",
     "submit": "Send Message",
     "success": "Message sent successfully!",
-    "error": "There was an error sending your message. Please try again."
+    "error": "There was an error sending your message. Please try again.",
+    "serviceOptions": {
+      "webDevelopment": "Web Development",
+      "seo": "SEO Optimization",
+      "content": "Content Writing",
+      "other": "Other"
+    }
   },
   "footer": {
     "rights": "All Rights Reserved",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "services": {
+      "webDevelopment": "Web Development",
+      "seoOptimization": "SEO Optimization",
+      "contentWriting": "Content Writing",
+      "uiUxDesign": "UI/UX Design",
+      "ecommerceSolutions": "E-commerce Solutions",
+      "selectService": "Select a service"
+    }
   },
   "testimonials": {
     "title": "Testimonials",
     "subtitle": "What Clients Say",
     "experience": "10+ Years Experience",
     "projects": "100+ Projects Completed",
-    "clients": "50+ Happy Clients"
+    "clients": "50+ Happy Clients",
+    "testimonialClients": {
+      "sarahJohnson": {
+        "name": "Sarah Johnson",
+        "position": "CEO",
+        "company": "TechSolutions Inc.",
+        "quote": "Ali transformed our online presence completely. His expertise in both web development and SEO resulted in a 200% increase in organic traffic and a significant boost in conversions. Highly recommended!"
+      },
+      "michaelChen": {
+        "name": "Michael Chen",
+        "position": "Marketing Director",
+        "company": "GrowthLabs",
+        "quote": "Working with Ali was a game-changer for our business. His attention to detail and understanding of our needs made the entire process smooth and the end result exceptional."
+      },
+      "emmaRodriguez": {
+        "name": "Emma Rodriguez",
+        "position": "E-commerce Manager",
+        "company": "StyleBoutique",
+        "quote": "The content Ali created for our product pages was engaging and persuasive. We saw a significant increase in conversion rates within weeks of implementation."
+      },
+      "davidKim": {
+        "name": "David Kim",
+        "position": "Founder",
+        "company": "StartupVision",
+        "quote": "Ali delivered beyond our expectations. His strategic approach to SEO and content helped us establish a strong online presence in a competitive market."
+      },
+      "sophiaPatel": {
+        "name": "Sophia Patel",
+        "position": "Digital Marketing Lead",
+        "company": "InnovateX",
+        "quote": "Professional, responsive, and incredibly talented. Ali's work on our website redesign resulted in improved user engagement and higher conversion rates."
+      }
+    }
   },
   "portfolio": {
     "title": "Portfolio",
