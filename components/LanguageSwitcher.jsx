@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
-import { useTranslations } from "next-intl"
+import { useLocale } from "next-intl"
 
 const LanguageSwitcher = () => {
-  const { language, changeLanguage } = useLanguage()
-  const t = useTranslations()
+  const { changeLanguage } = useLanguage()
+  const currentLocale = useLocale()
   const [isOpen, setIsOpen] = useState(false)
 
   const languages = [
@@ -15,8 +15,7 @@ const LanguageSwitcher = () => {
     { code: "ar", name: "العربية", flag: "🇸🇦" },
   ]
 
-  const currentLanguage = languages.find((lang) => lang.code === language) || languages[0]
-
+  const currentLanguage = languages.find((lang) => lang.code === currentLocale) || languages[0]
   return (
     <div className="relative">
       <button
@@ -40,7 +39,7 @@ const LanguageSwitcher = () => {
                   setIsOpen(false)
                 }}
                 className={`w-full text-left px-4 py-2 text-sm ${
-                  language === lang.code
+                  currentLocale === lang.code
                     ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}
