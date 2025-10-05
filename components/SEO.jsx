@@ -37,7 +37,7 @@ const SEO = ({ path = "/", canonicalUrl }) => {
   const content = seoContent[language] || seoContent.en
 
   // Base URL for the website
-  const baseUrl = "https://alibakhtiari.com"
+  const baseUrl = "https://alibakhtiari.ir"
 
   // Construct dynamic canonical URL
   const dynamicCanonicalUrl = canonicalUrl || `${baseUrl}${path.startsWith('/') ? path : '/' + path}`

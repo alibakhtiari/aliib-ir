@@ -60,7 +60,7 @@ export default function ProjectDetail() {
     <>
       <SEO
         path={pathname}
-        canonicalUrl={`https://alibakhtiari.com${pathname}`}
+        canonicalUrl={`https://alibakhtiari.ir${pathname}`}
       />
       <div className={`pt-24 pb-16 bg-white dark:bg-gray-900 ${isRTL ? "text-right" : "text-left"}`}>
         <div className="container px-4 mx-auto">

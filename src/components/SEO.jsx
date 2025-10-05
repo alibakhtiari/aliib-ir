@@ -31,12 +31,12 @@ const seoContent = {
   },
 }
 
-const SEO = ({ canonicalUrl = "https://alibakhtiari.com" }) => {
+const SEO = ({ canonicalUrl = "https://alibakhtiari.ir" }) => {
   const { language } = useLanguage()
   const content = seoContent[language] || seoContent.en
 
   // Base URL for the website
-  const baseUrl = "https://alibakhtiari.com"
+  const baseUrl = "https://alibakhtiari.ir"
 
   useEffect(() => {
     // Set document title
