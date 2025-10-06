@@ -13,23 +13,13 @@ import Contact from "@/components/Contact"
 import Footer from "@/components/Footer"
 import FloatingButtons from "@/components/FloatingButtons"
 import ContactPopup from "@/components/ContactPopup"
-import LoadingSpinner from "@/components/LoadingSpinner"
+
 import SEO from "@/components/SEO"
 
 export default function Home() {
   const [showContactPopup, setShowContactPopup] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
   const pathname = usePathname()
   const { language } = useLanguage()
-
-  useEffect(() => {
-    // Simulate loading critical resources
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [])
 
   useEffect(() => {
     // Set HTML dir attribute for RTL languages
@@ -50,11 +40,6 @@ export default function Home() {
 
   const toggleContactPopup = () => {
     setShowContactPopup(!showContactPopup)
-  }
-
-  // Render the app content
-  if (isLoading) {
-    return <LoadingSpinner />
   }
 
   return (

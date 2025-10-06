@@ -21,17 +21,21 @@ const Testimonials = () => {
   // Duplicate testimonials for infinite scroll effect
   const allTestimonials = [...testimonials, ...testimonials]
 
-  // Set up the auto-scroll effect
+  // Set up the auto-scroll and drag effect
   useEffect(() => {
     const scroller = scrollerRef.current
     if (!scroller) return
 
     let scrollInterval
     let isPaused = false
+    let isDragging = false
+    let startX = 0
+    let scrollLeft = 0
+    let animationId = null
 
     const startScroll = () => {
-      scrollInterval = setInterval(() => {
-        if (!isPaused && scroller) {
+      const scrollStep = () => {
+        if (!isPaused && !isDragging && scroller) {
           const scrollAmount = isRTL ? -1 : 1
           scroller.scrollLeft += scrollAmount
 
@@ -46,7 +50,9 @@ const Testimonials = () => {
             }
           }
         }
-      }, 20)
+        animationId = requestAnimationFrame(scrollStep)
+      }
+      animationId = requestAnimationFrame(scrollStep)
     }
 
     // Start scrolling
@@ -60,26 +66,72 @@ const Testimonials = () => {
       isPaused = false
     }
 
-    scroller.addEventListener("mouseenter", handleMouseEnter)
-    scroller.addEventListener("mouseleave", handleMouseLeave)
+    // Drag functionality
+    const handleMouseDown = (e) => {
+      isDragging = true
+      isPaused = true
+      startX = e.pageX - scroller.offsetLeft
+      scrollLeft = scroller.scrollLeft
+      scroller.style.cursor = 'grabbing'
+    }
+
+    const handleMouseMove = (e) => {
+      if (!isDragging) return
+      e.preventDefault()
+      const x = e.pageX - scroller.offsetLeft
+      const walk = (x - startX) * 2
+      scroller.scrollLeft = scrollLeft - walk
+    }
+
+    const handleMouseUp = () => {
+      isDragging = false
+      isPaused = false
+      scroller.style.cursor = 'grab'
+    }
 
     // Touch events for mobile
-    const handleTouchStart = () => {
+    const handleTouchStart = (e) => {
       isPaused = true
-    }
-    const handleTouchEnd = () => {
-      isPaused = false
+      const touch = e.touches[0]
+      startX = touch.pageX - scroller.offsetLeft
+      scrollLeft = scroller.scrollLeft
     }
 
+    const handleTouchMove = (e) => {
+      if (!startX) return
+      e.preventDefault()
+      const touch = e.touches[0]
+      const x = touch.pageX - scroller.offsetLeft
+      const walk = (x - startX) * 2
+      scroller.scrollLeft = scrollLeft - walk
+    }
+
+    const handleTouchEnd = () => {
+      isPaused = false
+      startX = 0
+    }
+
+    scroller.addEventListener("mouseenter", handleMouseEnter)
+    scroller.addEventListener("mouseleave", handleMouseLeave)
+    scroller.addEventListener("mousedown", handleMouseDown)
+    scroller.addEventListener("mousemove", handleMouseMove)
+    scroller.addEventListener("mouseup", handleMouseUp)
     scroller.addEventListener("touchstart", handleTouchStart)
+    scroller.addEventListener("touchmove", handleTouchMove)
     scroller.addEventListener("touchend", handleTouchEnd)
 
     return () => {
-      clearInterval(scrollInterval)
+      if (animationId) {
+        cancelAnimationFrame(animationId)
+      }
       if (scroller) {
         scroller.removeEventListener("mouseenter", handleMouseEnter)
         scroller.removeEventListener("mouseleave", handleMouseLeave)
+        scroller.removeEventListener("mousedown", handleMouseDown)
+        scroller.removeEventListener("mousemove", handleMouseMove)
+        scroller.removeEventListener("mouseup", handleMouseUp)
         scroller.removeEventListener("touchstart", handleTouchStart)
+        scroller.removeEventListener("touchmove", handleTouchMove)
         scroller.removeEventListener("touchend", handleTouchEnd)
       }
     }
@@ -124,7 +176,7 @@ const Testimonials = () => {
         {/* Infinite testimonial scroller */}
         <div
           ref={scrollerRef}
-          className="flex gap-6 py-8 overflow-x-auto scrollbar-hide"
+          className="flex gap-6 py-8 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing"
           style={{
             scrollBehavior: "smooth",
             direction: isRTL ? "rtl" : "ltr",
