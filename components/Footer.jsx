@@ -77,7 +77,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="md:col-span-1">
-            <h4 className="mb-4 text-lg font-semibold">Quick Links</h4>
+            <h4 className="mb-4 text-lg font-semibold">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2">
               {[
                 { label: t("nav.home"), href: "#home" },

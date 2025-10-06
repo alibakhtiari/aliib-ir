@@ -9,53 +9,14 @@ const Testimonials = () => {
   const isRTL = language === "ar" || language === "fa"
   const scrollerRef = useRef(null)
 
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      position: "CEO",
-      company: "TechSolutions Inc.",
-      image: "/placeholder.svg",
-      quote:
-        "Ali transformed our online presence completely. His expertise in both web development and SEO resulted in a 200% increase in organic traffic and a significant boost in conversions. Highly recommended!",
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      position: "Marketing Director",
-      company: "GrowthLabs",
-      image: "/placeholder.svg",
-      quote:
-        "Working with Ali was a game-changer for our business. His attention to detail and understanding of our needs made the entire process smooth and the end result exceptional.",
-    },
-    {
-      id: 3,
-      name: "Emma Rodriguez",
-      position: "E-commerce Manager",
-      company: "StyleBoutique",
-      image: "/placeholder.svg",
-      quote:
-        "The content Ali created for our product pages was engaging and persuasive. We saw a significant increase in conversion rates within weeks of implementation.",
-    },
-    {
-      id: 4,
-      name: "David Kim",
-      position: "Founder",
-      company: "StartupVision",
-      image: "/placeholder.svg",
-      quote:
-        "Ali delivered beyond our expectations. His strategic approach to SEO and content helped us establish a strong online presence in a competitive market.",
-    },
-    {
-      id: 5,
-      name: "Sophia Patel",
-      position: "Digital Marketing Lead",
-      company: "InnovateX",
-      image: "/placeholder.svg",
-      quote:
-        "Professional, responsive, and incredibly talented. Ali's work on our website redesign resulted in improved user engagement and higher conversion rates.",
-    },
-  ]
+  const testimonials = t("testimonials.testimonialList").map((testimonial, index) => ({
+    id: index + 1,
+    name: testimonial.name,
+    position: testimonial.position,
+    company: testimonial.company,
+    image: "/placeholder.svg",
+    quote: testimonial.quote,
+  }))
 
   // Duplicate testimonials for infinite scroll effect
   const allTestimonials = [...testimonials, ...testimonials]

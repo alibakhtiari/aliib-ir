@@ -49,9 +49,9 @@ const About = () => {
 
             {/* Skills */}
             <div>
-              <h4 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Skills</h4>
+              <h4 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{t("about.skills")}</h4>
               <div className="flex flex-wrap gap-2">
-                {["HTML5", "CSS3", "JavaScript", "React", "SEO", "Content Writing", "UI/UX", "Responsive Design"].map(
+                {t("about.skillsList").map(
                   (skill, index) => (
                     <span
                       key={index}

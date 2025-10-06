@@ -77,7 +77,7 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="md:w-2/5">
               <div className="h-full p-8 bg-white shadow-lg dark:bg-gray-900 rounded-xl">
-                <h4 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">Contact Information</h4>
+                <h4 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">{t("contact.contactInformation")}</h4>
 
                 <div className="space-y-6">
                   <div className="flex items-start">
@@ -98,7 +98,7 @@ const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <h5 className="font-medium text-gray-900 dark:text-white">Phone</h5>
+                      <h5 className="font-medium text-gray-900 dark:text-white">{t("contact.phone")}</h5>
                       <p className="text-gray-600 dark:text-gray-400">+1 (123) 456-7890</p>
                     </div>
                   </div>
@@ -121,7 +121,7 @@ const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <h5 className="font-medium text-gray-900 dark:text-white">Email</h5>
+                      <h5 className="font-medium text-gray-900 dark:text-white">{t("contact.email")}</h5>
                       <p className="text-gray-600 dark:text-gray-400">contact@alibakhtiari.com</p>
                     </div>
                   </div>
@@ -150,21 +150,21 @@ const Contact = () => {
                       </svg>
                     </div>
                     <div>
-                      <h5 className="font-medium text-gray-900 dark:text-white">Location</h5>
+                      <h5 className="font-medium text-gray-900 dark:text-white">{t("contact.location")}</h5>
                       <p className="text-gray-600 dark:text-gray-400">San Francisco, CA</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-8">
-                  <h5 className="mb-4 font-medium text-gray-900 dark:text-white">Follow Me</h5>
+                  <h5 className="mb-4 font-medium text-gray-900 dark:text-white">{t("contact.followMe")}</h5>
                   <div className="flex space-x-4">
-                    {["twitter", "linkedin", "github", "instagram"].map((social) => (
+                    {Object.keys(t("contact.socialPlatforms")).map((social) => (
                       <a
                         key={social}
                         href="#"
                         className="p-3 text-gray-600 transition-colors bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400"
-                        aria-label={`Follow on ${social}`}
+                        aria-label={`Follow on ${t(`contact.socialPlatforms.${social}`)}`}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +224,7 @@ const Contact = () => {
 
                   <div className="mb-6">
                     <label htmlFor="subject" className="block mb-2 text-gray-700 dark:text-gray-300">
-                      Subject
+                      {t("contact.subject")}
                     </label>
                     <input
                       type="text"

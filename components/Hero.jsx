@@ -209,21 +209,21 @@ const Hero = ({ toggleContactPopup }) => {
               <div className="absolute px-4 py-2 bg-white rounded-full shadow-lg -left-6 top-1/4 dark:bg-gray-800 animate-float">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="font-medium">SEO Expert</span>
+                  <span className="font-medium">{t("hero.badges.seoExpert")}</span>
                 </div>
               </div>
 
               <div className="absolute px-4 py-2 delay-150 bg-white rounded-full shadow-lg -right-6 top-2/3 dark:bg-gray-800 animate-float">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <span className="font-medium">Web Developer</span>
+                  <span className="font-medium">{t("hero.badges.webDeveloper")}</span>
                 </div>
               </div>
 
               <div className="absolute px-4 py-2 delay-300 bg-white rounded-full shadow-lg left-1/4 -bottom-6 dark:bg-gray-800 animate-float">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                  <span className="font-medium">Content Writer</span>
+                  <span className="font-medium">{t("hero.badges.contentWriter")}</span>
                 </div>
               </div>
             </div>

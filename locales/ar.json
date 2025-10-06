@@ -15,7 +15,12 @@
     "greeting": "مرحباً، أنا",
     "name": "علي بختياري",
     "title": "مطور ويب، خبير تحسين محركات البحث وكاتب محتوى",
-    "description": "أقوم بإنشاء مواقع ويب مذهلة وعالية الأداء محسّنة لمحركات البحث وتجربة المستخدم."
+    "description": "أقوم بإنشاء مواقع ويب مذهلة وعالية الأداء محسّنة لمحركات البحث وتجربة المستخدم.",
+    "badges": {
+      "seoExpert": "خبير تحسين محركات البحث",
+      "webDeveloper": "مطور ويب",
+      "contentWriter": "كاتب محتوى"
+    }
   },
   "about": {
     "title": "عني",
@@ -34,45 +39,45 @@
       "title": "تطوير الويب",
       "description": "مواقع ويب مخصصة ومتجاوبة مبنية بتقنيات حديثة وأفضل الممارسات للأداء الأمثل.",
       "features": {
-        "responsive": "",
-        "performance": "",
-        "custom": "",
-        "ecommerce": ""
+        "responsive": "التصميم المتجاوب",
+        "performance": "تحسين الأداء",
+        "custom": "الوظائف المخصصة",
+        "ecommerce": "حلول التجارة الإلكترونية"
       }
     },
     "seo": {
       "title": "تحسين محركات البحث",
       "description": "تحسين استراتيجي لتحسين ترتيب محركات البحث وجذب حركة المرور العضوية إلى موقع الويب الخاص بك.",
       "features": {
-        "keyword": "",
-        "onpage": "",
-        "technical": "",
-        "linkbuilding": ""
+        "keyword": "البحث عن الكلمات المفتاحية",
+        "onpage": "تحسين الصفحة",
+        "technical": "السيو الفني",
+        "linkbuilding": "استراتيجيات بناء الروابط"
       }
     },
     "content": {
       "title": "كتابة المحتوى",
       "description": "محتوى جذاب وصديق لمحركات البحث يتردد صداه مع جمهورك ويدعم أهداف عملك.",
       "features": {
-        "blog": "",
-        "website": "",
-        "product": "",
-        "email": ""
+        "blog": "منشورات المدونة",
+        "website": "نسخة الموقع",
+        "product": "أوصاف المنتجات",
+        "email": "حملات البريد الإلكتروني"
       }
     },
     "serviceFeatures": {
-      "responsiveDesign": "",
-      "performanceOptimization": "",
-      "customFunctionality": "",
-      "ecommerceSolutions": "",
-      "keywordResearch": "",
-      "onpageOptimization": "",
-      "technicalSeo": "",
-      "linkBuildingStrategies": "",
-      "blogPosts": "",
-      "websiteCopy": "",
-      "productDescriptions": "",
-      "emailCampaigns": ""
+      "responsiveDesign": "التصميم المتجاوب",
+      "performanceOptimization": "تحسين الأداء",
+      "customFunctionality": "الوظائف المخصصة",
+      "ecommerceSolutions": "حلول التجارة الإلكترونية",
+      "keywordResearch": "البحث عن الكلمات المفتاحية",
+      "onpageOptimization": "تحسين الصفحة",
+      "technicalSeo": "السيو الفني",
+      "linkBuildingStrategies": "استراتيجيات بناء الروابط",
+      "blogPosts": "منشورات المدونة",
+      "websiteCopy": "نسخة الموقع",
+      "productDescriptions": "أوصاف المنتجات",
+      "emailCampaigns": "حملات البريد الإلكتروني"
     }
   },
   "contact": {
@@ -81,9 +86,20 @@
     "name": "اسمك",
     "email": "بريدك الإلكتروني",
     "message": "رسالتك",
+    "subject": "الموضوع",
     "submit": "إرسال الرسالة",
     "success": "تم إرسال الرسالة بنجاح!",
     "error": "حدث خطأ في إرسال رسالتك. يرجى المحاولة مرة أخرى.",
+    "contactInformation": "معلومات الاتصال",
+    "phone": "الهاتف",
+    "location": "الموقع",
+    "followMe": "تابعني",
+    "socialPlatforms": {
+      "twitter": "تويتر",
+      "linkedin": "لينكدإن",
+      "github": "جيت‌هاب",
+      "instagram": "إنستغرام"
+    },
     "serviceOptions": {
       "webDevelopment": "تطوير الويب",
       "seo": "تحسين محركات البحث",
@@ -95,6 +111,7 @@
     "rights": "جميع الحقوق محفوظة",
     "privacy": "سياسة الخصوصية",
     "terms": "شروط الخدمة",
+    "quickLinks": "روابط سريعة",
     "services": {
       "webDevelopment": "تطوير الويب",
       "seoOptimization": "تحسين محركات البحث",
@@ -122,72 +139,72 @@
       "projects": "مشروع مكتمل",
       "clients": "عميل سعيد"
     },
-    "testimonialClients": {
-      "sarahJohnson": {
+    "testimonialList": [
+      {
         "name": "سارة جونسون",
         "position": "المدير التنفيذي",
         "company": "تيك سوليوشنز المحدودة",
         "quote": "حوّل علي تواجدنا عبر الإنترنت تمامًا. خبرته في تطوير الويب وتحسين محركات البحث أدت إلى زيادة بنسبة ۲۰۰% في الحركة العضوية وزيادة كبيرة في التحويلات. موصى به بشدة!"
       },
-      "michaelChen": {
+      {
         "name": "مايكل تشين",
         "position": "مدير التسويق",
         "company": "غروث لابز",
         "quote": "كان العمل مع علي تغييرًا جذريًا لأعمالنا. انتباهه للتفاصيل وفهمه لاحتياجاتنا جعل العملية برمتها سلسة والنتيجة النهائية استثنائية."
       },
-      "emmaRodriguez": {
+      {
         "name": "إيما رودريغيز",
         "position": "مدير التجارة الإلكترونية",
         "company": "ستايل بوتيك",
         "quote": "كان المحتوى الذي أنشأه علي لصفحات منتجاتنا جذابًا ومقنعًا. شهدنا زيادة كبيرة في معدلات التحويل في غضون أسابيع قليلة من التنفيذ."
       },
-      "davidKim": {
+      {
         "name": "ديفيد كيم",
         "position": "المؤسس",
         "company": "ستارت أب فيجن",
         "quote": "تجاوز علي توقعاتنا. نهجه الاستراتيجي في تحسين محركات البحث والمحتوى ساعدنا في إنشاء تواجد قوي عبر الإنترنت في سوق تنافسية."
       },
-      "sophiaPatel": {
+      {
         "name": "صوفيا باتيل",
         "position": "قائد التسويق الرقمي",
         "company": "إينوفيت إكس",
         "quote": "محترف ومتجاوب وموهوب بشكل لا يصدق. أدى عمل علي في إعادة تصميم موقعنا إلى تحسين تفاعل المستخدمين وارتفاع معدلات التحويل."
       }
-    }
+    ]
   },
   "portfolio": {
-    "title": "",
-    "subtitle": "",
+    "title": "الأعمال",
+    "subtitle": "أحدث أعمالي",
     "filters": {
-      "all": "",
-      "web": "",
-      "seo": "",
-      "content": ""
+      "all": "الكل",
+      "web": "تطوير الويب",
+      "seo": "تحسين محركات البحث",
+      "content": "المحتوى"
     },
     "projects": {
       "ecommerce": {
-        "title": "",
-        "description": ""
+        "title": "موقع التجارة الإلكترونية",
+        "description": "منصة تجارة إلكترونية متجاوبة بالكامل مع فلترة متقدمة وتكامل الدفع."
       },
       "seoCampaign": {
-        "title": "",
-        "description": ""
+        "title": "حملة تحسين محركات البحث",
+        "description": "زيادة حركة المرور العضوية بنسبة ٢٠٠% من خلال استراتيجية شاملة لتحسين محركات البحث."
       },
       "corporateBlog": {
-        "title": "",
-        "description": ""
+        "title": "المدونة الشركاتية",
+        "description": "إنشاء استراتيجية محتوى جذابة عززت من تفاعل المستخدمين والتحويلات."
       },
       "portfolioWebsite": {
-        "title": "",
-        "description": ""
+        "title": "موقع الأعمال",
+        "description": "موقع أعمال حديث مع الرسوم المتحركة والتصميم المتجاوب."
       },
       "localBusinessSEO": {
-        "title": "",
-        "description": ""
+        "title": "تحسين محركات البحث للأعمال المحلية",
+        "description": "تحسين ترتيب البحث المحلي للأعمال الصغيرة وزيادة حركة المرور الحضورية."
       },
       "productDescriptions": {
-        "title": "",
-        "description": ""
+        "title": "أوصاف المنتجات",
+        "description": "صياغة أوصاف منتجات جذابة زادت من معدلات التحويل."
       }
     },
     "viewDetails": "عرض التفاصيل"
