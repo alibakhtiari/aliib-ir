@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
-import { useTranslations } from "next-intl"
 
 const ContactPopup = ({ onClose }) => {
-  const { language } = useLanguage()
-  const t = useTranslations()
+  const { t, language } = useLanguage()
   const [formData, setFormData] = useState({
     name: "",
     email: "",

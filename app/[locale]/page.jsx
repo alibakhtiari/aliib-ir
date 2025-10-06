@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
-import { useLocale } from "next-intl"
+import { useLanguage } from "@/contexts/LanguageContext"
 import Header from "@/components/Header"
 import Hero from "@/components/Hero"
 import About from "@/components/About"
@@ -20,7 +20,7 @@ export default function Home() {
   const [showContactPopup, setShowContactPopup] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const pathname = usePathname()
-  const locale = useLocale()
+  const { language } = useLanguage()
 
   useEffect(() => {
     // Simulate loading critical resources
@@ -33,23 +33,20 @@ export default function Home() {
 
   useEffect(() => {
     // Set HTML dir attribute for RTL languages
-    document.documentElement.dir = locale === "ar" || locale === "fa" ? "rtl" : "ltr"
+    document.documentElement.dir = language === "ar" || language === "fa" ? "rtl" : "ltr"
 
     // Set HTML lang attribute
-    document.documentElement.lang = locale
+    document.documentElement.lang = language
 
     // Apply the appropriate font family based on language
-    if (locale === "ar" || locale === "fa") {
+    if (language === "ar" || language === "fa") {
       document.body.classList.add("font-rtl")
       document.body.classList.remove("font-sans")
     } else {
       document.body.classList.add("font-sans")
       document.body.classList.remove("font-rtl")
     }
-
-    // Save language preference
-    localStorage.setItem("language", locale)
-  }, [locale])
+  }, [language])
 
   const toggleContactPopup = () => {
     setShowContactPopup(!showContactPopup)

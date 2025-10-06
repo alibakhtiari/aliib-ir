@@ -2,13 +2,11 @@
 
 import { useEffect, useRef, useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
-import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 
 const Hero = ({ toggleContactPopup }) => {
-  const { language } = useLanguage()
-  const t = useTranslations()
+  const { t, language } = useLanguage()
   const heroRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
   const isRTL = language === "ar" || language === "fa"

@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
-import { useTranslations } from "next-intl"
 import LanguageSwitcher from "./LanguageSwitcher"
 import ThemeToggle from "./ThemeToggle"
 import Link from "next/link"
 
 const Header = ({ toggleContactPopup }) => {
-  const { language } = useLanguage()
-  const t = useTranslations()
+  const { t, language } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const isRTL = language === "ar" || language === "fa"

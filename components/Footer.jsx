@@ -1,12 +1,10 @@
 "use client"
 
 import { useLanguage } from "@/contexts/LanguageContext"
-import { useTranslations } from "next-intl"
 import Link from "next/link"
 
 const Footer = () => {
-  const { language } = useLanguage()
-  const t = useTranslations()
+  const { t, language } = useLanguage()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -105,7 +103,7 @@ const Footer = () => {
               <div className="flex">
                 <input
                   type="email"
-                  placeholder={t("footer.newsletter.placeholder")}
+                  placeholder={t("footer.newsletter.yourEmail")}
                   className="w-full px-4 py-2 text-white bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button

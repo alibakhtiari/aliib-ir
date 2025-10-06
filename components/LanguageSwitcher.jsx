@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { useLanguage } from "../contexts/LanguageContext"
 
 const LanguageSwitcher = () => {
   const router = useRouter()
+  const { language: currentLanguage } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
-  const [currentLanguageCode, setCurrentLanguageCode] = useState("fa")
 
   const languages = [
     { code: "en", name: "English", flag: "🇺🇸" },
@@ -18,7 +19,6 @@ const LanguageSwitcher = () => {
     const updateFromURL = () => {
       // Read language from URL - empty or fa means Persian, ar means Arabic, en means English
       const urlLanguage = window.location.pathname.match(/^\/(en|fa|ar)/)?.[1] || "fa"
-      setCurrentLanguageCode(urlLanguage)
 
       // Set direction based on language
       const isRTL = urlLanguage === "fa" || urlLanguage === "ar"
@@ -36,7 +36,7 @@ const LanguageSwitcher = () => {
     return () => window.removeEventListener('popstate', handleNavigation)
   }, [])
 
-  const currentLanguage = languages.find((lang) => lang.code === currentLanguageCode) || languages[1] // Default to fa
+  const currentLanguageInfo = languages.find((lang) => lang.code === currentLanguage) || languages[1] // Default to fa
   return (
     <div className="relative">
       <button
@@ -46,7 +46,7 @@ const LanguageSwitcher = () => {
         aria-haspopup="true"
         aria-label="Change language"
       >
-        <span className="text-lg">{currentLanguage.flag}</span>
+        <span className="text-lg">{currentLanguageInfo.flag}</span>
       </button>
 
       {isOpen && (
@@ -63,13 +63,12 @@ const LanguageSwitcher = () => {
                   const newPath = `/${lang.code}${pathWithoutLang}`
                   router.push(newPath)
 
-                  // Update current language state
-                  setCurrentLanguageCode(lang.code)
+                  // Note: currentLanguage is managed by LanguageContext
 
                   setIsOpen(false)
                 }}
                 className={`w-full text-left px-4 py-2 text-sm ${
-                  currentLanguageCode === lang.code
+                  currentLanguage === lang.code
                     ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}

@@ -2,12 +2,10 @@
 
 import { useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
-import { useTranslations } from "next-intl"
 import Image from "next/image"
 
 const Portfolio = () => {
-  const { language } = useLanguage()
-  const t = useTranslations()
+  const { t, language } = useLanguage()
   const [activeFilter, setActiveFilter] = useState("all")
 
   const filters = [

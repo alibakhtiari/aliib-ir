@@ -1,22 +1,42 @@
 "use client"
 
-import { useState } from "react"
-import { useLanguage } from "../contexts/LanguageContext"
+import { useState, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
 
 const LanguageSwitcher = () => {
-  const { language: currentLanguage } = useLanguage()
   const router = useRouter()
-  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const [currentLanguageCode, setCurrentLanguageCode] = useState("fa")
 
   const languages = [
-    { code: "en", name: "English", flag: "🇺🇸", nativeName: "English" },
-    { code: "fa", name: "فارسی", flag: "🇮🇷", nativeName: "فارسی" },
-    { code: "ar", name: "العربية", flag: "🇸🇦", nativeName: "العربية" },
+    { code: "en", name: "English", flag: "🇺🇸" },
+    { code: "fa", name: "فارسی", flag: "🇮🇷" },
+    { code: "ar", name: "العربية", flag: "🇸🇦" },
   ]
 
-  const currentLanguageInfo = languages.find((lang) => lang.code === currentLanguage) || languages[0]
+  useEffect(() => {
+    const updateFromURL = () => {
+      // Read language from URL - empty or fa means Persian, ar means Arabic, en means English
+      const urlLanguage = window.location.pathname.match(/^\/(en|fa|ar)/)?.[1] || "fa"
+      setCurrentLanguageCode(urlLanguage)
+
+      // Set direction based on language
+      const isRTL = urlLanguage === "fa" || urlLanguage === "ar"
+      document.documentElement.dir = isRTL ? "rtl" : "ltr"
+      document.documentElement.lang = urlLanguage
+    }
+
+    // Update on mount
+    updateFromURL()
+
+    // Listen for navigation changes (back/forward buttons or programmatic navigation)
+    const handleNavigation = () => updateFromURL()
+    window.addEventListener('popstate', handleNavigation)
+
+    return () => window.removeEventListener('popstate', handleNavigation)
+  }, [])
+
+  const currentLanguageInfo = languages.find((lang) => lang.code === currentLanguageCode) || languages[1] // Default to fa
 
   return (
     <div className="relative">
@@ -38,21 +58,19 @@ const LanguageSwitcher = () => {
                 key={lang.code}
                 onClick={() => {
                   // Use Next.js router to change URL without affecting language state
-                  const currentPath = pathname
-                  console.log('Current path:', currentPath)
-
-                  // Remove language prefix and get the rest of the path
+                  const currentPath = window.location.pathname
                   const pathWithoutLang = currentPath.replace(/^\/(en|fa|ar)/, '') || '/'
 
-                  // Construct new path
-                  const newPath = lang.code === "en" ? pathWithoutLang : `/${lang.code}${pathWithoutLang}`
-
-                  console.log('New path:', newPath)
+                  const newPath = `/${lang.code}${pathWithoutLang}`
                   router.push(newPath)
+
+                  // Update current language state
+                  setCurrentLanguageCode(lang.code)
+
                   setIsOpen(false)
                 }}
                 className={`w-full text-left px-4 py-2 text-sm ${
-                  currentLanguage === lang.code
+                  currentLanguageCode === lang.code
                     ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}
