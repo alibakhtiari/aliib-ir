@@ -105,6 +105,12 @@
       "seo": "SEO Optimization",
       "content": "Content Writing",
       "other": "Other"
+    },
+    "popup": {
+      "description": "Fill out the form below to get a free quote for your project.",
+      "serviceLabel": "Service Interested In",
+      "selectService": "Select a service",
+      "submitButton": "Submit Request"
     }
   },
   "footer": {

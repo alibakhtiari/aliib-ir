@@ -70,7 +70,7 @@ const ContactPopup = ({ onClose }) => {
           </div>
 
           <p className="mb-6 text-gray-600 dark:text-gray-400">
-            Fill out the form below to get a free quote for your project.
+            {t("contact.popup.description")}
           </p>
 
           <form onSubmit={handleSubmit}>
@@ -106,7 +106,7 @@ const ContactPopup = ({ onClose }) => {
 
             <div className="mb-4">
               <label htmlFor="popup-service" className="block mb-2 text-gray-700 dark:text-gray-300">
-                Service Interested In
+                {t("contact.popup.serviceLabel")}
               </label>
               <select
                 id="popup-service"
@@ -116,11 +116,11 @@ const ContactPopup = ({ onClose }) => {
                 required
                 className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="">Select a service</option>
-                <option value="web-development">Web Development</option>
-                <option value="seo">SEO Optimization</option>
-                <option value="content">Content Writing</option>
-                <option value="other">Other</option>
+                <option value="">{t("contact.popup.selectService")}</option>
+                <option value="web-development">{t("contact.serviceOptions.webDevelopment")}</option>
+                <option value="seo">{t("contact.serviceOptions.seo")}</option>
+                <option value="content">{t("contact.serviceOptions.content")}</option>
+                <option value="other">{t("contact.serviceOptions.other")}</option>
               </select>
             </div>
 
@@ -151,7 +151,7 @@ const ContactPopup = ({ onClose }) => {
               type="submit"
               className="w-full px-6 py-3 font-medium text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
             >
-              Submit Request
+              {t("contact.popup.submitButton")}
             </button>
           </form>
         </div>
