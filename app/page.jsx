@@ -23,6 +23,15 @@ export default function Home() {
     setShowContactPopup(!showContactPopup)
   }
 
+  // Ensure HTML attributes are set correctly based on current locale
+  useEffect(() => {
+    // Force English attributes for root route (this is the English page)
+    document.documentElement.lang = "en"
+    document.documentElement.dir = "ltr"
+    document.body.classList.add("font-sans")
+    document.body.classList.remove("font-rtl")
+  }, [])
+
   return (
     <div className="min-h-screen transition-colors duration-300">
       <SEO
