@@ -30,3 +30,4 @@ dist-ssr
 !.env.example
 package-lock.json
 /.next
+/.open-next

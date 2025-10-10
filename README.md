@@ -77,7 +77,32 @@ yarn start
 
 ## Deployment
 
+### Vercel (recommended for Next.js)
+
 This project can be easily deployed on [Vercel](https://vercel.com/), the platform from the creators of Next.js.
+
+### Cloudflare Workers
+
+This project supports deployment to Cloudflare Workers using the OpenNext adapter.
+
+Prerequisites:
+- Cloudflare account and Wrangler CLI installed
+
+To deploy to Cloudflare Workers:
+
+1. Build and preview the app locally (requires WSL on Windows):
+```bash
+npm run preview
+```
+
+2. Deploy to production:
+```bash
+npm run deploy
+```
+
+Note: On Windows, preview mode may not work due to compatibility issues. The deploy command should work from CI/CD or if you use WSL.
+
+For more information, see the [Cloudflare Next.js documentation](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs).
 
 ## License
 
