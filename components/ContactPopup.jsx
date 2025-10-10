@@ -33,14 +33,41 @@ const ContactPopup = ({ onClose }) => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setFormStatus({ submitted: true, success: true, message: t("contact.success") })
 
-    // Reset form after successful submission
-    setTimeout(() => {
-      onClose()
-    }, 2000)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setFormStatus({
+          submitted: true,
+          success: true,
+          message: t("contact.success"),
+        })
+
+        // Reset form after successful submission
+        setTimeout(() => {
+          onClose()
+        }, 3000)
+      } else {
+        throw new Error(result.message)
+      }
+    } catch (error) {
+      setFormStatus({
+        submitted: true,
+        success: false,
+        message: t("contact.error"),
+      })
+    }
   }
 
   return (
