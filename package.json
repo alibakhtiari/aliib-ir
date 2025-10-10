@@ -24,6 +24,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "latest",
+    "resend": "^6.1.2",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"
