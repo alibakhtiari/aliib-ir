@@ -6,3 +6,13 @@ compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = ".open-next/assets"
 binding = "ASSETS"
+
+# Enable Cloudflare geolocation headers
+[build]
+command = "npm run build"
+
+# Ensure geolocation headers are available in middleware
+[[unsafe]]
+binding = " GEO_ENABLE "
+type = "plain_text"
+text = "true"
