@@ -7,9 +7,9 @@ const About = () => {
   const { t, language } = useLanguage()
 
   const stats = [
-    { value: "7+", label: t("about.experience") },
-    { value: "120+", label: t("about.projects") },
-    { value: "50+", label: t("about.clients") },
+    { value: "12+", label: t("about.experience") },
+    { value: "150+", label: t("about.projects") },
+    { value: "60+", label: t("about.clients") },
   ]
 
   return (
@@ -26,7 +26,7 @@ const About = () => {
             <div className="relative">
               <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-xl -z-10 -rotate-3"></div>
               <div className="relative w-full max-w-md mx-auto h-[600px]">
-                <Image src="/placeholder.svg" alt="Ali Bakhtiari" fill className="object-cover rounded-lg shadow-lg" />
+                <Image src="/Ali Bakhtiari.webp" alt="Ali Bakhtiari" fill className="object-cover rounded-lg shadow-lg" />
               </div>
             </div>
           </div>
