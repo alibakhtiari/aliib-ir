@@ -30,7 +30,7 @@
     "projects": "Projects Completed",
     "clients": "Satisfied Clients",
     "skills": "Skills",
-    "skillsList": ["HTML5", "CSS3", "JavaScript", "React", "SEO", "Content Writing", "UI/UX", "Responsive Design"]
+    "skillsList": ["HTML5", "CSS3", "JavaScript", "Python" ,"React", "Next.js", "Django" , "SEO", "Content Writing", "UI/UX", "Wordpress" , "Responsive Design"]
   },
   "services": {
     "title": "My Services",
@@ -92,7 +92,7 @@
     "error": "There was an error sending your message. Please try again.",
     "contactInformation": "Contact Information",
     "phone": "Phone",
-    "location": "Location",
+    "whatsapp": "Whatsapp",
     "followMe": "Follow Me",
     "socialPlatforms": {
       "twitter": "Twitter",

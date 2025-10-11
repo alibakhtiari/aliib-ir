@@ -30,7 +30,7 @@
     "projects": "المشاريع المنجزة",
     "clients": "العملاء الراضين",
     "skills": "المهارات",
-    "skillsList": ["HTML5", "CSS3", "JavaScript", "React", "تحسين محركات البحث", "كتابة المحتوى", "UI/UX", "التصميم المتجاوب"]
+    "skillsList": ["HTML5", "CSS3", "JavaScript" ,"React", "Django" , "React", "Next.js",  "تحسين محركات البحث", "كتابة المحتوى", "UI/UX", "وردبرس" , "التصميم المتجاوب"]
   },
   "services": {
     "title": "خدماتي",
@@ -92,7 +92,7 @@
     "error": "حدث خطأ في إرسال رسالتك. يرجى المحاولة مرة أخرى.",
     "contactInformation": "معلومات الاتصال",
     "phone": "الهاتف",
-    "location": "الموقع",
+    "location": "واتساب",
     "followMe": "تابعني",
     "socialPlatforms": {
       "twitter": "تويتر",

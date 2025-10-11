@@ -30,7 +30,7 @@
     "projects": "پروژه‌های تکمیل شده",
     "clients": "مشتریان راضی",
     "skills": "مهارت‌ها",
-    "skillsList": ["HTML5", "CSS3", "JavaScript", "React", "سئو", "نوشتن محتوا", "UI/UX", "طراحی واکنش‌گرا"]
+    "skillsList": ["HTML5", "CSS3", "JavaScript","React", "Django" , "React", "Next.js", "سئو", "نوشتن محتوا", "UI/UX", "وردپرس", "طراحی واکنش‌گرا"]
   },
   "services": {
     "title": "خدمات من",
@@ -92,7 +92,7 @@
     "error": "در ارسال پیام شما خطایی رخ داد. لطفا دوباره تلاش کنید.",
     "contactInformation": "اطلاعات تماس",
     "phone": "تلفن",
-    "location": "مکان",
+    "whatsapp": "واتس اپ",
     "followMe": "من را دنبال کنید",
     "socialPlatforms": {
       "twitter": "توییتر",
