@@ -17,6 +17,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   outputFileTracingRoot: '/app',
+  output: 'standalone',
 };
 
 export default withNextIntl(nextConfig);
