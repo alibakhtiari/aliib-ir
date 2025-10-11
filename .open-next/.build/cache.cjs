@@ -1,4 +1,4 @@
-globalThis.disableIncrementalCache = false;globalThis.disableDynamoDBCache = false;globalThis.isNextAfter15 = true;globalThis.openNextDebug = false;globalThis.openNextVersion = "3.8.1";
+globalThis.disableIncrementalCache = false;globalThis.disableDynamoDBCache = false;globalThis.isNextAfter15 = true;globalThis.openNextDebug = false;globalThis.openNextVersion = "3.8.4";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -208,7 +208,7 @@ var commonBinaryMimeTypes = /* @__PURE__ */ new Set([
 function isBinaryContentType(contentType) {
   if (!contentType)
     return false;
-  const value = contentType?.split(";")[0] ?? "";
+  const value = contentType.split(";")[0];
   return commonBinaryMimeTypes.has(value);
 }
 

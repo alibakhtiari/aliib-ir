@@ -1,4 +1,4 @@
-globalThis.disableIncrementalCache = false;globalThis.disableDynamoDBCache = false;globalThis.isNextAfter15 = true;globalThis.openNextDebug = false;globalThis.openNextVersion = "3.8.1";
+globalThis.disableIncrementalCache = false;globalThis.disableDynamoDBCache = false;globalThis.isNextAfter15 = true;globalThis.openNextDebug = false;globalThis.openNextVersion = "3.8.4";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -62,26 +62,35 @@ async function writeTags(tags) {
 }
 
 // node_modules/@opennextjs/aws/dist/utils/stream.js
-var import_node_stream = require("node:stream");
-function fromReadableStream(stream, base64) {
-  const reader = stream.getReader();
+var import_web = require("node:stream/web");
+async function fromReadableStream(stream, base64) {
   const chunks = [];
-  return new Promise((resolve, reject) => {
-    function pump() {
-      reader.read().then(({ done, value }) => {
-        if (done) {
-          resolve(Buffer.concat(chunks).toString(base64 ? "base64" : "utf8"));
-          return;
-        }
-        chunks.push(value);
-        pump();
-      }).catch(reject);
-    }
-    pump();
-  });
+  let totalLength = 0;
+  for await (const chunk of stream) {
+    chunks.push(chunk);
+    totalLength += chunk.length;
+  }
+  if (chunks.length === 0) {
+    return "";
+  }
+  if (chunks.length === 1) {
+    return Buffer.from(chunks[0]).toString(base64 ? "base64" : "utf8");
+  }
+  const buffer = Buffer.alloc(totalLength);
+  let offset = 0;
+  for (const chunk of chunks) {
+    buffer.set(chunk, offset);
+    offset += chunk.length;
+  }
+  return buffer.toString(base64 ? "base64" : "utf8");
 }
 function toReadableStream(value, isBase64) {
-  return import_node_stream.Readable.toWeb(import_node_stream.Readable.from(Buffer.from(value, isBase64 ? "base64" : "utf8")));
+  return new import_web.ReadableStream({
+    pull(controller) {
+      controller.enqueue(Buffer.from(value, isBase64 ? "base64" : "utf8"));
+      controller.close();
+    }
+  }, { highWaterMark: 0 });
 }
 
 // node_modules/@opennextjs/aws/dist/adapters/composable-cache.js
