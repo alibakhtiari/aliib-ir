@@ -26,21 +26,21 @@ const FloatingButtons = ({ toggleContactPopup }) => {
   }
 
   const openWhatsApp = () => {
-    window.open("https://wa.me/1234567890", "_blank")
+    window.open("https://wa.me/989125811880", "_blank")
   }
 
   return (
-    <div className="fixed bottom-8 right-8 z-40 flex flex-col space-y-4">
+    <div className="fixed z-40 flex flex-col space-y-4 bottom-8 right-8">
       {/* Scroll to Top Button - Now at the top of the stack */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-3 rounded-full shadow-lg transition-all transform hover:-translate-y-1 hover:shadow-xl"
+          className="p-3 text-gray-700 transition-all transform bg-white rounded-full shadow-lg dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 hover:-translate-y-1 hover:shadow-xl"
           aria-label="Scroll to top"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="w-6 h-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -53,12 +53,12 @@ const FloatingButtons = ({ toggleContactPopup }) => {
       {/* WhatsApp Button */}
       <button
         onClick={openWhatsApp}
-        className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-colors hover:shadow-xl"
+        className="p-3 text-white transition-colors bg-green-500 rounded-full shadow-lg hover:bg-green-600 hover:shadow-xl"
         aria-label="Contact on WhatsApp"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
+          className="w-6 h-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -75,12 +75,12 @@ const FloatingButtons = ({ toggleContactPopup }) => {
       {/* Contact Button */}
       <button
         onClick={toggleContactPopup}
-        className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-colors hover:shadow-xl"
+        className="p-3 text-white transition-colors bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl"
         aria-label="Contact me"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
+          className="w-6 h-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
