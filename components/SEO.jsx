@@ -42,7 +42,7 @@ const SEO = ({
   const content = seoContent[language] || seoContent.en
 
   // Base URL for the website
-  const baseUrl = "https://alibakhtiari.ir"
+  const baseUrl = "https://aliib.ir"
 
   // Construct dynamic canonical URL
   const dynamicCanonicalUrl = canonicalUrl || `${baseUrl}${path.startsWith('/') ? path : '/' + path}`
@@ -130,9 +130,10 @@ const SEO = ({
         "description": content.description,
         "url": baseUrl,
         "sameAs": [
-          "https://linkedin.com/in/alibakhtiari",
-          "https://github.com/alibakhtiari",
-          "https://twitter.com/alibakhtiari"
+          "https://www.linkedin.com/in/alibakhtiarii/",
+          "https://github.com/alibakhtiari/",
+          "https://x.com/aliib1991",
+          "https://www.instagram.com/aliibakhtiari/"
         ],
         "knowsAbout": [
           "Web Development",
@@ -140,6 +141,9 @@ const SEO = ({
           "Content Writing",
           "Digital Marketing",
           "React",
+          "Python",
+          "Django",
+          "Javascript",
           "Next.js",
           "Node.js"
         ],
