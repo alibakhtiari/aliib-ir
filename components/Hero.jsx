@@ -98,7 +98,7 @@ const Hero = ({ toggleContactPopup }) => {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">7+</div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">12+</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">{t("about.experience")}</div>
                 </div>
               </div>
@@ -121,7 +121,7 @@ const Hero = ({ toggleContactPopup }) => {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">120+</div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">150+</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">{t("about.projects")}</div>
                 </div>
               </div>
@@ -144,7 +144,7 @@ const Hero = ({ toggleContactPopup }) => {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">50+</div>
+                  <div className="text-2xl font-bold text-gray-900 dark:text-white">60+</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">{t("about.clients")}</div>
                 </div>
               </div>
@@ -202,7 +202,7 @@ const Hero = ({ toggleContactPopup }) => {
               <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-xl -z-10 -rotate-3"></div>
               <div className="absolute transform translate-x-2 translate-y-2 bg-indigo-100 -inset-4 dark:bg-indigo-900/30 rounded-xl -z-10 rotate-3"></div>
               <div className="relative w-full mx-auto h-[600px]">
-                <Image src="/Ali B.webp" alt={t("hero.name")} fill className="object-cover rounded-lg shadow-lg" />
+                <Image src="/Ali B.webp" alt={t("hero.name")} fill className="object-contain rounded-lg shadow-lg" />
               </div>
 
               {/* Floating badges */}

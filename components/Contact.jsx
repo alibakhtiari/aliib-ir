@@ -142,7 +142,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h5 className="font-medium text-gray-900 dark:text-white">{t("contact.whatsapp")}</h5>
-                      <a href="https://wa.me/989125811880" className="text-gray-600 dark:text-gray-400">98 (912) 581-1880</a>
+                      <a href="https://wa.me/989125811880" className="text-gray-600 dark:text-gray-400">+98 (912) 581-1880</a>
                     </div>
                   </div>
                 </div>

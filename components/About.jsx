@@ -25,8 +25,8 @@ const About = () => {
           <div className="mb-8 md:w-1/2 md:mb-0">
             <div className="relative">
               <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-xl -z-10 -rotate-3"></div>
-              <div className="relative w-full max-w-md mx-auto h-[600px]">
-                <Image src="/Ali Bakhtiari.webp" alt="Ali Bakhtiari" fill className="object-cover rounded-lg shadow-lg" />
+              <div className="relative w-full mx-auto h-[600px]">
+                <Image src="/Ali Bakhtiari.webp" alt="Ali Bakhtiari" fill className="object-cover shadow-lg rounded-2xl" />
               </div>
             </div>
           </div>
