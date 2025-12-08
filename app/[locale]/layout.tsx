@@ -1,14 +1,18 @@
 
-import { Inter } from "next/font/google"
-import React from "react";
+import type { Metadata } from "next"
+import { Inter, Vazirmatn } from "next/font/google"
 import "../globals.css"
 import { ThemeProvider } from "@/contexts/ThemeContext"
 import { LanguageProvider } from "@/contexts/LanguageContext"
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import Script from 'next/script';
 
 const inter = Inter({
     subsets: ["latin"],
+    display: 'swap'
+});
+
+const vazirmatn = Vazirmatn({
+    subsets: ["arabic"],
     display: 'swap'
 });
 
@@ -16,8 +20,8 @@ export async function generateMetadata({ params: { locale } }: Omit<LocaleLayout
     setRequestLocale(locale);
     const t = await getTranslations({ locale, namespace: 'Metadata' });
     const baseUrl = 'https://aliib.ir';
-
     return {
+        metadataBase: new URL(baseUrl),
         title: {
             template: t('title'),
             default: t('title'),
@@ -129,7 +133,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Loc
                     />
                 ))}
             </head>
-            <body className={`${inter.className} ${isRtl ? 'font-rtl' : 'font-sans'}`} suppressHydrationWarning>
+            <body className={`${isRtl ? vazirmatn.className : inter.className} ${isRtl ? 'font-rtl' : 'font-sans'} antialiased`} suppressHydrationWarning>
                 <ThemeProvider>
                     <LanguageProvider>
                         {children}

@@ -27,15 +27,19 @@ const Testimonials = () => {
   // The original code did t("testimonials.testimonialList").map(...)
   // So t returns 'any' or 'Array'.
   // We'll cast it to any for now to avoid TS errors if types aren't perfect yet.
-  const rawTestimonials = (t("testimonials.testimonialList") as any) || [];
+
+
+  // The context's t function returns the value directly (string or object/array).
+  // It does not have a .raw() method like next-intl's hooks might.
+  const rawTestimonials = t("testimonials.testimonialList") as unknown;
 
   const testimonials: Testimonial[] = Array.isArray(rawTestimonials) ? rawTestimonials.map((testimonial: any, index: number) => ({
     id: index + 1,
-    name: testimonial.name,
-    position: testimonial.position,
-    company: testimonial.company,
-    image: "/placeholder.svg", // Fixed placeholder as per original
-    quote: testimonial.quote,
+    name: testimonial.name || "Client",
+    position: testimonial.position || "",
+    company: testimonial.company || "",
+    image: "/placeholder.png", // Use local placeholder
+    quote: testimonial.quote || "",
   })) : [];
 
   // Duplicate testimonials for infinite scroll effect (enough to fill screen and loop)
