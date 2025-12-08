@@ -13,15 +13,15 @@ const generateBreadcrumbs = (project: any, language: string, t: any) => {
     return [
         {
             name: t("nav.home"),
-            url: `https://alibakhtiari.ir/`
+            url: `https://aliib.ir/`
         },
         {
             name: t("portfolio.title"),
-            url: `https://alibakhtiari.ir/#portfolio`
+            url: `https://aliib.ir/#portfolio`
         },
         {
             name: projectContent.title,
-            url: `https://alibakhtiari.ir/projects/${project.id}`
+            url: `https://aliib.ir/projects/${project.id}`
         }
     ]
 }
