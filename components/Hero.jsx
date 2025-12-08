@@ -33,7 +33,7 @@ const Hero = ({ toggleContactPopup }) => {
     <section
       id="home"
       ref={heroRef}
-      className={`hero-section relative overflow-hidden ${isRTL ? "text-right" : "text-left"}`}
+      className="hero-section relative overflow-hidden text-start"
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-blue-950">
@@ -81,7 +81,7 @@ const Hero = ({ toggleContactPopup }) => {
             {/* Stats - Icon-based design */}
             <div className="flex flex-wrap gap-6 mb-8">
               <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 mr-3 bg-yellow-100 rounded-full dark:bg-yellow-900/30">
+                <div className="flex items-center justify-center w-12 h-12 me-3 bg-yellow-100 rounded-full dark:bg-yellow-900/30">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-6 h-6 text-yellow-500"
@@ -104,7 +104,7 @@ const Hero = ({ toggleContactPopup }) => {
               </div>
 
               <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 mr-3 bg-green-100 rounded-full dark:bg-green-900/30">
+                <div className="flex items-center justify-center w-12 h-12 me-3 bg-green-100 rounded-full dark:bg-green-900/30">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-6 h-6 text-green-500"
@@ -127,7 +127,7 @@ const Hero = ({ toggleContactPopup }) => {
               </div>
 
               <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 mr-3 bg-blue-100 rounded-full dark:bg-blue-900/30">
+                <div className="flex items-center justify-center w-12 h-12 me-3 bg-blue-100 rounded-full dark:bg-blue-900/30">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-6 h-6 text-blue-500"
@@ -158,7 +158,7 @@ const Hero = ({ toggleContactPopup }) => {
                 {t("cta.freeQuote")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 ml-2"
+                  className="w-5 h-5 ms-2"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -180,7 +180,7 @@ const Hero = ({ toggleContactPopup }) => {
                 {t("cta.learnMore")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 ml-2"
+                  className="w-5 h-5 ms-2"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >

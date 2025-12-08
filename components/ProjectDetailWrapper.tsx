@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext"
 import projects from "@/data/projects"
 import Image from "next/image"
 import Link from "next/link"
-import SEO from "@/components/SEO"
+
 
 // Generate breadcrumbs for project pages
 const generateBreadcrumbs = (project: any, language: string, t: any) => {
@@ -71,7 +71,7 @@ export default function ProjectDetailWrapper({ project }: ProjectDetailWrapperPr
         Or this component can do it.
         Let's assume Server Component handles main SEO.
       */}
-            <div className={`pt-24 pb-16 bg-white dark:bg-gray-900 ${isRTL ? "text-right" : "text-left"}`}>
+            <div className="pt-24 pb-16 bg-white dark:bg-gray-900 text-start">
                 <div className="container px-4 mx-auto">
                     {/* Breadcrumb */}
                     <div className="mb-8">
@@ -83,7 +83,7 @@ export default function ProjectDetailWrapper({ project }: ProjectDetailWrapperPr
                                         className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
                                     >
                                         <svg
-                                            className={`w-4 h-4 ${isRTL ? "ml-2" : "mr-2"}`}
+                                            className={`w-4 h-4 ${isRTL ? "ms-2" : "me-2"}`}
                                             fill="currentColor"
                                             viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +113,7 @@ export default function ProjectDetailWrapper({ project }: ProjectDetailWrapperPr
                                         </svg>
                                         <Link
                                             href="/#portfolio"
-                                            className={`${isRTL ? "mr-1" : "ml-1"} text-sm font-medium text-gray-700 hover:text-blue-600 md:${isRTL ? "mr-2" : "ml-2"} dark:text-gray-400 dark:hover:text-white`}
+                                            className={`${isRTL ? "me-1" : "ms-1"} text-sm font-medium text-gray-700 hover:text-blue-600 md:${isRTL ? "me-2" : "ms-2"} dark:text-gray-400 dark:hover:text-white`}
                                         >
                                             {t("portfolio.title")}
                                         </Link>
@@ -138,7 +138,7 @@ export default function ProjectDetailWrapper({ project }: ProjectDetailWrapperPr
                                             ></path>
                                         </svg>
                                         <span
-                                            className={`${isRTL ? "mr-1" : "ml-1"} text-sm font-medium text-gray-500 md:${isRTL ? "mr-2" : "ml-2"} dark:text-gray-400`}
+                                            className={`${isRTL ? "me-1" : "ms-1"} text-sm font-medium text-gray-500 md:${isRTL ? "me-2" : "ms-2"} dark:text-gray-400`}
                                         >
                                             {projectContent.title}
                                         </span>
@@ -267,7 +267,7 @@ export default function ProjectDetailWrapper({ project }: ProjectDetailWrapperPr
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className={`h-5 w-5 ${isRTL ? "ml-2" : "mr-2"}`}
+                                    className={`h-5 w-5 ${isRTL ? "ms-2" : "me-2"}`}
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -300,7 +300,7 @@ export default function ProjectDetailWrapper({ project }: ProjectDetailWrapperPr
                                 {next.translations[language]?.title || next.translations.en.title}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className={`h-5 w-5 ${isRTL ? "mr-2" : "ml-2"}`}
+                                    className={`h-5 w-5 ${isRTL ? "me-2" : "ms-2"}`}
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"

@@ -66,9 +66,7 @@ const Portfolio = () => {
   return (
     <section
       id="portfolio"
-      className={`section bg-white dark:bg-gray-900 ${
-        language === "ar" || language === "fa" ? "text-right" : "text-left"
-      }`}
+      className="section bg-white dark:bg-gray-900 text-start"
     >
       <div className="container px-4 mx-auto">
         <div className="max-w-3xl mx-auto mb-12 text-center">
@@ -81,11 +79,10 @@ const Portfolio = () => {
               <button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-2 rounded-full transition-colors ${
-                  activeFilter === filter.id
+                className={`px-6 py-2 rounded-full transition-colors ${activeFilter === filter.id
                     ? "bg-blue-600 text-white"
                     : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
+                  }`}
               >
                 {filter.label}
               </button>
