@@ -1,7 +1,7 @@
 interface ServiceFeature {
   title: string;
   description: string;
-  features: string[];
+  features: Record<string, string>;
 }
 
 interface ServicesProps {
