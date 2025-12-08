@@ -6,7 +6,11 @@ import LanguageSwitcher from "./LanguageSwitcher"
 import ThemeToggle from "./ThemeToggle"
 import Link from "next/link"
 
-const Header = ({ toggleContactPopup }) => {
+interface HeaderProps {
+  toggleContactPopup: () => void;
+}
+
+const Header = ({ toggleContactPopup }: HeaderProps) => {
   const { t, language } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -37,7 +41,7 @@ const Header = ({ toggleContactPopup }) => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
@@ -48,11 +52,10 @@ const Header = ({ toggleContactPopup }) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5">
       <div
-        className={`transition-all duration-300 rounded-full ${
-          scrolled
-            ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-2 px-6 md:px-8"
-            : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm py-3 px-8 md:px-10"
-        }`}
+        className={`transition-all duration-300 rounded-full ${scrolled
+          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-2 px-6 md:px-8"
+          : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm py-3 px-8 md:px-10"
+          }`}
       >
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
@@ -60,7 +63,7 @@ const Header = ({ toggleContactPopup }) => {
             <Link
               href="#home"
               className="text-2xl font-bold text-blue-600 dark:text-blue-400"
-              onClick={(e) => {
+              onClick={(e: React.MouseEvent) => {
                 e.preventDefault()
                 scrollToSection("home")
               }}
@@ -77,7 +80,7 @@ const Header = ({ toggleContactPopup }) => {
                   key={item.id}
                   href={`#${item.id}`}
                   className="px-5 py-2 text-gray-700 transition-colors rounded-full dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  onClick={(e) => {
+                  onClick={(e: React.MouseEvent) => {
                     e.preventDefault()
                     scrollToSection(item.id)
                   }}
@@ -136,7 +139,7 @@ const Header = ({ toggleContactPopup }) => {
                   key={item.id}
                   href={`#${item.id}`}
                   className="px-4 py-2 text-gray-700 transition-colors rounded-lg dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  onClick={(e) => {
+                  onClick={(e: React.MouseEvent) => {
                     e.preventDefault()
                     scrollToSection(item.id)
                   }}

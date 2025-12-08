@@ -5,9 +5,13 @@ import { useLanguage } from "@/contexts/LanguageContext"
 import Image from "next/image"
 import Link from "next/link"
 
-const Hero = ({ toggleContactPopup }) => {
+interface HeroProps {
+  toggleContactPopup: () => void;
+}
+
+const Hero = ({ toggleContactPopup }: HeroProps) => {
   const { t, language } = useLanguage()
-  const heroRef = useRef(null)
+  const heroRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const isRTL = language === "ar" || language === "fa"
 
@@ -19,8 +23,10 @@ const Hero = ({ toggleContactPopup }) => {
       const scrollPosition = window.scrollY
       const parallaxElements = heroRef.current.querySelectorAll(".parallax")
 
-      parallaxElements.forEach((element) => {
-        const speed = element.getAttribute("data-speed") || 0.5
+      parallaxElements.forEach((el) => {
+        const element = el as HTMLElement
+        const speedAttr = element.getAttribute("data-speed")
+        const speed = speedAttr ? parseFloat(speedAttr) : 0.5
         element.style.transform = `translateY(${scrollPosition * speed}px)`
       })
     }
