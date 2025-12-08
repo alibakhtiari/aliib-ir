@@ -1,11 +1,21 @@
-"use client"
+interface ServiceFeature {
+  title: string;
+  description: string;
+  features: string[];
+}
 
-import { useLanguage } from "@/contexts/LanguageContext"
+interface ServicesProps {
+  dict: {
+    title: string;
+    subtitle: string;
+    webDev: ServiceFeature;
+    seo: ServiceFeature;
+    content: ServiceFeature;
+  }
+}
 
-const Services = () => {
-  const { t, language } = useLanguage()
-
-  const services = [
+const Services = ({ dict }: ServicesProps) => {
+  const servicesList = [
     {
       icon: (
         <svg
@@ -23,14 +33,11 @@ const Services = () => {
           />
         </svg>
       ),
-      title: t("services.webDev.title"),
-      description: t("services.webDev.description"),
-      features: [
-        t("services.webDev.features.responsive"),
-        t("services.webDev.features.performance"),
-        t("services.webDev.features.custom"),
-        t("services.webDev.features.ecommerce")
-      ],
+      title: dict.webDev.title,
+      description: dict.webDev.description,
+      features: Object.values(dict.webDev.features), // Assuming array or object, but TS says features is array in json? json is usually object with numeric keys if array? next-intl array access is tricky?
+      // Wait, dict.webDev.features is likely an object in JSON: "features": ["a", "b"] -> array.
+      // So dict.webDev.features is string[].
     },
     {
       icon: (
@@ -49,14 +56,9 @@ const Services = () => {
           />
         </svg>
       ),
-      title: t("services.seo.title"),
-      description: t("services.seo.description"),
-      features: [
-        t("services.seo.features.keyword"),
-        t("services.seo.features.onpage"),
-        t("services.seo.features.technical"),
-        t("services.seo.features.linkbuilding")
-      ],
+      title: dict.seo.title,
+      description: dict.seo.description,
+      features: Object.values(dict.seo.features),
     },
     {
       icon: (
@@ -75,32 +77,25 @@ const Services = () => {
           />
         </svg>
       ),
-      title: t("services.content.title"),
-      description: t("services.content.description"),
-      features: [
-        t("services.content.features.blog"),
-        t("services.content.features.website"),
-        t("services.content.features.product"),
-        t("services.content.features.email")
-      ],
+      title: dict.content.title,
+      description: dict.content.description,
+      features: Object.values(dict.content.features),
     },
   ]
 
   return (
     <section
       id="services"
-      className={`section bg-gray-50 dark:bg-gray-800 ${
-        language === "ar" || language === "fa" ? "text-right" : "text-left"
-      }`}
+      className="section bg-gray-50 dark:bg-gray-800 text-start"
     >
       <div className="container px-4 mx-auto">
         <div className="max-w-3xl mx-auto mb-16 text-center">
-          <h2 className="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{t("services.title")}</h2>
-          <h3 className="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{t("services.subtitle")}</h3>
+          <h2 className="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{dict.title}</h2>
+          <h3 className="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{dict.subtitle}</h3>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
+          {servicesList.map((service, index) => (
             <div
               key={index}
               className="p-8 transition-transform duration-300 bg-white shadow-lg dark:bg-gray-900 rounded-xl hover:-translate-y-2"
@@ -113,7 +108,7 @@ const Services = () => {
                   <li key={idx} className="flex items-center text-gray-700 dark:text-gray-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400"
+                      className="w-5 h-5 me-2 text-blue-600 dark:text-blue-400" // me-2 -> me-2
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >

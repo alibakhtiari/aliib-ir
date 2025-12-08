@@ -1,22 +1,27 @@
-
 import { MetadataRoute } from 'next';
+import projects from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://aliib.ir';
     const locales = ['en', 'fa', 'ar'];
 
-    // Generate URLs for all routes and locales
-    // Currently we only have the home page derived from the structure
-    // If there are other routes like /about etc, they should be added here too if they are separate pages
-    // But based on analysis, it seems to be a single page scrollable app (Hero, About, Services etc all in Home).
-    // If there are no sub-pages, we just list the locale roots.
-
-    return locales.flatMap(locale => [
+    const staticRoutes = locales.flatMap(locale => [
         {
             url: `${baseUrl}/${locale}`,
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: 'monthly' as const,
             priority: 1,
         }
     ]);
+
+    const projectRoutes = locales.flatMap(locale =>
+        projects.map(project => ({
+            url: `${baseUrl}/${locale}/projects/${project.id}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly' as const,
+            priority: 0.8,
+        }))
+    );
+
+    return [...staticRoutes, ...projectRoutes];
 }

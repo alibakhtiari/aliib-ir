@@ -1,23 +1,29 @@
-"use client"
-
-import { useLanguage } from "@/contexts/LanguageContext"
 import Image from "next/image"
 
-const About = () => {
-  const { t, language } = useLanguage()
+interface AboutProps {
+  dict: {
+    title: string;
+    subtitle: string;
+    description: string;
+    experience: string;
+    projects: string;
+    clients: string;
+    skills: string;
+    skillsList: string[];
+  }
+}
 
+const About = ({ dict }: AboutProps) => {
   const stats = [
-    { value: "12+", label: t("about.experience") },
-    { value: "150+", label: t("about.projects") },
-    { value: "60+", label: t("about.clients") },
+    { value: "12+", label: dict.experience },
+    { value: "150+", label: dict.projects },
+    { value: "60+", label: dict.clients },
   ]
 
   return (
     <section
       id="about"
-      className={`section bg-white dark:bg-gray-900 ${
-        language === "ar" || language === "fa" ? "text-right" : "text-left"
-      }`}
+      className="section bg-white dark:bg-gray-900 text-start"
     >
       <div className="container px-4 mx-auto">
         <div className="flex flex-col items-center gap-12 md:flex-row">
@@ -33,9 +39,9 @@ const About = () => {
 
           {/* Content */}
           <div className="md:w-1/2">
-            <h2 className="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{t("about.title")}</h2>
-            <h3 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{t("about.subtitle")}</h3>
-            <p className="mb-8 leading-relaxed text-gray-600 dark:text-gray-400">{t("about.description")}</p>
+            <h2 className="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{dict.title}</h2>
+            <h3 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{dict.subtitle}</h3>
+            <p className="mb-8 leading-relaxed text-gray-600 dark:text-gray-400">{dict.description}</p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 mb-8">
@@ -49,9 +55,9 @@ const About = () => {
 
             {/* Skills */}
             <div>
-              <h4 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{t("about.skills")}</h4>
+              <h4 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{dict.skills}</h4>
               <div className="flex flex-wrap gap-2">
-                {t("about.skillsList").map(
+                {dict.skillsList.map(
                   (skill, index) => (
                     <span
                       key={index}

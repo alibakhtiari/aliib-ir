@@ -1,4 +1,24 @@
-const projects = [
+export interface Project {
+  id: string;
+  category: string; // 'web' | 'seo' | 'content'
+  image: string;
+  gallery: string[];
+  technologies: string[];
+  client: string;
+  year: string;
+  link: string;
+  translations: {
+    [key: string]: {
+      title: string;
+      description: string;
+      challenge: string;
+      solution: string;
+      results: string;
+    };
+  };
+}
+
+const projects: Project[] = [
   {
     id: "ecommerce-website",
     category: "web",

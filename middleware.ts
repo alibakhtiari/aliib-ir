@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
 // Define country mappings for redirections
 const PERSIAN_COUNTRIES = ['IR', 'AF', 'TJ'] // Iran, Afghanistan, Tajikistan
@@ -9,7 +10,7 @@ const ARABIC_COUNTRIES = [
 ]
 
 // Helper function to determine redirect locale based on country
-function getRedirectLocale(countryCode) {
+function getRedirectLocale(countryCode: string | null) {
   if (!countryCode) return null
 
   if (PERSIAN_COUNTRIES.includes(countryCode)) {
@@ -24,12 +25,13 @@ function getRedirectLocale(countryCode) {
 }
 
 // Helper function to check if request should be processed by middleware
-function shouldProcessRequest(pathname) {
+function shouldProcessRequest(pathname: string) {
   // Skip middleware for:
   // - API routes
   // - Static files (_next, favicon, etc.)
   // - Sitemap, robots.txt
   // - Already localized routes (/en/*, /fa/*, /ar/*)
+  // - Root paths for locales (/en, /fa, /ar)
   return !(
     pathname.startsWith('/api/') ||
     pathname.startsWith('/_next/') ||
@@ -51,7 +53,7 @@ function shouldProcessRequest(pathname) {
   )
 }
 
-export function middleware(request) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Skip middleware processing for certain routes

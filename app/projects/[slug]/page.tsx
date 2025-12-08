@@ -79,5 +79,34 @@ export default function ProjectPage({ params: { locale, slug } }: ProjectPagePro
     notFound();
   }
 
-  return <ProjectDetailWrapper project={project} />;
+  const baseUrl = 'https://aliib.ir';
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${baseUrl}/${locale}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        // Used dynamic project title
+        "name": project.translations[locale]?.title || project.translations['en']?.title,
+        "item": `${baseUrl}/${locale}/projects/${slug}`
+      }
+    ]
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <ProjectDetailWrapper project={project} />
+    </>
+  );
 }
