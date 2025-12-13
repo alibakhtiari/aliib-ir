@@ -14,6 +14,7 @@ const contactSchema = z.object({
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) {
+    console.error('RESEND_API_KEY is missing')
     return NextResponse.json({ success: false, message: 'Server configuration error' }, { status: 500 })
   }
 
