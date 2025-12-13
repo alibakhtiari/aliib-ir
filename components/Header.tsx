@@ -54,7 +54,7 @@ const Header = ({ toggleContactPopup }: HeaderProps) => {
       <div
         className={`transition-all duration-300 rounded-full ${scrolled
           ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-2 px-6 md:px-8"
-          : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm py-3 px-8 md:px-10"
+          : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-xs py-3 px-8 md:px-10"
           }`}
       >
         <div className="flex items-center justify-between w-full">
@@ -107,7 +107,7 @@ const Header = ({ toggleContactPopup }: HeaderProps) => {
             <div className="md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-gray-700 rounded-full dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none"
+                className="p-2 text-gray-700 rounded-full dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-hidden"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               >
                 <svg

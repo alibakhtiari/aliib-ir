@@ -102,13 +102,13 @@ const Testimonials = () => {
             className={cn(
               "flex gap-6 w-max",
               isRTL ? "animate-scroll-rtl" : "animate-scroll",
-              "hover:[animation-play-state:paused]"
+              "hover:paused"
             )}
           >
             {allTestimonials.map((testimonial, index) => (
               <div
                 key={`${testimonial.id}-${index}`}
-                className="flex-shrink-0 w-[85vw] md:w-[450px] p-6 bg-gray-800 shadow-lg rounded-xl"
+                className="shrink-0 w-[85vw] md:w-[450px] p-6 bg-gray-800 shadow-lg rounded-xl"
                 dir={isRTL ? "rtl" : "ltr"}
               >
                 <div className="flex items-start gap-4">

@@ -42,7 +42,7 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
       className="hero-section relative overflow-hidden text-start"
     >
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-blue-950">
+      <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-blue-950">
         <div className="absolute inset-0 opacity-20">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
