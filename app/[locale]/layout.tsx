@@ -16,7 +16,8 @@ const vazirmatn = Vazirmatn({
     display: 'swap'
 });
 
-export async function generateMetadata({ params: { locale } }: Omit<LocaleLayoutProps, 'children'>) {
+export async function generateMetadata({ params }: Omit<LocaleLayoutProps, 'children'>) {
+    const { locale } = await params;
     setRequestLocale(locale);
     const t = await getTranslations({ locale, namespace: 'Metadata' });
     const baseUrl = 'https://aliib.ir';
@@ -64,12 +65,13 @@ export async function generateMetadata({ params: { locale } }: Omit<LocaleLayout
 
 interface LocaleLayoutProps {
     children: React.ReactNode;
-    params: {
+    params: Promise<{
         locale: string;
-    };
+    }>;
 }
 
-export default async function LocaleLayout({ children, params: { locale } }: LocaleLayoutProps) {
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+    const { locale } = await params;
     setRequestLocale(locale);
     const t = await getTranslations({ locale, namespace: 'Metadata' });
     const isRtl = locale === 'ar' || locale === 'fa';

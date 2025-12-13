@@ -10,12 +10,13 @@ import Contact from "@/components/Contact";
 import projects from "@/data/projects";
 
 interface HomeProps {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({ params: { locale } }: HomeProps) {
+export async function generateMetadata({ params }: HomeProps) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Metadata' });
   // Metadata is actually handled in Layout mostly
   return {};
@@ -29,7 +30,8 @@ export function generateStaticParams() {
   ];
 }
 
-export default async function Home({ params: { locale } }: HomeProps) {
+export default async function Home({ params }: HomeProps) {
+  const { locale } = await params;
   // Enable static rendering for this locale
   setRequestLocale(locale);
 

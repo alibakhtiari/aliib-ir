@@ -21,7 +21,7 @@ function getRedirectLocale(countryCode: string | null) {
     return '/ar'
   }
 
-  return '/' // Default to English for other countries
+  return '/en' // Default to English for other countries
 }
 
 // Helper function to check if request should be processed by middleware
@@ -67,9 +67,10 @@ export function middleware(request: NextRequest) {
   // Determine if we should redirect
   const redirectLocale = getRedirectLocale(countryCode)
 
-  // If root path and we have a redirect target (not default English)
-  if (pathname === '/' && redirectLocale && redirectLocale !== '/') {
-    const redirectUrl = new URL(redirectLocale, request.url)
+  // If root path, always redirect to the determined locale (including default /en)
+  if (pathname === '/') {
+    const targetLocale = redirectLocale || '/en'
+    const redirectUrl = new URL(targetLocale, request.url)
     return NextResponse.redirect(redirectUrl, { status: 302 })
   }
 

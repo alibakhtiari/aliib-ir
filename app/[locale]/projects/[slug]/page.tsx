@@ -20,7 +20,8 @@ export async function generateStaticParams() {
   return params;
 }
 
-export async function generateMetadata({ params: { locale, slug } }: ProjectPageProps) {
+export async function generateMetadata({ params }: ProjectPageProps) {
+  const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: 'Metadata' });
   const project = projects.find((p) => p.id === slug);
 
@@ -63,13 +64,14 @@ export async function generateMetadata({ params: { locale, slug } }: ProjectPage
 }
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     locale: string;
     slug: string;
-  };
+  }>;
 }
 
-export default function ProjectPage({ params: { locale, slug } }: ProjectPageProps) {
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { locale, slug } = await params;
   // Enable static rendering for this locale
   setRequestLocale(locale);
 
