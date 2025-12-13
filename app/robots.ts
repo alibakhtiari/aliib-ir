@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: ['/private/', '/api/'],
+            disallow: ['/private/', '/api/', '/1/'],
         },
         sitemap: 'https://aliib.ir/sitemap.xml',
     };

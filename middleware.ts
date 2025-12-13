@@ -56,6 +56,11 @@ function shouldProcessRequest(pathname: string) {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // Skip middleware for /1 route (private, no locale)
+  if (pathname === '/1') {
+    return NextResponse.next()
+  }
+
   // Skip middleware processing for certain routes
   if (!shouldProcessRequest(pathname)) {
     return NextResponse.next()
