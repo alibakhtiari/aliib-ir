@@ -1,8 +1,9 @@
 "use client"
 
 import { useRef, useEffect, useState } from 'react'
-import { Play, Pause } from 'lucide-react'
-import Image from 'next/image'
+import { Metadata } from 'next'
+import '@/app/globals.css'
+
 
 export default function Page1() {
     const audioRef = useRef<HTMLAudioElement>(null)
@@ -70,44 +71,43 @@ export default function Page1() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-4 font-sans bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-            <div className="w-full max-w-md p-8 bg-white/80 backdrop-blur-md shadow-2xl rounded-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000 border border-white/50 dark:bg-gray-800/80 dark:border-gray-700">
-                <div className="relative mb-8 overflow-hidden rounded-2xl shadow-xl aspect-square group">
-                    <Image
+        <div className="flex flex-col items-center justify-center min-h-screen p-4 font-sans bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div className="w-full max-w-md p-8 bg-white shadow-2xl rounded-3xl animate-fade-in">
+                <div className="relative mb-8">
+                    <img
                         src="/assets/1/1.jpg"
-                        alt="Kiana & Mohammad"
-                        fill
-                        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105 animate-float [animation-duration:6s]"
-                        priority
+                        alt="Beloved Person"
+                        className="w-full h-auto shadow-lg rounded-2xl animate-float"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                 </div>
 
-                <div className="mb-8 text-center space-y-4">
-                    <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 font-serif tracking-wide">
+                <div className="mb-8 text-center">
+                    <h1 className="mb-4 text-3xl font-bold text-gray-800">
                         Liebe Kiana & Mohammad
                     </h1>
-                    <div className="p-6 bg-white/50 dark:bg-gray-700/50 rounded-2xl border border-blue-50 dark:border-gray-600 shadow-inner">
-                        <p className="text-sm italic leading-relaxed text-gray-600 dark:text-gray-300 whitespace-pre-line font-medium">
+                    <div className="p-6 shadow-inner bg-gray-50 rounded-2xl">
+                        <p className="text-sm italic leading-relaxed text-gray-600 whitespace-pre-line">
                             Während ihr dieses neue Kapitel in Deutschland beginnt, wünschen wir euch unendlichen Erfolg, neue Möglichkeiten und Tage voller Freude. Möge jeder Schritt euch euren Träumen näherbringen und möget ihr euch überall auf der Welt immer zuhause fühlen.
-                        </p>
-                        <p className="mt-4 text-sm font-bold text-blue-600 dark:text-blue-400">
+
                             Mit viel Liebe, Ali & Bahar
                         </p>
                     </div>
                 </div>
 
                 <div className="flex flex-col space-y-4">
-                    <div className="flex items-center justify-center p-4 space-x-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl shadow-inner border border-blue-100 dark:border-gray-500">
+                    <div className="flex items-center justify-center p-4 space-x-3 shadow-inner bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl">
                         <button
                             onClick={handlePlayPause}
-                            className="flex items-center justify-center w-12 h-12 text-white transition-all duration-300 transform bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-                            aria-label={isPlaying ? "Pause music" : "Play music"}
+                            className="flex items-center justify-center w-12 h-12 text-white transition-all duration-200 transform bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 hover:scale-105"
                         >
                             {isPlaying ? (
-                                <Pause className="w-5 h-5 fill-current" />
+                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
+                                </svg>
                             ) : (
-                                <Play className="w-5 h-5 fill-current ml-1" />
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
                             )}
                         </button>
                         <div className="flex-1">
@@ -116,12 +116,12 @@ export default function Page1() {
                                 ref={seekBarRef}
                                 defaultValue="0"
                                 onInput={handleSeek}
-                                className="w-full h-1.5 bg-gray-200 dark:bg-gray-500 rounded-full appearance-none cursor-pointer accent-blue-600 hover:accent-blue-700 transition-all"
+                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
                             />
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-between px-2 text-xs font-medium text-gray-500 dark:text-gray-400 font-mono">
+                    <div className="flex items-center justify-between px-2 text-xs text-gray-500">
                         <span>{formatTime(currentTime)}</span>
                         <span>{formatTime(duration)}</span>
                     </div>
@@ -131,6 +131,23 @@ export default function Page1() {
                     <source src="/assets/1/1.mp3" type="audio/mpeg" />
                 </audio>
             </div>
+
+            <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-fade-in {
+          animation: fadeIn 1s ease-out;
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
         </div>
     )
 }
