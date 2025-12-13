@@ -18,21 +18,27 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
   useEffect(() => {
     setIsVisible(true)
 
+    let rafId: number
     const handleParallax = () => {
-      if (!heroRef.current) return
-      const scrollPosition = window.scrollY
-      const parallaxElements = heroRef.current.querySelectorAll(".parallax")
+      rafId = requestAnimationFrame(() => {
+        if (!heroRef.current) return
+        const scrollPosition = window.scrollY
+        const parallaxElements = heroRef.current.querySelectorAll(".parallax")
 
-      parallaxElements.forEach((el) => {
-        const element = el as HTMLElement
-        const speedAttr = element.getAttribute("data-speed")
-        const speed = speedAttr ? parseFloat(speedAttr) : 0.5
-        element.style.transform = `translateY(${scrollPosition * speed}px)`
+        parallaxElements.forEach((el) => {
+          const element = el as HTMLElement
+          const speedAttr = element.getAttribute("data-speed")
+          const speed = speedAttr ? parseFloat(speedAttr) : 0.5
+          element.style.transform = `translateY(${scrollPosition * speed}px)`
+        })
       })
     }
 
     window.addEventListener("scroll", handleParallax)
-    return () => window.removeEventListener("scroll", handleParallax)
+    return () => {
+      window.removeEventListener("scroll", handleParallax)
+      cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (

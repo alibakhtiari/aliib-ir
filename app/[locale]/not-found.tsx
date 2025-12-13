@@ -1,9 +1,8 @@
-
+import { useTranslations } from "next-intl"
 import Link from 'next/link';
 
 export const metadata = {
     title: 'Page Not Found',
-    description: 'Sorry, the page you are looking for does not exist.',
     robots: { index: false, follow: false },
 };
 
