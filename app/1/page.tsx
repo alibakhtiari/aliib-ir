@@ -77,7 +77,7 @@ export default function Page1() {
                     <img
                         src="/assets/1/1.jpg"
                         alt="Beloved Person"
-                        className="w-full h-auto shadow-lg rounded-2xl animate-float"
+                        className="w-full h-auto shadow-lg rounded-2xl animate-fade-in"
                     />
                 </div>
 
@@ -86,7 +86,7 @@ export default function Page1() {
                         Liebe Kiana & Mohammad
                     </h1>
                     <div className="p-6 shadow-inner bg-gray-50 rounded-2xl">
-                        <p className="text-sm italic leading-relaxed text-gray-600 whitespace-pre-line">
+                        <p className="text-md italic leading-relaxed text-gray-600 whitespace-pre-line">
                             Während ihr dieses neue Kapitel in Deutschland beginnt, wünschen wir euch unendlichen Erfolg, neue Möglichkeiten und Tage voller Freude. Möge jeder Schritt euch euren Träumen näherbringen und möget ihr euch überall auf der Welt immer zuhause fühlen.
 
                             Mit viel Liebe, Ali & Bahar
@@ -132,22 +132,6 @@ export default function Page1() {
                 </audio>
             </div>
 
-            <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        .animate-fade-in {
-          animation: fadeIn 1s ease-out;
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-      `}</style>
         </div>
     )
 }
