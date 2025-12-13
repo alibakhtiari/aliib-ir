@@ -23,7 +23,7 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
       rafId = requestAnimationFrame(() => {
         if (!heroRef.current) return
         const scrollPosition = window.scrollY
-        const parallaxElements = heroRef.current.querySelectorAll(".parallax")
+        const parallaxElements = heroRef.current.querySelectorAll<HTMLElement>(".parallax")
 
         parallaxElements.forEach((el) => {
           const element = el as HTMLElement
