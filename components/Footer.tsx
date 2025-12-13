@@ -28,10 +28,18 @@ const Footer = ({ dict, locale }: FooterProps) => {
       return formatter.format(now);
     }
 
-    const formatter = new Intl.DateTimeFormat(lang, {
-      year: 'numeric'
-    });
-    return formatter.format(now);
+    try {
+      const formatter = new Intl.DateTimeFormat(lang, {
+        year: 'numeric'
+      });
+      return formatter.format(now);
+    } catch (e) {
+      // Fallback to English if locale is invalid
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        year: 'numeric'
+      });
+      return formatter.format(now);
+    }
   }
 
   const year = getYearByLanguage(locale)
