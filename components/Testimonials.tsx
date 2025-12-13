@@ -114,7 +114,7 @@ const Testimonials = () => {
                 <div className="flex items-start gap-4">
                   <div className="relative w-16 h-16 min-w-[64px]">
                     <Image
-                      src={testimonial.image || "/placeholder.svg"}
+                      src={testimonial.image || "/placeholder-user.jpg"}
                       alt={testimonial.name}
                       fill
                       className="object-cover border-2 border-blue-400 rounded-full"

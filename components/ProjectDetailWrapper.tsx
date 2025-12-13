@@ -157,7 +157,7 @@ export default function ProjectDetailWrapper({ project }: ProjectDetailWrapperPr
                     {/* Project Image */}
                     <div className="relative mb-12 overflow-hidden shadow-xl rounded-xl">
                         <div className="aspect-w-16 aspect-h-9 relative h-[500px]">
-                            <Image src={project.image || "/placeholder.svg"} alt={projectContent.title} fill className="object-cover" />
+                            <Image src={project.image || "/project-placeholder.png"} alt={projectContent.title} fill className="object-cover" />
                         </div>
                     </div>
 

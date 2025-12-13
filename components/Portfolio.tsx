@@ -20,42 +20,42 @@ const Portfolio = () => {
       id: 1,
       title: t("portfolio.projects.ecommerce.title"),
       category: "web",
-      image: "/placeholder.svg",
+      image: "/project-placeholder.png",
       description: t("portfolio.projects.ecommerce.description"),
     },
     {
       id: 2,
       title: t("portfolio.projects.seoCampaign.title"),
       category: "seo",
-      image: "/placeholder.svg",
+      image: "/project-placeholder.png",
       description: t("portfolio.projects.seoCampaign.description"),
     },
     {
       id: 3,
       title: t("portfolio.projects.corporateBlog.title"),
       category: "content",
-      image: "/placeholder.svg",
+      image: "/project-placeholder.png",
       description: t("portfolio.projects.corporateBlog.description"),
     },
     {
       id: 4,
       title: t("portfolio.projects.portfolioWebsite.title"),
       category: "web",
-      image: "/placeholder.svg",
+      image: "/project-placeholder.png",
       description: t("portfolio.projects.portfolioWebsite.description"),
     },
     {
       id: 5,
       title: t("portfolio.projects.localBusinessSEO.title"),
       category: "seo",
-      image: "/placeholder.svg",
+      image: "/project-placeholder.png",
       description: t("portfolio.projects.localBusinessSEO.description"),
     },
     {
       id: 6,
       title: t("portfolio.projects.productDescriptions.title"),
       category: "content",
-      image: "/placeholder.svg",
+      image: "/project-placeholder.png",
       description: t("portfolio.projects.productDescriptions.description"),
     },
   ]
@@ -80,8 +80,8 @@ const Portfolio = () => {
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
                 className={`px-6 py-2 rounded-full transition-colors ${activeFilter === filter.id
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                   }`}
               >
                 {filter.label}
@@ -99,7 +99,7 @@ const Portfolio = () => {
             >
               <div className="relative h-64 overflow-hidden">
                 <Image
-                  src={project.image || "/placeholder.svg"}
+                  src={project.image || "/project-placeholder.png"}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
