@@ -112,7 +112,7 @@ const ContactPopup = ({ onClose }) => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -127,7 +127,7 @@ const ContactPopup = ({ onClose }) => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -141,7 +141,7 @@ const ContactPopup = ({ onClose }) => {
                 value={formData.service}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">{t("contact.popup.selectService")}</option>
                 <option value="web-development">{t("contact.serviceOptions.webDevelopment")}</option>
@@ -162,7 +162,7 @@ const ContactPopup = ({ onClose }) => {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg resize-none bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg resize-none bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500"
               ></textarea>
             </div>
 
