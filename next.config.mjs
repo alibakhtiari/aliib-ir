@@ -6,7 +6,6 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['placeholder.com'],
     unoptimized: true,
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
@@ -15,6 +14,11 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
+  },
+  experimental: {
+    optimizeCss: true,
+    viewTransition: true,
+    inlineCss: true,
   },
   async headers() {
     return [
