@@ -52,7 +52,7 @@ const Header = ({ toggleContactPopup }: HeaderProps) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5">
       <div
-        className={`transition-all duration-300 rounded-full ${scrolled
+        className={`transition-all duration-300 rounded-full w-[94%] md:w-auto ${scrolled
           ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-2 px-6 md:px-8"
           : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-xs py-3 px-8 md:px-10"
           }`}
