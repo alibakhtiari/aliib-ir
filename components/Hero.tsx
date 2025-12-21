@@ -77,7 +77,7 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
         <div className="grid items-center w-full grid-cols-1 gap-12 md:grid-cols-2">
           {/* Hero Content */}
           <div className={`${isVisible ? "animate-fadeIn" : "opacity-0"} transition-all duration-1000 ease-out`}>
-            <div className="inline-block px-4 py-1 mb-6 text-sm font-medium text-blue-600 bg-blue-100 rounded-full dark:bg-blue-900/30 dark:text-blue-400">
+            <div className="inline-block px-4 py-1 mb-6 text-sm font-medium text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900/30 dark:text-blue-400">
               {t("hero.greeting")}
             </div>
             <h1 className="mb-4 text-4xl font-bold leading-tight text-gray-900 md:text-6xl dark:text-white">

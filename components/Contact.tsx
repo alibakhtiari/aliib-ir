@@ -113,7 +113,7 @@ const Contact = () => {
                       <Phone className="w-5 h-5" />
                     </div>
                     <div className="ms-4">
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-white">{t("contact.phone")}</h3>
+                      <h5 className="text-lg font-medium text-gray-900 dark:text-white">{t("contact.phone")}</h5>
                       <p className="mt-1 text-gray-600 dark:text-gray-400">{t("contact.phone")}:</p>
                       <a href={`tel:${CONTACT_INFO.phone}`} className="text-gray-600 dark:text-gray-400 dir-ltr inline-block hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                         {CONTACT_INFO.phone}
@@ -237,7 +237,7 @@ const Contact = () => {
 
               {/* Socials Row */}
               <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-                <h5 className="font-medium text-gray-900 dark:text-white">{t("contact.followMe")}</h5>
+                <h4 className="font-medium text-gray-900 dark:text-white">{t("contact.followMe")}</h4>
                 <div className="flex space-x-3 rtl:space-x-reverse">
                   <SocialLink href={CONTACT_INFO.socials.twitter} label="Twitter" icon={<Twitter className="w-5 h-5" />} />
                   <SocialLink href={CONTACT_INFO.socials.linkedin} label="LinkedIn" icon={<Linkedin className="w-5 h-5" />} />
