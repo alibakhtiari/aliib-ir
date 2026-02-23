@@ -5,10 +5,9 @@ import { useLanguage } from "@/contexts/LanguageContext"
 import Image from "next/image"
 
 interface HeroProps {
-  toggleContactPopup: () => void;
 }
 
-const Hero = ({ toggleContactPopup }: HeroProps) => {
+const Hero = ({ }: HeroProps) => {
   const { t, language } = useLanguage()
   const heroRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -132,7 +131,10 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
 
             <div className="flex flex-wrap gap-4">
               <button
-                onClick={toggleContactPopup}
+                onClick={() => {
+                  const element = document.getElementById("contact")
+                  if (element) element.scrollIntoView({ behavior: "smooth" })
+                }}
                 className="flex items-center px-8 py-4 font-bold text-white transition-all duration-300 transform bg-blue-600 rounded-xl shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1 active:scale-95"
               >
                 {t("cta.freeQuote")}

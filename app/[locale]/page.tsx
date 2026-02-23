@@ -34,7 +34,6 @@ export default async function Home({ params }: HomeProps) {
   // Cast messages to any for simplicity accessing nested keys or define type if strict
   const t = messages as any;
 
-
   return (
     <>
       <HomePageWrapper footerSlot={<Footer dict={t} locale={locale} />}>

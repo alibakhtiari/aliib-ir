@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 
-const FloatingButtons = ({ toggleContactPopup }) => {
+const FloatingButtons = () => {
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   useEffect(() => {
@@ -23,6 +23,13 @@ const FloatingButtons = ({ toggleContactPopup }) => {
       top: 0,
       behavior: "smooth",
     })
+  }
+
+  const scrollToContact = () => {
+    const element = document.getElementById("contact")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   const openWhatsApp = () => {
@@ -74,7 +81,7 @@ const FloatingButtons = ({ toggleContactPopup }) => {
 
       {/* Contact Button */}
       <button
-        onClick={toggleContactPopup}
+        onClick={scrollToContact}
         className="p-3 text-white transition-colors bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl"
         aria-label="Contact me"
       >

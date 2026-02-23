@@ -72,12 +72,12 @@ export default function Page1() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4 font-sans bg-linear-to-br from-blue-50 to-indigo-100">
-            <div className="w-full max-w-md p-8 bg-white shadow-2xl rounded-3xl animate-fade-in">
+            <div className="w-full max-w-md p-8 bg-white shadow-2xl rounded-3xl animate-fadeIn">
                 <div className="relative mb-8">
                     <img
                         src="/assets/1/1.jpg"
                         alt="Beloved Person"
-                        className="w-full h-auto shadow-lg rounded-2xl animate-fade-in"
+                        className="w-full h-auto shadow-lg rounded-2xl animate-fadeIn"
                     />
                 </div>
 

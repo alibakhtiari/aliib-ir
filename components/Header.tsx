@@ -7,10 +7,9 @@ import ThemeToggle from "./ThemeToggle"
 import Link from "next/link"
 
 interface HeaderProps {
-  toggleContactPopup: () => void;
 }
 
-const Header = ({ toggleContactPopup }: HeaderProps) => {
+const Header = ({ }: HeaderProps) => {
   const { t, language } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -93,7 +92,7 @@ const Header = ({ toggleContactPopup }: HeaderProps) => {
             <LanguageSwitcher />
             <ThemeToggle />
             <button
-              onClick={toggleContactPopup}
+              onClick={() => scrollToSection("contact")}
               className="hidden px-5 py-2 text-sm text-white transition-colors bg-blue-600 rounded-full md:flex hover:bg-blue-700"
               aria-label={t("cta.freeQuote")}
             >
@@ -147,8 +146,7 @@ const Header = ({ toggleContactPopup }: HeaderProps) => {
               <div className="pt-2 mt-2 border-t border-gray-200 dark:border-gray-700">
                 <button
                   onClick={() => {
-                    toggleContactPopup()
-                    setMobileMenuOpen(false)
+                    scrollToSection("contact")
                   }}
                   className="w-full px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
                 >

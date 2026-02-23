@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-@plugin 'tailwindcss-animate';
-
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -53,8 +51,42 @@
   --animate-float: float 3s ease-in-out infinite;
   --animate-scroll: scroll 40s linear infinite;
   --animate-scroll-rtl: scroll-rtl 40s linear infinite;
+  --animate-fadeIn: fadeIn 1s ease-out forwards;
+  --animate-fadeInRight: fadeInRight 1s ease-out forwards;
+  --animate-slideUp: slideUp 0.5s ease-out;
 
   --ease-bounce-in-out: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 
   @keyframes float {
     0%,
@@ -146,44 +178,6 @@ html[dir="rtl"] body {
 
 .dark body {
   @apply bg-gray-900;
-}
-
-/* Animation classes */
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
-}
-
-.slide-up {
-  animation: slideUp 0.5s ease-out;
-}
-
-/* New animations for hero section */
-.animate-fadeIn {
-  animation: fadeIn 1s ease-out forwards;
-}
-
-.animate-fadeInRight {
-  animation: fadeInRight 1s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 @keyframes slideUp {
