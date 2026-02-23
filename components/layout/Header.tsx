@@ -17,8 +17,6 @@ const Header = ({ }: HeaderProps) => {
   // Navigation items removed per user request
   const navItems: { id: string, label: string }[] = []
 
-  // Simplified logo based on language
-  const logo = isRTL ? "علی." : "Ali."
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,9 +41,9 @@ const Header = ({ }: HeaderProps) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5">
       <div
-        className={`transition-all duration-300 rounded-full w-[96%] max-w-7xl ${scrolled
-          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-2 px-6 md:px-8"
-          : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-xs py-3 px-8 md:px-10"
+        className={`transition-all duration-300 rounded-full w-full max-w-7xl bg-gray-50 dark:bg-gray-900/90 backdrop-blur-md  py-4 px-8 md:px-10 ${scrolled
+          ? " shadow-lg"
+          : " shadow-xs"
           }`}
       >
         <div className="flex items-center justify-between w-full">
@@ -53,13 +51,14 @@ const Header = ({ }: HeaderProps) => {
           <div className="flex items-center">
             <Link
               href="#home"
-              className="text-2xl font-bold text-blue-600 dark:text-blue-400"
+              className="text-2xl font-bold text-blue-600 dark:text-blue-400 flex items-center"
               onClick={(e: React.MouseEvent) => {
                 e.preventDefault()
                 scrollToSection("home")
               }}
             >
-              {logo}
+              <span>{isRTL ? "علی" : "Ali"}</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 dark:bg-yellow-300 ms-1 mt-1.5 shadow-xs" />
             </Link>
           </div>
 
