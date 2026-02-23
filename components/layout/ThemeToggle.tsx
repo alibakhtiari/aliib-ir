@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { Sun, Moon } from "lucide-react"
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   // Avoid hydration mismatch by only rendering icons after mount
@@ -15,7 +15,9 @@ const ThemeToggle = () => {
     return <div className="p-2 w-9 h-9" /> // Skeleton space
   }
 
-  const isDark = theme === 'dark'
+  // Use resolvedTheme to accurately reflect the active state (light/dark) 
+  // even when the theme is set to 'system'
+  const isDark = resolvedTheme === 'dark'
 
   return (
     <button
