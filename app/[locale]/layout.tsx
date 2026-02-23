@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Omit<LocaleLayoutProps, 'chil
         openGraph: {
             title: t('ogTitle'),
             description: t('ogDescription'),
-            url: `${baseUrl}/${locale}`,
+            url: locale === 'en' ? baseUrl : `${baseUrl}/${locale}`,
             siteName: t('siteName'),
             images: [
                 {
@@ -52,9 +52,9 @@ export async function generateMetadata({ params }: Omit<LocaleLayoutProps, 'chil
             images: [`${baseUrl}/og-image.jpg`],
         },
         alternates: {
-            canonical: `${baseUrl}/${locale}`,
+            canonical: locale === 'en' ? baseUrl : `${baseUrl}/${locale}`,
             languages: {
-                'en': `${baseUrl}/en`,
+                'en': baseUrl,
                 'fa': `${baseUrl}/fa`,
                 'ar': `${baseUrl}/ar`,
             },
@@ -137,7 +137,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             </head>
             <body className={`${isRtl ? vazirmatn.className : inter.className} ${isRtl ? 'font-rtl' : 'font-sans'} antialiased`} suppressHydrationWarning>
                 <ThemeProvider>
-                    <LanguageProvider>
+                    <LanguageProvider locale={locale}>
                         {children}
                     </LanguageProvider>
                 </ThemeProvider>

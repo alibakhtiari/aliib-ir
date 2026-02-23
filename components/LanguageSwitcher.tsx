@@ -1,12 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { useLanguage } from "@/contexts/LanguageContext"
 
 const LanguageSwitcher = () => {
   const router = useRouter()
-  const { language: currentLanguage } = useLanguage()
+  const pathname = usePathname()
+  const { language: currentLanguage, changeLanguage } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
 
   const languages = [
@@ -16,27 +17,13 @@ const LanguageSwitcher = () => {
   ]
 
   useEffect(() => {
-    const updateFromURL = () => {
-      // Read language from URL - empty or fa means Persian, ar means Arabic, en means English
-      const urlLanguage = window.location.pathname.match(/^\/(en|fa|ar)/)?.[1] || "fa"
+    // Set direction and lang attribute on html element based on current language
+    const isRTL = currentLanguage === "fa" || currentLanguage === "ar"
+    document.documentElement.dir = isRTL ? "rtl" : "ltr"
+    document.documentElement.lang = currentLanguage as string
+  }, [currentLanguage])
 
-      // Set direction based on language
-      const isRTL = urlLanguage === "fa" || urlLanguage === "ar"
-      document.documentElement.dir = isRTL ? "rtl" : "ltr"
-      document.documentElement.lang = urlLanguage
-    }
-
-    // Update on mount
-    updateFromURL()
-
-    // Listen for navigation changes (back/forward buttons or programmatic navigation)
-    const handleNavigation = () => updateFromURL()
-    window.addEventListener('popstate', handleNavigation)
-
-    return () => window.removeEventListener('popstate', handleNavigation)
-  }, [])
-
-  const currentLanguageInfo = languages.find((lang) => lang.code === currentLanguage) || languages[1] // Default to fa
+  const currentLanguageInfo = languages.find((lang) => lang.code === currentLanguage) || languages[0] // Default to en
   return (
     <div className="relative">
       <button
@@ -56,22 +43,13 @@ const LanguageSwitcher = () => {
               <button
                 key={lang.code}
                 onClick={() => {
-                  // Change URL to new language
-                  const currentPath = window.location.pathname
-                  const pathWithoutLang = currentPath.replace(/^\/(en|fa|ar)/, '') || '/'
-
-                  const newPath = `/${lang.code}${pathWithoutLang}`
-                  router.push(newPath)
-
-                  // Note: currentLanguage is managed by LanguageContext
-
+                  changeLanguage(lang.code)
                   setIsOpen(false)
                 }}
-                className={`w-full text-left px-4 py-2 text-sm ${
-                  currentLanguage === lang.code
-                    ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                }`}
+                className={`w-full text-left px-4 py-2 text-sm ${currentLanguage === lang.code
+                  ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`}
               >
                 <span className="me-2">{lang.flag}</span>
                 {lang.name}

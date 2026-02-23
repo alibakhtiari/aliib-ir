@@ -20,15 +20,11 @@ export const useLanguage = () => {
   return context
 }
 
-const LanguageProvider = ({ children }) => {
+export const LanguageProvider = ({ children, locale }) => {
   const router = useRouter()
   const pathname = usePathname()
 
-  // Extract current language from pathname
-  const currentLang = pathname.startsWith('/fa') ? 'fa' :
-                     pathname.startsWith('/ar') ? 'ar' : 'en'
-
-  const [language, setLanguage] = useState(currentLang)
+  const [language, setLanguage] = useState(locale || 'en')
 
   // Translation function
   const t = (key) => {
@@ -46,21 +42,25 @@ const LanguageProvider = ({ children }) => {
     if (newLocale && ['en', 'fa', 'ar'].includes(newLocale)) {
       setLanguage(newLocale)
 
-      // Get current path without locale prefix
-      const currentPath = pathname.replace(/^\/(en|fa|ar)/, '') || '/'
+      // Get path without language prefix
+      const pathWithoutLang = pathname.replace(/^\/(en|fa|ar)/, '') || '/'
 
-      // Navigate to new locale with current path
-      const newPath = `/${newLocale}${currentPath}`
-      router.push(newPath)
+      // Construct new path: prefix-less for English, prefixed for fa/ar
+      const newPath = newLocale === 'en'
+        ? (pathWithoutLang.startsWith('/') ? pathWithoutLang : `/${pathWithoutLang}`)
+        : `/${newLocale}${pathWithoutLang.startsWith('/') ? pathWithoutLang : `/${pathWithoutLang}`}`
+
+      // Clean up double slashes
+      const finalPath = newPath.replace(/\/+/g, '/')
+
+      router.push(finalPath)
     }
   }
 
-  // Update language when pathname changes
+  // Update language when locale prop changes (e.g. on navigation)
   useEffect(() => {
-    const newLang = pathname.startsWith('/fa') ? 'fa' :
-                   pathname.startsWith('/ar') ? 'ar' : 'en'
-    setLanguage(newLang)
-  }, [pathname])
+    if (locale) setLanguage(locale)
+  }, [locale])
 
   return (
     <LanguageContext.Provider value={{
@@ -73,5 +73,4 @@ const LanguageProvider = ({ children }) => {
   )
 }
 
-export { LanguageProvider }
 export default LanguageProvider

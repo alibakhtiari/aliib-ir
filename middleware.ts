@@ -53,6 +53,11 @@ function shouldProcessRequest(pathname: string) {
   )
 }
 
+import createIntlMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/navigation';
+
+const intlMiddleware = createIntlMiddleware(routing);
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -61,26 +66,21 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // Skip middleware processing for certain routes
-  if (!shouldProcessRequest(pathname)) {
-    return NextResponse.next()
-  }
-
-  // Get country from Cloudflare's CF-IPCountry header
-  const countryCode = request.headers.get('CF-IPCountry')
-
-  // Determine if we should redirect
-  const redirectLocale = getRedirectLocale(countryCode)
-
-  // If root path, always redirect to the determined locale (including default /en)
+  // Handle root path geo-redirect
   if (pathname === '/') {
-    const targetLocale = redirectLocale || '/en'
-    const redirectUrl = new URL(targetLocale, request.url)
-    return NextResponse.redirect(redirectUrl, { status: 302 })
+    // Get country from Cloudflare's CF-IPCountry header
+    const countryCode = request.headers.get('CF-IPCountry')
+    const redirectLocale = getRedirectLocale(countryCode)
+
+    // Only redirect if it's NOT English (since English is at root)
+    if (redirectLocale && redirectLocale !== '/en') {
+      const redirectUrl = new URL(redirectLocale, request.url)
+      return NextResponse.redirect(redirectUrl, { status: 302 })
+    }
   }
 
-  // For any other case, continue normally
-  return NextResponse.next()
+  // Use next-intl middleware for all other routing concerns
+  return intlMiddleware(request)
 }
 
 export const config = {
