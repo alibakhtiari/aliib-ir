@@ -49,26 +49,23 @@ const Hero = ({ }: HeroProps) => {
       className="hero-section relative overflow-hidden text-start"
     >
       {/* Abstract Modern Background with Masked Grid */}
-      <div className="absolute inset-0 bg-slate-50 dark:bg-[#080b13] flex items-center justify-center">
-        {/* Subdued animated blobs */}
+      <div className="absolute inset-0 bg-white dark:bg-[#080b13] flex items-center justify-center">
+        {/* Radial Gradient Background */}
         <div
-          className="absolute bg-blue-500/10 dark:bg-blue-600/5 rounded-full parallax -top-[20%] -right-[10%] w-[800px] h-[800px] blur-[100px] opacity-40 animate-pulse"
-          style={{ animationDuration: '10s' }}
-          data-speed="0.15"
-        ></div>
-        <div
-          className="absolute bg-indigo-500/10 dark:bg-indigo-600/5 rounded-full parallax top-[40%] left-[ -10%] w-[600px] h-[600px] blur-[100px] opacity-20 animate-pulse"
-          style={{ animationDuration: '14s', animationDelay: '2s' }}
-          data-speed="0.25"
-        ></div>
-
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle at center, #FFF991 0%, transparent 70%)`,
+            opacity: 0.6,
+            mixBlendMode: "multiply",
+          }}
+        />
         {/* Faded edges Grid Mask */}
         <div className="absolute inset-0 pointer-events-none" style={{ maskImage: 'radial-gradient(ellipse at center, black, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black, transparent 70%)' }}>
           <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.07]">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <defs>
                 <pattern id="minimal-grid" width="4" height="4" patternUnits="userSpaceOnUse">
-                  <path d="M 4 0 L 0 0 0 4" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                  <path d="M 4 0 L 0 0 0 4" fill="none" stroke="currentColor" strokeWidth="0.15" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#minimal-grid)" />
@@ -119,11 +116,11 @@ const Hero = ({ }: HeroProps) => {
 
             {/* Skills Pills */}
             <div className="mb-8">
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 max-w-[70%]">
                 {skillsList.map((skill, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 text-xs font-medium text-gray-600 transition-colors bg-white/60 border border-gray-200 rounded-full dark:bg-gray-800/40 dark:border-gray-700/50 dark:text-gray-300 backdrop-blur-md hover:bg-gray-100 dark:hover:bg-gray-700/60"
+                    className="p-2 text-xs font-medium text-gray-600 transition-colors bg-white/60 border border-gray-200 rounded-full dark:bg-gray-800/40 dark:border-gray-700/50 dark:text-gray-300 backdrop-blur-md hover:bg-gray-100 dark:hover:bg-gray-700/60"
                   >
                     {skill}
                   </span>
@@ -161,10 +158,6 @@ const Hero = ({ }: HeroProps) => {
             className={`${isVisible ? "animate-fadeInRight" : "opacity-0 translate-x-10"} transition-all duration-1000 ease-out delay-300 hidden lg:block lg:col-span-5`}
           >
             <div className="relative">
-              {/* Decorative shapes behind image */}
-              <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-2xl -z-10 -rotate-3 blur-sm"></div>
-              <div className="absolute transform translate-x-4 translate-y-4 bg-indigo-100 -inset-4 dark:bg-indigo-900/30 rounded-2xl -z-10 rotate-3 blur-xs"></div>
-
               <div className="relative w-full max-w-md mx-auto aspect-[4/5] perspective-1000">
                 <div className="relative w-full h-full overflow-hidden transition-transform duration-500 shadow-2xl rounded-2xl hover:rotate-y-6">
                   <Image
