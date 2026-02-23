@@ -46,13 +46,12 @@ const LanguageSwitcher = () => {
                   changeLanguage(lang.code)
                   setIsOpen(false)
                 }}
-                className={`w-full text-left px-4 py-2 text-sm ${currentLanguage === lang.code
+                className={`w-full text-center px-4 py-2 text-xl ${currentLanguage === lang.code
                   ? "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400"
                   : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`}
               >
-                <span className="me-2">{lang.flag}</span>
-                {lang.name}
+                <span>{lang.flag}</span>
               </button>
             ))}
           </div>

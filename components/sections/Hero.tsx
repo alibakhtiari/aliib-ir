@@ -48,80 +48,77 @@ const Hero = ({ }: HeroProps) => {
       ref={heroRef}
       className="hero-section relative overflow-hidden text-start"
     >
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-blue-950">
-        <div className="absolute inset-0 opacity-20">
+      {/* Abstract Modern Background */}
+      <div className="absolute inset-0 bg-slate-50 dark:bg-[#080b13]">
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
-              <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
-                <path d="M 8 0 L 0 0 0 8" fill="none" stroke="currentColor" strokeWidth="0.5" />
+              <pattern id="minimal-grid" width="4" height="4" patternUnits="userSpaceOnUse">
+                <circle cx="1" cy="1" r="0.5" fill="currentColor" />
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
+            <rect width="100%" height="100%" fill="url(#minimal-grid)" />
           </svg>
         </div>
         <div
-          className="absolute bg-blue-200 rounded-full parallax -top-20 -right-20 w-96 h-96 dark:bg-blue-900 opacity-20 blur-3xl"
-          data-speed="0.2"
+          className="absolute bg-blue-500/20 dark:bg-blue-600/10 rounded-full parallax -top-[20%] -right-[10%] w-[800px] h-[800px] blur-[120px] opacity-60 animate-pulse"
+          style={{ animationDuration: '8s' }}
+          data-speed="0.15"
         ></div>
         <div
-          className="absolute w-64 h-64 bg-purple-200 rounded-full parallax top-1/3 left-1/4 dark:bg-purple-900 opacity-20 blur-3xl"
-          data-speed="0.3"
-        ></div>
-        <div
-          className="absolute bg-teal-200 rounded-full parallax bottom-1/4 right-1/3 w-80 h-80 dark:bg-teal-900 opacity-20 blur-3xl"
-          data-speed="0.1"
+          className="absolute bg-indigo-500/20 dark:bg-indigo-600/10 rounded-full parallax top-[40%] left-[-10%] w-[600px] h-[600px] blur-[120px] opacity-40 animate-pulse"
+          style={{ animationDuration: '12s', animationDelay: '2s' }}
+          data-speed="0.25"
         ></div>
       </div>
 
-      <div className="container relative z-10 px-4 pt-32 pb-24 mx-auto md:pt-40 md:pb-32">
-        <div className="grid items-center w-full grid-cols-1 gap-16 lg:grid-cols-12">
+      <div className="container relative z-10 px-4 pt-24 pb-16 mx-auto md:pt-32 md:pb-24">
+        <div className="grid items-center w-full grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Hero Content - Left Column (7 cols on large screens) */}
           <div className={`${isVisible ? "animate-fadeIn" : "opacity-0"} transition-all duration-1000 ease-out lg:col-span-7`}>
-            <div className="inline-block px-4 py-1 mb-6 text-sm font-medium text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900/30 dark:text-blue-400">
+            <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold text-blue-700 bg-blue-100/80 rounded-full dark:bg-blue-900/40 dark:text-blue-400 capitalize tracking-wider backdrop-blur-sm">
               {t("hero.greeting")}
             </div>
-            <h1 className="mb-4 text-4xl font-bold leading-tight text-gray-900 md:text-6xl dark:text-white">
+            <h1 className="mb-2 text-4xl font-extrabold tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               {t("hero.name")}
             </h1>
-            <h2 className="mb-6 text-2xl font-semibold text-gray-700 md:text-3xl dark:text-gray-300">
+            <h2 className="mb-4 text-xl font-medium tracking-tight text-gray-600 md:text-2xl dark:text-gray-300">
               {t("hero.title")}
             </h2>
-            <p className="max-w-2xl mb-6 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+            <p className="max-w-2xl mb-6 text-base leading-relaxed text-gray-600 dark:text-gray-400">
               {t("hero.description")}
             </p>
 
             {/* Added: Professional Bio from About section */}
-            <p className="max-w-3xl mb-8 text-base leading-relaxed text-gray-500 md:text-lg dark:text-gray-400 border-s-2 border-blue-200 dark:border-blue-800 ps-4 italic">
-              {t("hero.aboutDescription")}
-            </p>
+            <div className="max-w-xl mb-8 border-l-2 border-slate-200 dark:border-slate-800 pl-4 rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">
+              <p className="text-sm italic leading-relaxed text-gray-500 dark:text-gray-400">
+                "{t("hero.aboutDescription")}"
+              </p>
+            </div>
 
             {/* Stats - Re-styled for lower footprint */}
-            <div className="flex flex-wrap gap-8 mb-10">
-              <div className="flex flex-col">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">12+</div>
-                <div className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">{t("hero.stats.experience")}</div>
+            <div className="flex flex-wrap gap-6 mb-8">
+              <div className="flex flex-col group">
+                <div className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">12+</div>
+                <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mt-1">{t("hero.stats.experience")}</div>
               </div>
-              <div className="flex flex-col">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">150+</div>
-                <div className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">{t("hero.stats.projects")}</div>
+              <div className="flex flex-col group">
+                <div className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">150+</div>
+                <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mt-1">{t("hero.stats.projects")}</div>
               </div>
-              <div className="flex flex-col">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">60+</div>
-                <div className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">{t("hero.stats.clients")}</div>
+              <div className="flex flex-col group">
+                <div className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">60+</div>
+                <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mt-1">{t("hero.stats.clients")}</div>
               </div>
             </div>
 
             {/* Skills Pills */}
-            <div className="mb-10">
-              <h3 className="mb-4 text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-widest">
-                {t("hero.skills.title")}
-              </h3>
+            <div className="mb-8">
               <div className="flex flex-wrap gap-2">
                 {skillsList.map((skill, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1.5 text-xs font-semibold tracking-wide text-gray-700 bg-white/50 border border-gray-200 rounded-lg dark:bg-gray-800/50 dark:border-gray-700 dark:text-gray-300 backdrop-blur-sm"
+                    className="px-3 py-1 text-xs font-medium text-gray-600 transition-colors bg-white/60 border border-gray-200 rounded-full dark:bg-gray-800/40 dark:border-gray-700/50 dark:text-gray-300 backdrop-blur-md hover:bg-gray-100 dark:hover:bg-gray-700/60"
                   >
                     {skill}
                   </span>
@@ -135,9 +132,9 @@ const Hero = ({ }: HeroProps) => {
                   const element = document.getElementById("contact")
                   if (element) element.scrollIntoView({ behavior: "smooth" })
                 }}
-                className="flex items-center px-8 py-4 font-bold text-white transition-all duration-300 transform bg-blue-600 rounded-xl shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1 active:scale-95"
+                className="group flex items-center px-6 py-3 text-sm font-semibold text-white transition-all bg-gray-900 rounded-full shadow-lg dark:bg-white dark:text-gray-900 hover:scale-105 active:scale-95"
               >
-                {t("cta.freeQuote")}
+                <span>{t("cta.contactMe")}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`w-5 h-5 ms-2 ${isRTL ? "rotate-180" : ""}`}
