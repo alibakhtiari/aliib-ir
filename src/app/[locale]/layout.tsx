@@ -3,7 +3,7 @@ import { Inter, Vazirmatn } from "next/font/google"
 import "../globals.css"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { LanguageProvider, Locale } from "@/contexts/LanguageContext"
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale, getMessages } from 'next-intl/server';
 import { CONTACT_INFO } from '@/utils/constants';
 
 const inter = Inter({
@@ -76,57 +76,69 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     const t = await getTranslations({ locale, namespace: 'Metadata' });
     const isRtl = locale === 'ar' || locale === 'fa';
 
-    // Generate Schema.org JSON-LD
-    const schemas = [
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": t('siteName'),
-            "url": "https://aliib.ir",
-            "description": t('siteDescription'),
-            "inLanguage": locale,
-            "author": {
-                "@type": "Person",
-                "name": t('personName'),
-                "url": "https://aliib.ir"
-            }
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": t('personName'),
-            "jobTitle": t('jobTitle'),
-            "description": t('description'),
-            "url": "https://aliib.ir",
-            "sameAs": [
-                CONTACT_INFO.socials.linkedin,
-                CONTACT_INFO.socials.github,
-                CONTACT_INFO.socials.twitter,
-                CONTACT_INFO.socials.instagram
-            ],
-            "knowsAbout": [
-                "Web Development",
-                "Search Engine Optimization",
-                "Content Writing",
-                "Digital Marketing",
-                "React",
-                "Python",
-                "Django",
-                "Javascript",
-                "Next.js",
-                "Node.js"
-            ],
-            "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "IR"
-            }
+    // Generate Advanced Schema.org JSON-LD
+    const baseUrl = 'https://aliib.ir';
+    const profileUrl = locale === 'en' ? baseUrl : `${baseUrl}/${locale}`;
+
+    // Fetch all metadata translations
+    const messages = await getMessages({ locale });
+    const m = messages as any;
+    const metadata = m.Metadata;
+
+    const personSchema = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": `${baseUrl}/#person`,
+        "name": metadata.personName,
+        "jobTitle": metadata.jobTitle,
+        "description": metadata.description,
+        "url": baseUrl,
+        "image": `${baseUrl}/og-image.jpg`,
+        "sameAs": [
+            CONTACT_INFO.socials.linkedin,
+            CONTACT_INFO.socials.github,
+            CONTACT_INFO.socials.twitter,
+            CONTACT_INFO.socials.instagram
+        ],
+        "knowsAbout": metadata.knowsAbout,
+        "knowsLanguage": [
+            { "@type": "Language", "name": "Persian", "alternateName": "fa" },
+            { "@type": "Language", "name": "English", "alternateName": "en" },
+            { "@type": "Language", "name": "Arabic", "alternateName": "ar" }
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "IR"
         }
-    ];
+    };
+
+    const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": `${baseUrl}/#website`,
+        "name": metadata.siteName,
+        "url": baseUrl,
+        "description": metadata.siteDescription,
+        "inLanguage": locale,
+        "publisher": { "@id": `${baseUrl}/#person` }
+    };
+
+    // Services
+    const serviceSchemas = Object.values(metadata.services).map((service: any, index) => ({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": service.name,
+        "description": service.description,
+        "provider": { "@id": `${baseUrl}/#person` },
+        "serviceType": service.name,
+        "areaServed": { "@type": "Country", "name": "Worldwide" }
+    }));
+
+    const schemas = [personSchema, websiteSchema, ...serviceSchemas];
 
     return (
         <html lang={locale} dir={isRtl ? "rtl" : "ltr"} suppressHydrationWarning>
             <head>
-
                 {schemas.map((schema, index) => (
                     <script
                         key={index}
