@@ -4,6 +4,7 @@ import "../globals.css"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { LanguageProvider } from "@/contexts/LanguageContext"
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { CONTACT_INFO } from '@/utils/constants';
 
 const inter = Inter({
     subsets: ["latin"],
@@ -98,10 +99,10 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             "description": t('description'),
             "url": "https://aliib.ir",
             "sameAs": [
-                "https://www.linkedin.com/in/alibakhtiarii/",
-                "https://github.com/alibakhtiari/",
-                "https://x.com/aliib1991",
-                "https://www.instagram.com/aliibakhtiari/"
+                CONTACT_INFO.socials.linkedin,
+                CONTACT_INFO.socials.github,
+                CONTACT_INFO.socials.twitter,
+                CONTACT_INFO.socials.instagram
             ],
             "knowsAbout": [
                 "Web Development",
