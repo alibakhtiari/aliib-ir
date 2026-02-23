@@ -1,7 +1,6 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
     "contact": "Contact"
   },
   "cta": {
@@ -14,34 +13,34 @@
     "name": "Ali Bakhtiari",
     "title": "Web Developer, SEO Expert & Content Writer",
     "description": "I create stunning, high-performance websites optimized for search engines and user experience.",
+    "aboutDescription": "With extensive experience in web development, SEO, and content writing, I help businesses establish a strong online presence. My approach combines technical expertise with creative solutions to deliver results that exceed expectations.",
     "badges": {
       "seoExpert": "SEO Expert",
       "webDeveloper": "Web Developer",
       "contentWriter": "Content Writer"
+    },
+    "stats": {
+      "experience": "Years of Experience",
+      "projects": "Projects Completed",
+      "clients": "Satisfied Clients"
+    },
+    "skills": {
+      "title": "My Skills",
+      "list": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Python",
+        "React",
+        "Next.js",
+        "Django",
+        "SEO",
+        "Content Writing",
+        "UI/UX",
+        "Wordpress",
+        "Responsive Design"
+      ]
     }
-  },
-  "about": {
-    "title": "About Me",
-    "subtitle": "Professional Background",
-    "description": "With extensive experience in web development, SEO, and content writing, I help businesses establish a strong online presence. My approach combines technical expertise with creative solutions to deliver results that exceed expectations.",
-    "experience": "Years of Experience",
-    "projects": "Projects Completed",
-    "clients": "Satisfied Clients",
-    "skills": "Skills",
-    "skillsList": [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "Python",
-      "React",
-      "Next.js",
-      "Django",
-      "SEO",
-      "Content Writing",
-      "UI/UX",
-      "Wordpress",
-      "Responsive Design"
-    ]
   },
   "contact": {
     "title": "Get In Touch",

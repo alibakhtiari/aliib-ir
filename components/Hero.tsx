@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
 import Image from "next/image"
-import Link from "next/link"
 
 interface HeroProps {
   toggleContactPopup: () => void;
@@ -14,6 +13,9 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
   const heroRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const isRTL = language === "ar" || language === "fa"
+
+  // Get skills list from dictionary
+  const skillsList = t("hero.skills.list") as unknown as string[]
 
   useEffect(() => {
     setIsVisible(true)
@@ -73,10 +75,10 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
         ></div>
       </div>
 
-      <div className="container relative z-10 flex items-center h-full px-4 py-24 mx-auto md:py-32">
-        <div className="grid items-center w-full grid-cols-1 gap-12 md:grid-cols-2">
-          {/* Hero Content */}
-          <div className={`${isVisible ? "animate-fadeIn" : "opacity-0"} transition-all duration-1000 ease-out`}>
+      <div className="container relative z-10 px-4 pt-32 pb-24 mx-auto md:pt-40 md:pb-32">
+        <div className="grid items-center w-full grid-cols-1 gap-16 lg:grid-cols-12">
+          {/* Hero Content - Left Column (7 cols on large screens) */}
+          <div className={`${isVisible ? "animate-fadeIn" : "opacity-0"} transition-all duration-1000 ease-out lg:col-span-7`}>
             <div className="inline-block px-4 py-1 mb-6 text-sm font-medium text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900/30 dark:text-blue-400">
               {t("hero.greeting")}
             </div>
@@ -86,91 +88,57 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
             <h2 className="mb-6 text-2xl font-semibold text-gray-700 md:text-3xl dark:text-gray-300">
               {t("hero.title")}
             </h2>
-            <p className="max-w-2xl mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+            <p className="max-w-2xl mb-6 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
               {t("hero.description")}
             </p>
 
-            {/* Stats - Icon-based design */}
-            <div className="flex flex-wrap gap-6 mb-8">
-              <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 me-3 bg-yellow-100 rounded-full dark:bg-yellow-900/30">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-yellow-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">12+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{t("about.experience")}</div>
-                </div>
-              </div>
+            {/* Added: Professional Bio from About section */}
+            <p className="max-w-3xl mb-8 text-base leading-relaxed text-gray-500 md:text-lg dark:text-gray-400 border-s-2 border-blue-200 dark:border-blue-800 ps-4 italic">
+              {t("hero.aboutDescription")}
+            </p>
 
-              <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 me-3 bg-green-100 rounded-full dark:bg-green-900/30">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-green-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">150+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{t("about.projects")}</div>
-                </div>
+            {/* Stats - Re-styled for lower footprint */}
+            <div className="flex flex-wrap gap-8 mb-10">
+              <div className="flex flex-col">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">12+</div>
+                <div className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">{t("hero.stats.experience")}</div>
               </div>
+              <div className="flex flex-col">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">150+</div>
+                <div className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">{t("hero.stats.projects")}</div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">60+</div>
+                <div className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">{t("hero.stats.clients")}</div>
+              </div>
+            </div>
 
-              <div className="flex items-center">
-                <div className="flex items-center justify-center w-12 h-12 me-3 bg-blue-100 rounded-full dark:bg-blue-900/30">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-blue-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+            {/* Skills Pills */}
+            <div className="mb-10">
+              <h3 className="mb-4 text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-widest">
+                {t("hero.skills.title")}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {skillsList.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1.5 text-xs font-semibold tracking-wide text-gray-700 bg-white/50 border border-gray-200 rounded-lg dark:bg-gray-800/50 dark:border-gray-700 dark:text-gray-300 backdrop-blur-sm"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900 dark:text-white">60+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{t("about.clients")}</div>
-                </div>
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
 
             <div className="flex flex-wrap gap-4">
               <button
                 onClick={toggleContactPopup}
-                className="flex items-center px-8 py-4 font-medium text-white transition-colors duration-300 transform bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1"
+                className="flex items-center px-8 py-4 font-bold text-white transition-all duration-300 transform bg-blue-600 rounded-xl shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1 active:scale-95"
               >
                 {t("cta.freeQuote")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 ms-2"
+                  className={`w-5 h-5 ms-2 ${isRTL ? "rotate-180" : ""}`}
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -181,61 +149,62 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
                   />
                 </svg>
               </button>
-              <Link
-                href="#portfolio"
-                className="flex items-center px-8 py-4 font-medium text-blue-600 transition-colors duration-300 transform bg-white border-2 border-blue-600 rounded-full shadow-lg dark:bg-gray-800 dark:text-blue-400 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 hover:shadow-xl hover:-translate-y-1"
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" })
-                }}
-              >
-                {t("cta.learnMore")}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 ms-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
             </div>
           </div>
 
-          {/* Hero Image */}
+          {/* Hero Image - Right Column (5 cols on large screens) */}
           <div
-            className={`${isVisible ? "animate-fadeInRight" : "opacity-0 translate-x-10"} transition-all duration-1000 ease-out delay-300 hidden md:block`}
+            className={`${isVisible ? "animate-fadeInRight" : "opacity-0 translate-x-10"} transition-all duration-1000 ease-out delay-300 hidden lg:block lg:col-span-5`}
           >
             <div className="relative">
-              <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-xl -z-10 -rotate-3"></div>
-              <div className="absolute transform translate-x-2 translate-y-2 bg-indigo-100 -inset-4 dark:bg-indigo-900/30 rounded-xl -z-10 rotate-3"></div>
-              <div className="relative w-full mx-auto h-[600px]">
-                <Image src="/Ali Bakhtiari.webp" alt={t("hero.name")} fill className="object-contain rounded-lg shadow-lg" />
-              </div>
+              {/* Decorative shapes behind image */}
+              <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-2xl -z-10 -rotate-3 blur-sm"></div>
+              <div className="absolute transform translate-x-4 translate-y-4 bg-indigo-100 -inset-4 dark:bg-indigo-900/30 rounded-2xl -z-10 rotate-3 blur-xs"></div>
 
-              {/* Floating badges */}
-              <div className="absolute px-4 py-2 bg-white rounded-full shadow-lg -left-6 top-1/4 dark:bg-gray-800 animate-float">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="font-medium">{t("hero.badges.seoExpert")}</span>
+              <div className="relative w-full max-w-md mx-auto aspect-[4/5] perspective-1000">
+                <div className="relative w-full h-full overflow-hidden transition-transform duration-500 shadow-2xl rounded-2xl hover:rotate-y-6">
+                  <Image
+                    src="/Ali Bakhtiari.webp"
+                    alt={t("hero.name")}
+                    fill
+                    priority
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-gray-900/40 to-transparent"></div>
                 </div>
               </div>
 
-              <div className="absolute px-4 py-2 delay-150 bg-white rounded-full shadow-lg -right-6 top-2/3 dark:bg-gray-800 animate-float">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <span className="font-medium">{t("hero.badges.webDeveloper")}</span>
+              {/* Enhanced floating badges */}
+              <div className="absolute px-5 py-3 bg-white/90 rounded-2xl shadow-xl -left-10 top-1/4 dark:bg-gray-800/90 backdrop-blur-md animate-float border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-lg dark:bg-green-900/30">
+                    <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <span className="font-bold text-gray-800 dark:text-gray-200">{t("hero.badges.seoExpert")}</span>
                 </div>
               </div>
 
-              <div className="absolute px-4 py-2 delay-300 bg-white rounded-full shadow-lg left-1/4 -bottom-6 dark:bg-gray-800 animate-float">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                  <span className="font-medium">{t("hero.badges.contentWriter")}</span>
+              <div className="absolute px-5 py-3 delay-150 bg-white/90 rounded-2xl shadow-xl -right-6 top-2/3 dark:bg-gray-800/90 backdrop-blur-md animate-float border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-lg dark:bg-blue-900/30">
+                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  </div>
+                  <span className="font-bold text-gray-800 dark:text-gray-200">{t("hero.badges.webDeveloper")}</span>
+                </div>
+              </div>
+
+              <div className="absolute px-5 py-3 delay-300 bg-white/90 rounded-2xl shadow-xl left-1/4 -bottom-6 dark:bg-gray-800/90 backdrop-blur-md animate-float border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center justify-center w-8 h-8 bg-purple-100 rounded-lg dark:bg-purple-900/30">
+                    <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  </div>
+                  <span className="font-bold text-gray-800 dark:text-gray-200">{t("hero.badges.contentWriter")}</span>
                 </div>
               </div>
             </div>
@@ -243,13 +212,13 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
         </div>
       </div>
 
-      {/* Wave divider */}
+      {/* Elegant Wave divider */}
       <div className="absolute bottom-0 left-0 right-0 text-white dark:text-gray-900">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full h-auto">
           <path
             fill="currentColor"
             fillOpacity="1"
-            d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
           ></path>
         </svg>
       </div>
