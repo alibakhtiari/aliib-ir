@@ -15,11 +15,8 @@ const Header = ({ }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const isRTL = language === "ar" || language === "fa"
 
-  // Navigation items
-  const navItems = [
-    { id: "home", label: t("nav.home") },
-    { id: "contact", label: t("nav.contact") },
-  ]
+  // Navigation items removed per user request
+  const navItems: { id: string, label: string }[] = []
 
   // Simplified logo based on language
   const logo = isRTL ? "علی." : "Ali."
@@ -94,9 +91,9 @@ const Header = ({ }: HeaderProps) => {
             <button
               onClick={() => scrollToSection("contact")}
               className="hidden px-5 py-2 text-sm text-white transition-colors bg-blue-600 rounded-full md:flex hover:bg-blue-700"
-              aria-label={t("cta.freeQuote")}
+              aria-label={t("cta.contactMe")}
             >
-              {t("cta.freeQuote")}
+              {t("cta.contactMe")}
             </button>
 
             {/* Mobile Menu Button */}
@@ -150,7 +147,7 @@ const Header = ({ }: HeaderProps) => {
                   }}
                   className="w-full px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
                 >
-                  {t("cta.freeQuote")}
+                  {t("cta.contactMe")}
                 </button>
               </div>
             </nav>
