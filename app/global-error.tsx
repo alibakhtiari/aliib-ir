@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] })
 export default function GlobalError({
     error,
     reset,
+}: {
+    error: Error & { digest?: string }
+    reset: () => void
 }) {
     useEffect(() => {
         // Log the error to an error reporting service
@@ -21,7 +24,7 @@ export default function GlobalError({
                 <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
                     <h2 className="text-2xl font-bold mb-4">Something went wrong!</h2>
                     <button
-                        className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition"
+                        className="px-6 py-3 bg-blue-600 rounded-full hover:bg-blue-700 transition-all hover:scale-105 active:scale-95 shadow-lg"
                         onClick={() => reset()}
                     >
                         Try again

@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: HomeProps) {
 
 export function generateStaticParams() {
   return [
+    { locale: 'en' },
     { locale: 'fa' },
     { locale: 'ar' }
   ];
