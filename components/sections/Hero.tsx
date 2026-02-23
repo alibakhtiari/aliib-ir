@@ -48,28 +48,33 @@ const Hero = ({ }: HeroProps) => {
       ref={heroRef}
       className="hero-section relative overflow-hidden text-start"
     >
-      {/* Abstract Modern Background */}
-      <div className="absolute inset-0 bg-slate-50 dark:bg-[#080b13]">
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="minimal-grid" width="4" height="4" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="0.5" fill="currentColor" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#minimal-grid)" />
-          </svg>
-        </div>
+      {/* Abstract Modern Background with Masked Grid */}
+      <div className="absolute inset-0 bg-slate-50 dark:bg-[#080b13] flex items-center justify-center">
+        {/* Subdued animated blobs */}
         <div
-          className="absolute bg-blue-500/20 dark:bg-blue-600/10 rounded-full parallax -top-[20%] -right-[10%] w-[800px] h-[800px] blur-[120px] opacity-60 animate-pulse"
-          style={{ animationDuration: '8s' }}
+          className="absolute bg-blue-500/10 dark:bg-blue-600/5 rounded-full parallax -top-[20%] -right-[10%] w-[800px] h-[800px] blur-[100px] opacity-40 animate-pulse"
+          style={{ animationDuration: '10s' }}
           data-speed="0.15"
         ></div>
         <div
-          className="absolute bg-indigo-500/20 dark:bg-indigo-600/10 rounded-full parallax top-[40%] left-[-10%] w-[600px] h-[600px] blur-[120px] opacity-40 animate-pulse"
-          style={{ animationDuration: '12s', animationDelay: '2s' }}
+          className="absolute bg-indigo-500/10 dark:bg-indigo-600/5 rounded-full parallax top-[40%] left-[ -10%] w-[600px] h-[600px] blur-[100px] opacity-20 animate-pulse"
+          style={{ animationDuration: '14s', animationDelay: '2s' }}
           data-speed="0.25"
         ></div>
+
+        {/* Faded edges Grid Mask */}
+        <div className="absolute inset-0 pointer-events-none" style={{ maskImage: 'radial-gradient(ellipse at center, black, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black, transparent 70%)' }}>
+          <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.07]">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <defs>
+                <pattern id="minimal-grid" width="4" height="4" patternUnits="userSpaceOnUse">
+                  <path d="M 4 0 L 0 0 0 4" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#minimal-grid)" />
+            </svg>
+          </div>
+        </div>
       </div>
 
       <div className="container relative z-10 px-4 pt-24 pb-16 mx-auto md:pt-32 md:pb-24">
