@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next';
-import projects from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://aliib.ir';
@@ -14,14 +13,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }
     ]);
 
-    const projectRoutes = locales.flatMap(locale =>
-        projects.map(project => ({
-            url: `${baseUrl}/${locale}/projects/${project.id}`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
-            priority: 0.8,
-        }))
-    );
-
-    return [...staticRoutes, ...projectRoutes];
+    return staticRoutes;
 }

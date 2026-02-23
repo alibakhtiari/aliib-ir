@@ -71,7 +71,7 @@ export default function Page1() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-4 font-sans bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="flex flex-col items-center justify-center min-h-screen p-4 font-sans bg-linear-to-br from-blue-50 to-indigo-100">
             <div className="w-full max-w-md p-8 bg-white shadow-2xl rounded-3xl animate-fade-in">
                 <div className="relative mb-8">
                     <img
@@ -95,7 +95,7 @@ export default function Page1() {
                 </div>
 
                 <div className="flex flex-col space-y-4">
-                    <div className="flex items-center justify-center p-4 space-x-3 shadow-inner bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl">
+                    <div className="flex items-center justify-center p-4 space-x-3 shadow-inner bg-linear-to-r from-blue-50 to-indigo-50 rounded-2xl">
                         <button
                             onClick={handlePlayPause}
                             className="flex items-center justify-center w-12 h-12 text-white transition-all duration-200 transform bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 hover:scale-105"

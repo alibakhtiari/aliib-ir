@@ -214,7 +214,7 @@ const Hero = ({ toggleContactPopup }: HeroProps) => {
               <div className="absolute transform bg-blue-100 -inset-4 dark:bg-blue-900/30 rounded-xl -z-10 -rotate-3"></div>
               <div className="absolute transform translate-x-2 translate-y-2 bg-indigo-100 -inset-4 dark:bg-indigo-900/30 rounded-xl -z-10 rotate-3"></div>
               <div className="relative w-full mx-auto h-[600px]">
-                <Image src="/Ali B.webp" alt={t("hero.name")} fill className="object-contain rounded-lg shadow-lg" />
+                <Image src="/Ali Bakhtiari.webp" alt={t("hero.name")} fill className="object-contain rounded-lg shadow-lg" />
               </div>
 
               {/* Floating badges */}

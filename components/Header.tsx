@@ -20,8 +20,6 @@ const Header = ({ toggleContactPopup }: HeaderProps) => {
   const navItems = [
     { id: "home", label: t("nav.home") },
     { id: "about", label: t("nav.about") },
-    { id: "services", label: t("nav.services") },
-    { id: "portfolio", label: t("nav.portfolio") },
     { id: "contact", label: t("nav.contact") },
   ]
 
