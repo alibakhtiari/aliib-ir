@@ -116,7 +116,7 @@ const Hero = ({ }: HeroProps) => {
 
             {/* Skills Pills */}
             <div className="mb-8">
-              <div className="flex flex-wrap gap-2 max-w-[70%]">
+              <div className="w-full flex flex-wrap gap-2 md:max-w-[70%]">
                 {skillsList.map((skill, index) => (
                   <span
                     key={index}
