@@ -5,8 +5,7 @@
   },
   "cta": {
     "freeQuote": "استعلام رایگان",
-    "contactMe": "تماس با من",
-    "learnMore": "بیشتر بدانید"
+    "contactMe": "تماس با من"
   },
   "hero": {
     "greeting": "سلام، من هستم",
@@ -55,25 +54,7 @@
     "contactInformation": "اطلاعات تماس",
     "phone": "تلفن",
     "whatsapp": "واتس اپ",
-    "followMe": "من را دنبال کنید",
-    "socialPlatforms": {
-      "twitter": "توییتر",
-      "linkedin": "لینکدین",
-      "github": "گیت‌هاب",
-      "instagram": "اینستاگرام"
-    },
-    "serviceOptions": {
-      "webDevelopment": "توسعه وب",
-      "seo": "بهینه‌سازی سئو",
-      "content": "نوشتن محتوا",
-      "other": "سایر"
-    },
-    "popup": {
-      "description": "فرم زیر را پر کنید تا پیش‌فاکتور رایگان برای پروژه خود دریافت کنید.",
-      "serviceLabel": "سرویس مورد علاقه",
-      "selectService": "انتخاب سرویس",
-      "submitButton": "درخواست ارسال"
-    }
+    "followMe": "من را دنبال کنید"
   },
   "footer": {
     "rights": "تمامی حقوق محفوظ است"
