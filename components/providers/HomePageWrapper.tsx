@@ -1,9 +1,9 @@
 "use client"
 
 import { useLanguage } from "@/contexts/LanguageContext"
-import Header from "@/components/Header"
-import Hero from "@/components/Hero"
-import FloatingButtons from "@/components/FloatingButtons"
+import Header from "@/components/layout/Header"
+import Hero from "@/components/sections/Hero"
+import FloatingButtons from "@/components/layout/FloatingButtons"
 export default function HomePageWrapper({
     children,
     footerSlot

@@ -1,7 +1,7 @@
 import { getTranslations, getMessages, setRequestLocale } from 'next-intl/server';
-import HomePageWrapper from "@/components/HomePageWrapper";
-import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
+import HomePageWrapper from "@/components/providers/HomePageWrapper";
+import Footer from "@/components/layout/Footer";
+import Contact from "@/components/sections/Contact";
 
 interface HomeProps {
   params: Promise<{
