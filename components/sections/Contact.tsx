@@ -91,31 +91,41 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="section bg-gray-50 dark:bg-gray-800 text-start"
+      className="section relative overflow-hidden bg-gray-50 dark:bg-[#080b13] transition-colors duration-300"
     >
-      <div className="container px-4 mx-auto">
+      {/* Subtle background glow matching Hero */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-40 dark:opacity-20 flex items-center justify-center">
+        <div
+          className="w-[800px] h-[800px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle at center, #FFF991 0%, transparent 70%)',
+            mixBlendMode: "multiply",
+          }}
+        />
+      </div>
+
+      <div className="container relative z-10 px-4 mx-auto">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{t("contact.title")}</h2>
           <h3 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{t("contact.subtitle")}</h3>
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col gap-12 md:flex-row">
-            {/* Contact Info */}
-            <div className="md:w-2/5">
-              <div className="h-full p-8 bg-white shadow-lg dark:bg-gray-900 rounded-xl">
-                <h4 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">{t("contact.contactInformation")}</h4>
+          <div className="flex flex-col gap-12 lg:flex-row">
+            {/* Contact Info Sidebar */}
+            <div className="lg:w-1/3">
+              <div className="h-full p-8 bg-white shadow-xl dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-gray-800">
+                <h4 className="mb-8 text-xl font-bold text-gray-900 dark:text-white">{t("contact.contactInformation")}</h4>
 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {/* Phone */}
                   <div className="flex items-start">
-                    <div className="flex items-center justify-center w-10 h-10 mt-1 text-blue-600 bg-blue-100 rounded-full dark:bg-blue-900/30 dark:text-blue-400 shrink-0">
+                    <div className="flex items-center justify-center w-10 h-10 text-blue-600 bg-blue-50 rounded-xl dark:bg-blue-900/20 dark:text-blue-400 shrink-0">
                       <Phone className="w-5 h-5" />
                     </div>
                     <div className="ms-4">
-                      <h5 className="text-lg font-medium text-gray-900 dark:text-white">{t("contact.phone")}</h5>
-                      <p className="mt-1 text-gray-600 dark:text-gray-400">{t("contact.phone")}:</p>
-                      <a href={`tel:${CONTACT_INFO.phone}`} className="text-gray-600 dark:text-gray-400 dir-ltr inline-block hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                      <h5 className="text-sm font-bold text-gray-400 uppercase tracking-wider">{t("contact.phone")}</h5>
+                      <a href={`tel:${CONTACT_INFO.phone}`} className="mt-1 text-lg font-medium text-gray-900 dark:text-white dir-ltr inline-block hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                         {CONTACT_INFO.phone}
                       </a>
                     </div>
@@ -123,41 +133,53 @@ const Contact = () => {
 
                   {/* Email */}
                   <div className="flex items-start">
-                    <div className="p-3 me-4 bg-blue-100 rounded-full dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shrink-0">
-                      <Mail className="w-6 h-6" />
+                    <div className="flex items-center justify-center w-10 h-10 text-blue-600 bg-blue-50 rounded-xl dark:bg-blue-900/20 dark:text-blue-400 shrink-0">
+                      <Mail className="w-5 h-5" />
                     </div>
-                    <div>
-                      <h5 className="font-medium text-gray-900 dark:text-white">{t("contact.email")}</h5>
-                      <a href={`mailto:${CONTACT_INFO.email}`} className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all">
+                    <div className="ms-4">
+                      <h5 className="text-sm font-bold text-gray-400 uppercase tracking-wider">{t("contact.email")}</h5>
+                      <a href={`mailto:${CONTACT_INFO.email}`} className="mt-1 text-gray-900 dark:text-gray-100 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all">
                         {CONTACT_INFO.email}
                       </a>
                     </div>
                   </div>
-                </div>
 
-                {/* WhatsApp */}
-                <div className="mt-6 flex items-start">
-                  <div className="p-3 me-4 bg-green-100 rounded-full dark:bg-green-900/30 text-green-600 dark:text-green-400 shrink-0">
-                    <MessageCircle className="w-6 h-6" />
+                  {/* WhatsApp */}
+                  <div className="flex items-start">
+                    <div className="flex items-center justify-center w-10 h-10 text-green-600 bg-green-50 rounded-xl dark:bg-green-900/20 dark:text-green-400 shrink-0">
+                      <MessageCircle className="w-5 h-5" />
+                    </div>
+                    <div className="ms-4">
+                      <h5 className="text-sm font-bold text-gray-400 uppercase tracking-wider">{t("contact.whatsapp")}</h5>
+                      <a href={`https://wa.me/${CONTACT_INFO.whatsapp.replace('+', '')}`} className="mt-1 text-lg font-medium text-gray-900 dark:text-white dir-ltr inline-block hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                        {CONTACT_INFO.whatsapp}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <h5 className="font-medium text-gray-900 dark:text-white">{t("contact.whatsapp")}</h5>
-                    <a href={`https://wa.me/${CONTACT_INFO.whatsapp.replace('+', '')}`} className="text-gray-600 dark:text-gray-400 dir-ltr inline-block hover:text-green-600 dark:hover:text-green-400 transition-colors">
-                      {CONTACT_INFO.whatsapp}
-                    </a>
+
+                  {/* Follow Me Section */}
+                  <div className="pt-8 border-t border-gray-100 dark:border-gray-800">
+                    <h5 className="mb-4 text-sm font-bold tracking-widest text-gray-400 uppercase">
+                      {t("contact.followMe")}
+                    </h5>
+                    <div className="flex flex-wrap gap-3">
+                      <SocialLink href={CONTACT_INFO.socials.twitter} label="Twitter" icon={<Twitter className="w-5 h-5" />} />
+                      <SocialLink href={CONTACT_INFO.socials.linkedin} label="LinkedIn" icon={<Linkedin className="w-5 h-5" />} />
+                      <SocialLink href={CONTACT_INFO.socials.github} label="GitHub" icon={<Github className="w-5 h-5" />} />
+                      <SocialLink href={CONTACT_INFO.socials.instagram} label="Instagram" icon={<Instagram className="w-5 h-5" />} />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Socials & Form */}
-            <div className="md:w-3/5 space-y-8">
-              {/* Form */}
-              <div className="p-8 bg-white shadow-lg dark:bg-gray-900 rounded-xl">
+            {/* Form */}
+            <div className="lg:w-2/3">
+              <div className="p-8 bg-white shadow-xl dark:bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-gray-800">
                 <form onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="block mb-2 text-gray-700 dark:text-gray-300">
+                      <label htmlFor="name" className="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
                         {t("contact.name")}
                       </label>
                       <input
@@ -167,11 +189,11 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 text-gray-900 border border-gray-100 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 transition-all"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block mb-2 text-gray-700 dark:text-gray-300">
+                      <label htmlFor="email" className="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
                         {t("contact.email")}
                       </label>
                       <input
@@ -181,13 +203,13 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-3 text-gray-900 border border-gray-100 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 transition-all"
                       />
                     </div>
                   </div>
 
                   <div className="mb-6">
-                    <label htmlFor="subject" className="block mb-2 text-gray-700 dark:text-gray-300">
+                    <label htmlFor="subject" className="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
                       {t("contact.subject")}
                     </label>
                     <input
@@ -197,12 +219,12 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 text-gray-900 border border-gray-100 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 transition-all"
                     />
                   </div>
 
                   <div className="mb-6">
-                    <label htmlFor="message" className="block mb-2 text-gray-700 dark:text-gray-300">
+                    <label htmlFor="message" className="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
                       {t("contact.message")}
                     </label>
                     <textarea
@@ -212,13 +234,13 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 text-gray-900 border border-gray-200 rounded-lg resize-none bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 text-gray-900 border border-gray-100 rounded-xl resize-none bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 transition-all"
                     ></textarea>
                   </div>
 
                   {formStatus.submitted && (
                     <div
-                      className={`mb-6 p-4 rounded-lg ${formStatus.success ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                      className={`mb-6 p-4 rounded-xl ${formStatus.success ? "bg-green-50 text-green-700 border border-green-100" : "bg-red-50 text-red-700 border border-red-100"}`}
                     >
                       {formStatus.message}
                     </div>
@@ -227,26 +249,25 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={formStatus.loading}
-                    className="w-full px-6 py-3 font-medium text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full px-6 py-4 font-bold text-white transition-all bg-blue-600 rounded-xl hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 font-display"
                   >
-                    {formStatus.loading && <Loader2 className="w-5 h-5 animate-spin" />}
-                    {t("contact.submit")}
+                    {formStatus.loading ? (
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                    ) : (
+                      t("contact.submit")
+                    )}
                   </button>
                 </form>
               </div>
-
-              {/* Socials Row */}
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-                <h4 className="font-medium text-gray-900 dark:text-white">{t("contact.followMe")}</h4>
-                <div className="flex space-x-3 rtl:space-x-reverse">
-                  <SocialLink href={CONTACT_INFO.socials.twitter} label="Twitter" icon={<Twitter className="w-5 h-5" />} />
-                  <SocialLink href={CONTACT_INFO.socials.linkedin} label="LinkedIn" icon={<Linkedin className="w-5 h-5" />} />
-                  <SocialLink href={CONTACT_INFO.socials.github} label="GitHub" icon={<Github className="w-5 h-5" />} />
-                  <SocialLink href={CONTACT_INFO.socials.instagram} label="Instagram" icon={<Instagram className="w-5 h-5" />} />
-                </div>
-              </div>
             </div>
           </div>
+        </div>
+
+        {/* Integrated Footer content */}
+        <div className="mt-20 pt-10 border-t border-gray-200/50 dark:border-gray-800/50 text-center">
+          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+            &copy; {new Date().getFullYear()} {t("hero.name")}. {t("footer.rights")}
+          </p>
         </div>
       </div>
     </section>

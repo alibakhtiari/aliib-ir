@@ -5,11 +5,9 @@ import Header from "@/components/layout/Header"
 import Hero from "@/components/sections/Hero"
 import FloatingButtons from "@/components/layout/FloatingButtons"
 export default function HomePageWrapper({
-    children,
-    footerSlot
+    children
 }: {
     children: React.ReactNode;
-    footerSlot: React.ReactNode;
 }) {
     const { language } = useLanguage()
 
@@ -20,7 +18,6 @@ export default function HomePageWrapper({
                 <Hero />
                 {children}
             </main>
-            {footerSlot}
             <FloatingButtons />
         </div>
     )

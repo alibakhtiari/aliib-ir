@@ -1,6 +1,5 @@
 import { getTranslations, getMessages, setRequestLocale } from 'next-intl/server';
 import HomePageWrapper from "@/components/providers/HomePageWrapper";
-import Footer from "@/components/layout/Footer";
 import Contact from "@/components/sections/Contact";
 
 interface HomeProps {
@@ -35,7 +34,7 @@ export default async function Home({ params }: HomeProps) {
 
   return (
     <>
-      <HomePageWrapper footerSlot={<Footer dict={t} locale={locale} />}>
+      <HomePageWrapper>
         <Contact />
       </HomePageWrapper>
     </>
