@@ -1,5 +1,7 @@
-import { getTranslations, getMessages, setRequestLocale } from 'next-intl/server';
-import HomePageWrapper from "@/components/providers/HomePageWrapper";
+import { setRequestLocale } from 'next-intl/server';
+import Header from "@/components/layout/Header";
+import Hero from "@/components/sections/Hero";
+import FloatingButtons from "@/components/layout/FloatingButtons";
 import Contact from "@/components/sections/Contact";
 
 interface HomeProps {
@@ -8,10 +10,8 @@ interface HomeProps {
   }>;
 }
 
-export async function generateMetadata({ params }: HomeProps) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'Metadata' });
-  // Metadata is actually handled in Layout mostly
+export async function generateMetadata() {
+  // Metadata is handled in layout.tsx
   return {};
 }
 
@@ -28,16 +28,14 @@ export default async function Home({ params }: HomeProps) {
   // Enable static rendering for this locale
   setRequestLocale(locale);
 
-  // Fetch translations for server components
-  const messages = await getMessages({ locale });
-  // Cast messages to any for simplicity accessing nested keys or define type if strict
-  const t = messages as any;
-
   return (
-    <>
-      <HomePageWrapper>
+    <div className="min-h-screen transition-colors duration-300">
+      <Header />
+      <main>
+        <Hero />
         <Contact />
-      </HomePageWrapper>
-    </>
+      </main>
+      <FloatingButtons />
+    </div>
   );
 }
