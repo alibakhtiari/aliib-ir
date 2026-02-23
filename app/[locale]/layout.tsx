@@ -2,7 +2,7 @@
 import { Inter, Vazirmatn } from "next/font/google"
 import "../globals.css"
 import { ThemeProvider } from "@/components/providers/theme-provider"
-import { LanguageProvider } from "@/contexts/LanguageContext"
+import { LanguageProvider, Locale } from "@/contexts/LanguageContext"
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { CONTACT_INFO } from '@/utils/constants';
 
@@ -137,7 +137,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             </head>
             <body className={`${isRtl ? vazirmatn.className : inter.className} ${isRtl ? 'font-rtl' : 'font-sans'} antialiased`} suppressHydrationWarning>
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                    <LanguageProvider locale={locale}>
+                    <LanguageProvider locale={locale as Locale}>
                         {children}
                     </LanguageProvider>
                 </ThemeProvider>

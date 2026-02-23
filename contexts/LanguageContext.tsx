@@ -9,7 +9,7 @@ import fa from "@/locales/fa.json"
 import ar from "@/locales/ar.json"
 
 type Translations = typeof fa
-type Locale = "en" | "fa" | "ar"
+export type Locale = "en" | "fa" | "ar"
 
 const translations: Record<Locale, Translations> = { en: en as Translations, fa, ar: ar as Translations }
 
