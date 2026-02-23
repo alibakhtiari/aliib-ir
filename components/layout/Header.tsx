@@ -57,8 +57,8 @@ const Header = ({ }: HeaderProps) => {
                 scrollToSection("home")
               }}
             >
-              <span>{isRTL ? "علی" : "Ali"}</span>
-              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 dark:bg-yellow-300 ms-1 mt-1.5 shadow-xs" />
+              <span>{isRTL ? "علی" : "Ali B"}</span>
+              <span className="w-2 h-2 rounded-full bg-yellow-400 dark:bg-yellow-300 ms-1 mt-2 shadow-xs" />
             </Link>
           </div>
 

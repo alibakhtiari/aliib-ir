@@ -4,17 +4,7 @@ import { useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { Phone, Mail, MessageCircle, Twitter, Linkedin, Github, Instagram, Loader2 } from "lucide-react"
 
-const CONTACT_INFO = {
-  phone: "+989125811880",
-  email: "ali.bakhtiarii@gmail.com",
-  whatsapp: "+989125811880",
-  socials: {
-    twitter: "https://x.com/aliib1991",
-    linkedin: "https://www.linkedin.com/in/alibakhtiarii/",
-    github: "https://github.com/alibakhtiari/",
-    instagram: "https://www.instagram.com/aliibakhtiari/",
-  }
-}
+import { CONTACT_INFO } from "@/utils/constants"
 
 const Contact = () => {
   const { t, language } = useLanguage()
@@ -91,7 +81,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="section relative overflow-hidden bg-gray-50 dark:bg-[#080b13] transition-colors duration-300"
+      className="section relative overflow-hidden bg-white dark:bg-[#080b13] transition-colors duration-300"
     >
       {/* Subtle background glow matching Hero */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-40 dark:opacity-20 flex items-center justify-center">
