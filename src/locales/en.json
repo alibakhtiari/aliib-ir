@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "home": "Home",
+    "contact": "Contact"
+  },
+  "cta": {
+    "freeQuote": "Free Quote",
+    "contactMe": "Contact Me"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "Ali Bakhtiari",
+    "title": "Web Developer, SEO Expert & Content Writer",
+    "description": "I create stunning, high-performance websites optimized for search engines and user experience.",
+    "aboutDescription": "With extensive experience in web development, SEO, and content writing, I help businesses establish a strong online presence. My approach combines technical expertise with creative solutions to deliver results that exceed expectations.",
+    "badges": {
+      "seoExpert": "SEO Expert",
+      "webDeveloper": "Web Developer",
+      "contentWriter": "Content Writer"
+    },
+    "stats": {
+      "experience": "Years of Experience",
+      "projects": "Projects Completed",
+      "clients": "Satisfied Clients"
+    },
+    "skills": {
+      "title": "My Skills",
+      "list": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Python",
+        "React",
+        "Next.js",
+        "Django",
+        "SEO",
+        "Content Writing",
+        "UI/UX",
+        "Wordpress",
+        "Responsive Design"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Let's Work Together",
+    "name": "Your Name",
+    "email": "Your Email",
+    "message": "Your Message",
+    "subject": "Subject",
+    "submit": "Send Message",
+    "success": "Message sent successfully!",
+    "error": "There was an error sending your message. Please try again.",
+    "contactInformation": "Contact Information",
+    "phone": "Phone",
+    "whatsapp": "Whatsapp",
+    "followMe": "Follow Me"
+  },
+  "footer": {
+    "rights": "All Rights Reserved"
+  },
+  "Metadata": {
+    "title": "Ali Bakhtiari - Web Developer, SEO Expert & Content Writer",
+    "description": "Professional web development, SEO optimization, and content writing services. I create high-performance, responsive websites that rank well on search engines and engage users effectively.",
+    "keywords": "web development, SEO, content writing, portfolio, responsive design, Next.js, React, Python",
+    "ogTitle": "Ali Bakhtiari - Web Developer, SEO Expert & Content Writer",
+    "ogDescription": "Expert web development, data-driven SEO strategies, and engaging content services designed to boost your online presence and drive business growth.",
+    "siteName": "Ali Bakhtiari",
+    "personName": "Ali Bakhtiari",
+    "jobTitle": "Full Stack Web Developer & SEO Specialist",
+    "siteDescription": "Specializing in building modern web applications, optimizing sites for search engines, and crafting compelling content.",
+    "knowsAbout": [
+      "Web Development",
+      "Next.js",
+      "React",
+      "Python",
+      "Django",
+      "Search Engine Optimization",
+      "Content Strategy",
+      "Digital Marketing",
+      "UI/UX Design"
+    ],
+    "services": {
+      "webDev": {
+        "name": "Custom Web Development",
+        "description": "High-performance, scalable web applications built with modern frameworks like Next.js and React."
+      },
+      "seo": {
+        "name": "SEO & Growth Strategy",
+        "description": "Data-driven SEO optimization to increase visibility, organic traffic, and conversion rates."
+      },
+      "content": {
+        "name": "Strategic Content Writing",
+        "description": "High-quality, SEO-optimized content that resonates with audiences and builds authority."
+      }
+    }
+  }
+}
