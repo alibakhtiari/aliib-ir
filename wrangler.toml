@@ -1,5 +1,6 @@
 name = "alib"
-compatibility_date = "2025-03-25"
+compatibility_date = "2026-08-04"
+compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = "dist"
