@@ -1,13 +1,4 @@
 import { Resend } from 'resend'
-import { z } from 'zod'
-
-const contactSchema = z.object({
-    name: z.string().min(2, "Name is too short"),
-    email: z.string().email("Invalid email address"),
-    subject: z.string().optional(),
-    service: z.string().optional(),
-    message: z.string().min(10, "Message must be at least 10 characters"),
-})
 
 export const onRequestPost: PagesFunction<{ RESEND_API_KEY: string }> = async (context) => {
     const apiKey = context.env.RESEND_API_KEY
@@ -21,19 +12,40 @@ export const onRequestPost: PagesFunction<{ RESEND_API_KEY: string }> = async (c
 
     try {
         const body = (await context.request.json()) as any
-        const result = contactSchema.safeParse(body)
+        const { name, email, subject, service, message } = body || {}
 
-        if (!result.success) {
+        // Native validation (Zero Zod runtime overhead)
+        if (!name || typeof name !== 'string' || name.trim().length < 2) {
             return new Response(JSON.stringify({
                 success: false,
-                message: result.error.issues[0].message
+                message: 'Name is too short'
             }), {
                 status: 400,
                 headers: { 'Content-Type': 'application/json' }
             })
         }
 
-        const { name, email, subject, service, message } = result.data
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!email || typeof email !== 'string' || !emailRegex.test(email.trim())) {
+            return new Response(JSON.stringify({
+                success: false,
+                message: 'Invalid email address'
+            }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            })
+        }
+
+        if (!message || typeof message !== 'string' || message.trim().length < 10) {
+            return new Response(JSON.stringify({
+                success: false,
+                message: 'Message must be at least 10 characters'
+            }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            })
+        }
+
         const formSubject = subject || `Quote Request: ${service || 'General'}`
         const resend = new Resend(apiKey)
 
@@ -41,13 +53,13 @@ export const onRequestPost: PagesFunction<{ RESEND_API_KEY: string }> = async (c
             from: 'Ali Bakhtiari Portfolio <admin@aliib.ir>',
             to: 'info@aliib.ir',
             subject: formSubject,
-            replyTo: email,
+            replyTo: email.trim(),
             html: `
-        <h3>New Message from ${name}</h3>
-        <p><strong>Email:</strong> ${email}</p>
+        <h3>New Message from ${name.trim()}</h3>
+        <p><strong>Email:</strong> ${email.trim()}</p>
         <p><strong>Service:</strong> ${service || 'N/A'}</p>
         <hr />
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${message.trim().replace(/\n/g, '<br>')}</p>
       `
         })
 
