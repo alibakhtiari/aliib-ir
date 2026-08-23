@@ -13,25 +13,8 @@ dist
 dist-ssr
 *.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# Dependencies
-node_modules
-dist
-dist-ssr
-*.local
+# Astro
+.astro/
 
 # Editor directories and files
 .vscode/*
@@ -48,13 +31,11 @@ dist-ssr
 .env
 .env.*
 !.env.example
-# package-lock.json removed from ignore for CI stability
 
+# Next.js / OpenNext / Cloudflare build artifacts
 /.next
 /.open-next
 /.wrangler
-/.open-next
-
 
 # Build artifacts
 *.tsbuildinfo
