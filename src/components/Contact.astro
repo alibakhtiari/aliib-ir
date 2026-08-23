@@ -1,0 +1,288 @@
+---
+import { getDictionary, isRtlLocale } from '../i18n/utils';
+import { CONTACT_INFO } from '../utils/constants';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const dict = getDictionary(locale);
+const isRtl = isRtlLocale(locale);
+const currentYear = new Date().getFullYear();
+---
+
+<section
+  id="contact"
+  class="section relative overflow-hidden bg-white dark:bg-[#080b13] transition-colors duration-300 py-16 md:py-24"
+>
+  <!-- Subtle background glow matching Hero -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-40 dark:opacity-20 flex items-center justify-center">
+    <div
+      class="w-[800px] h-[800px] rounded-full"
+      style="background: radial-gradient(circle at center, #FFF991 0%, transparent 70%); mix-blend-mode: multiply;"
+    ></div>
+  </div>
+
+  <div class="container relative z-10 px-4 mx-auto">
+    <div class="max-w-3xl mx-auto mb-16 text-center">
+      <h2 class="mb-2 text-lg font-medium text-blue-600 dark:text-blue-400">{dict.contact.title}</h2>
+      <h3 class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">{dict.contact.subtitle}</h3>
+    </div>
+
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col gap-12 lg:flex-row">
+        <!-- Contact Info Sidebar -->
+        <div class="lg:w-1/3">
+          <div class="h-full p-8 bg-white shadow-xl dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-gray-800">
+            <h4 class="mb-8 text-xl font-bold text-gray-900 dark:text-white">{dict.contact.contactInformation}</h4>
+
+            <div class="space-y-8">
+              <!-- Phone -->
+              <div class="flex items-start">
+                <div class="flex items-center justify-center w-10 h-10 text-blue-600 bg-blue-50 rounded-xl dark:bg-blue-900/20 dark:text-blue-400 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div class="ms-4">
+                  <h5 class="text-sm font-bold text-gray-400 uppercase tracking-wider">{dict.contact.phone}</h5>
+                  <a href={`tel:${CONTACT_INFO.phone}`} class="mt-1 text-lg font-medium text-gray-900 dark:text-white dir-ltr inline-block hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    {CONTACT_INFO.phone}
+                  </a>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-start">
+                <div class="flex items-center justify-center w-10 h-10 text-blue-600 bg-blue-50 rounded-xl dark:bg-blue-900/20 dark:text-blue-400 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                </div>
+                <div class="ms-4">
+                  <h5 class="text-sm font-bold text-gray-400 uppercase tracking-wider">{dict.contact.email}</h5>
+                  <a href={`mailto:${CONTACT_INFO.email}`} class="mt-1 text-gray-900 dark:text-gray-100 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all">
+                    {CONTACT_INFO.email}
+                  </a>
+                </div>
+              </div>
+
+              <!-- WhatsApp -->
+              <div class="flex items-start">
+                <div class="flex items-center justify-center w-10 h-10 text-green-600 bg-green-50 rounded-xl dark:bg-green-900/20 dark:text-green-400 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                  </svg>
+                </div>
+                <div class="ms-4">
+                  <h5 class="text-sm font-bold text-gray-400 uppercase tracking-wider">{dict.contact.whatsapp}</h5>
+                  <a href={`https://wa.me/${CONTACT_INFO.whatsapp.replace('+', '')}`} target="_blank" rel="noopener noreferrer" class="mt-1 text-lg font-medium text-gray-900 dark:text-white dir-ltr inline-block hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                    {CONTACT_INFO.whatsapp}
+                  </a>
+                </div>
+              </div>
+
+              <!-- Social Links -->
+              <div class="pt-8 border-t border-gray-100 dark:border-gray-800">
+                <h5 class="mb-4 text-sm font-bold tracking-widest text-gray-400 uppercase">
+                  {dict.contact.followMe}
+                </h5>
+                <div class="flex flex-wrap gap-3">
+                  <!-- Twitter / X -->
+                  <a
+                    href={CONTACT_INFO.socials.twitter}
+                    aria-label="Follow on Twitter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 text-gray-600 transition-colors bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </a>
+                  <!-- LinkedIn -->
+                  <a
+                    href={CONTACT_INFO.socials.linkedin}
+                    aria-label="Follow on LinkedIn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 text-gray-600 transition-colors bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.44a1.62 1.62 0 0 0-1.63 1.62c0 .9.73 1.63 1.63 1.63s1.63-.73 1.63-1.63c0-.9-.73-1.62-1.63-1.62Z" />
+                    </svg>
+                  </a>
+                  <!-- GitHub -->
+                  <a
+                    href={CONTACT_INFO.socials.github}
+                    aria-label="Follow on GitHub"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 text-gray-600 transition-colors bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                  </a>
+                  <!-- Instagram -->
+                  <a
+                    href={CONTACT_INFO.socials.instagram}
+                    aria-label="Follow on Instagram"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 text-gray-600 transition-colors bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:w-2/3">
+          <div class="p-8 bg-white shadow-xl dark:bg-gray-900/30 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-gray-800">
+            <form id="contact-form">
+              <div class="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2">
+                <div>
+                  <label for="contact-name" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    {dict.contact.name}
+                  </label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    required
+                    class="w-full px-4 py-3 text-gray-900 border border-gray-100 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 transition-all"
+                  />
+                </div>
+                <div>
+                  <label for="contact-email" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    {dict.contact.email}
+                  </label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    required
+                    class="w-full px-4 py-3 text-gray-900 border border-gray-100 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 transition-all"
+                  />
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <label for="contact-subject" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  {dict.contact.subject}
+                </label>
+                <input
+                  type="text"
+                  id="contact-subject"
+                  name="subject"
+                  required
+                  class="w-full px-4 py-3 text-gray-900 border border-gray-100 rounded-xl bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 transition-all"
+                />
+              </div>
+
+              <div class="mb-6">
+                <label for="contact-message" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  {dict.contact.message}
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows="5"
+                  class="w-full px-4 py-3 text-gray-900 border border-gray-100 rounded-xl resize-none bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 transition-all"
+                ></textarea>
+              </div>
+
+              <!-- Status Alert Box -->
+              <div id="form-status" class="hidden mb-6 p-4 rounded-xl text-sm"></div>
+
+              <button
+                type="submit"
+                id="form-submit-btn"
+                class="w-full px-6 py-4 font-bold text-white transition-all bg-blue-600 rounded-xl hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+              >
+                <span id="submit-spinner" class="hidden animate-spin">
+                  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </span>
+                <span id="submit-text">{dict.contact.submit}</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integrated Footer content -->
+    <div class="mt-20 pt-10 border-t border-gray-200/50 dark:border-gray-800/50 text-center">
+      <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+        &copy; {currentYear} {dict.hero.name}. {dict.footer.rights}
+      </p>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ successMsg: dict.contact.success, errorMsg: dict.contact.error }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('form-submit-btn');
+    const spinner = document.getElementById('submit-spinner');
+    const submitText = document.getElementById('submit-text');
+    const statusBox = document.getElementById('form-status');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!submitBtn || !statusBox) return;
+
+      submitBtn.disabled = true;
+      spinner?.classList.remove('hidden');
+      statusBox.classList.add('hidden');
+      statusBox.textContent = '';
+
+      const formData = {
+        name: document.getElementById('contact-name')?.value || '',
+        email: document.getElementById('contact-email')?.value || '',
+        subject: document.getElementById('contact-subject')?.value || '',
+        message: document.getElementById('contact-message')?.value || '',
+      };
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          statusBox.className = 'mb-6 p-4 rounded-xl bg-green-50 text-green-700 border border-green-100 dark:bg-green-950/40 dark:text-green-300 dark:border-green-800';
+          statusBox.textContent = successMsg;
+          statusBox.classList.remove('hidden');
+          form.reset();
+        } else {
+          throw new Error(result.message || errorMsg);
+        }
+      } catch (err) {
+        statusBox.className = 'mb-6 p-4 rounded-xl bg-red-50 text-red-700 border border-red-100 dark:bg-red-950/40 dark:text-red-300 dark:border-red-800';
+        statusBox.textContent = err.message || errorMsg;
+        statusBox.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        spinner?.classList.add('hidden');
+      }
+    });
+  });
+</script>

@@ -1,0 +1,170 @@
+---
+import '../styles/global.css';
+import { getDictionary, isRtlLocale, type Locale } from '../i18n/utils';
+import { CONTACT_INFO } from '../utils/constants';
+
+interface Props {
+  locale?: string;
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { locale = 'en', title: propTitle, description: propDescription, noindex = false } = Astro.props;
+const dict = getDictionary(locale);
+const meta = dict.Metadata;
+const isRtl = isRtlLocale(locale);
+
+const baseUrl = 'https://aliib.ir';
+const currentPath = Astro.url.pathname;
+const pageTitle = propTitle || meta.title;
+const pageDescription = propDescription || meta.description;
+const canonicalUrl = new URL(currentPath, baseUrl).href;
+const ogImage = `${baseUrl}/og-image.jpg`;
+
+// Schema.org structured data
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${baseUrl}/#person`,
+  "name": meta.personName,
+  "jobTitle": meta.jobTitle,
+  "description": meta.description,
+  "url": baseUrl,
+  "image": ogImage,
+  "sameAs": [
+    CONTACT_INFO.socials.linkedin,
+    CONTACT_INFO.socials.github,
+    CONTACT_INFO.socials.twitter,
+    CONTACT_INFO.socials.instagram
+  ],
+  "knowsAbout": meta.knowsAbout,
+  "knowsLanguage": [
+    { "@type": "Language", "name": "Persian", "alternateName": "fa" },
+    { "@type": "Language", "name": "English", "alternateName": "en" },
+    { "@type": "Language", "name": "Arabic", "alternateName": "ar" }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IR"
+  }
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${baseUrl}/#website`,
+  "name": meta.siteName,
+  "url": baseUrl,
+  "description": meta.siteDescription,
+  "inLanguage": locale,
+  "publisher": { "@id": `${baseUrl}/#person` }
+};
+
+const serviceSchemas = Object.values(meta.services).map((service: any) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.name,
+  "description": service.description,
+  "provider": { "@id": `${baseUrl}/#person` },
+  "serviceType": service.name,
+  "areaServed": { "@type": "Country", "name": "Worldwide" }
+}));
+
+const schemas = [personSchema, websiteSchema, ...serviceSchemas];
+---
+
+<!doctype html>
+<html lang={locale} dir={isRtl ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={meta.keywords} />
+    <meta name="author" content={meta.personName} />
+    
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow" />
+    )}
+
+    <!-- Canonical and Alternates -->
+    <link rel="canonical" href={canonicalUrl} />
+    {!noindex && (
+      <>
+        <link rel="alternate" hreflang="en" href={`${baseUrl}/`} />
+        <link rel="alternate" hreflang="fa" href={`${baseUrl}/fa`} />
+        <link rel="alternate" hreflang="ar" href={`${baseUrl}/ar`} />
+        <link rel="alternate" hreflang="x-default" href={`${baseUrl}/`} />
+      </>
+    )}
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={meta.ogTitle || pageTitle} />
+    <meta property="og:description" content={meta.ogDescription || pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={meta.siteName} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.ogTitle || pageTitle} />
+    <meta name="twitter:description" content={meta.ogDescription || pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    {!noindex && schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    <!-- Theme initialization script (defaults to system theme) -->
+    <script is:inline>
+      (function() {
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const activeTheme = storedTheme ? storedTheme : (systemPrefersDark ? 'dark' : 'light');
+        
+        if (activeTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+
+        // Listen for OS system theme changes when user has not set an explicit override
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          if (!localStorage.getItem('theme')) {
+            if (e.matches) {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
+          }
+        });
+      })();
+    </script>
+  </head>
+  <body class={`min-h-screen ${isRtl ? 'font-rtl' : 'font-sans'} antialiased bg-background text-foreground transition-colors duration-300`}>
+    <slot />
+  </body>
+</html>
