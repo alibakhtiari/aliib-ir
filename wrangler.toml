@@ -1,0 +1,6 @@
+name = "alib"
+compatibility_date = "2025-03-25"
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
