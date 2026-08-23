@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { getDictionary, isRtlLocale, type Locale } from '../i18n/utils';
+import { getDictionary, isRtlLocale } from '../i18n/utils';
 import { CONTACT_INFO } from '../utils/constants';
 
 interface Props {
@@ -22,56 +22,71 @@ const pageDescription = propDescription || meta.description;
 const canonicalUrl = new URL(currentPath, baseUrl).href;
 const ogImage = `${baseUrl}/og-image.jpg`;
 
-// Schema.org structured data
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${baseUrl}/#person`,
-  "name": meta.personName,
-  "jobTitle": meta.jobTitle,
-  "description": meta.description,
-  "url": baseUrl,
-  "image": ogImage,
-  "sameAs": [
-    CONTACT_INFO.socials.linkedin,
-    CONTACT_INFO.socials.github,
-    CONTACT_INFO.socials.twitter,
-    CONTACT_INFO.socials.instagram
-  ],
-  "knowsAbout": meta.knowsAbout,
-  "knowsLanguage": [
-    { "@type": "Language", "name": "Persian", "alternateName": "fa" },
-    { "@type": "Language", "name": "English", "alternateName": "en" },
-    { "@type": "Language", "name": "Arabic", "alternateName": "ar" }
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "IR"
-  }
+const ogLocales: Record<string, string> = {
+  en: 'en_US',
+  fa: 'fa_IR',
+  ar: 'ar_AR',
 };
+const ogLocale = ogLocales[locale] || 'en_US';
 
-const websiteSchema = {
+// Advanced Schema.org JSON-LD graph (Optimized for Google, Perplexity, ChatGPT, Claude)
+const schemaGraph = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${baseUrl}/#website`,
-  "name": meta.siteName,
-  "url": baseUrl,
-  "description": meta.siteDescription,
-  "inLanguage": locale,
-  "publisher": { "@id": `${baseUrl}/#person` }
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${baseUrl}/#person`,
+      "name": meta.personName,
+      "jobTitle": meta.jobTitle,
+      "description": meta.description,
+      "url": baseUrl,
+      "image": ogImage,
+      "sameAs": [
+        CONTACT_INFO.socials.linkedin,
+        CONTACT_INFO.socials.github,
+        CONTACT_INFO.socials.twitter,
+        CONTACT_INFO.socials.instagram
+      ],
+      "knowsAbout": meta.knowsAbout,
+      "knowsLanguage": [
+        { "@type": "Language", "name": "Persian", "alternateName": "fa" },
+        { "@type": "Language", "name": "English", "alternateName": "en" },
+        { "@type": "Language", "name": "Arabic", "alternateName": "ar" }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IR"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
+      "name": meta.siteName,
+      "url": baseUrl,
+      "description": meta.siteDescription,
+      "inLanguage": locale,
+      "publisher": { "@id": `${baseUrl}/#person` }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": pageTitle,
+      "description": pageDescription,
+      "mainEntity": { "@id": `${baseUrl}/#person` },
+      "inLanguage": locale,
+      "isPartOf": { "@id": `${baseUrl}/#website` }
+    },
+    ...Object.values(meta.services).map((service: any) => ({
+      "@type": "Service",
+      "name": service.name,
+      "description": service.description,
+      "provider": { "@id": `${baseUrl}/#person` },
+      "serviceType": service.name,
+      "areaServed": { "@type": "Country", "name": "Worldwide" }
+    }))
+  ]
 };
-
-const serviceSchemas = Object.values(meta.services).map((service: any) => ({
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": service.name,
-  "description": service.description,
-  "provider": { "@id": `${baseUrl}/#person` },
-  "serviceType": service.name,
-  "areaServed": { "@type": "Country", "name": "Worldwide" }
-}));
-
-const schemas = [personSchema, websiteSchema, ...serviceSchemas];
 ---
 
 <!doctype html>
@@ -87,10 +102,10 @@ const schemas = [personSchema, websiteSchema, ...serviceSchemas];
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     )}
 
-    <!-- Canonical and Alternates -->
+    <!-- Canonical and Hreflang Alternates -->
     <link rel="canonical" href={canonicalUrl} />
     {!noindex && (
       <>
@@ -116,10 +131,10 @@ const schemas = [personSchema, websiteSchema, ...serviceSchemas];
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content={locale} />
-    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:type" content="profile" />
 
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={meta.ogTitle || pageTitle} />
     <meta name="twitter:description" content={meta.ogDescription || pageDescription} />
@@ -133,10 +148,10 @@ const schemas = [personSchema, websiteSchema, ...serviceSchemas];
       rel="stylesheet"
     />
 
-    <!-- JSON-LD Structured Data -->
-    {!noindex && schemas.map((schema) => (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    ))}
+    <!-- Schema.org JSON-LD Graph (SEO, AEO, GEO) -->
+    {!noindex && (
+      <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
+    )}
 
     <!-- Theme initialization script (defaults to system theme) -->
     <script is:inline>
