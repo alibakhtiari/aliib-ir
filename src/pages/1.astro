@@ -1,0 +1,143 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liebe Kiana & Mohammad</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex flex-col items-center justify-center min-h-screen p-4 font-sans bg-linear-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 antialiased">
+    <div class="w-full max-w-md p-8 bg-white dark:bg-gray-900 shadow-2xl rounded-3xl animate-fadeIn">
+      <div class="relative mb-8">
+        <img
+          src="/assets/1/1.jpg"
+          alt="Beloved Person"
+          class="w-full h-auto shadow-lg rounded-2xl animate-fadeIn object-cover"
+        />
+      </div>
+
+      <div class="mb-8 text-center">
+        <h1 class="mb-4 text-3xl font-bold text-gray-800 dark:text-gray-100">
+          Liebe Kiana & Mohammad
+        </h1>
+        <div class="p-6 shadow-inner bg-gray-50 dark:bg-gray-800/60 rounded-2xl">
+          <p class="text-md italic leading-relaxed text-gray-600 dark:text-gray-300 whitespace-pre-line">
+            Während ihr dieses neue Kapitel in Deutschland beginnt, wünschen wir euch unendlichen Erfolg, neue Möglichkeiten und Tage voller Freude. Möge jeder Schritt euch euren Träumen näherbringen und möget ihr euch überall auf der Welt immer zuhause fühlen.
+
+            Mit viel Liebe, Ali & Bahar
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-4">
+        <div class="flex items-center justify-center p-4 space-x-3 rtl:space-x-reverse shadow-inner bg-linear-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800/80 rounded-2xl">
+          <button
+            id="play-pause-btn"
+            type="button"
+            class="flex items-center justify-center w-12 h-12 text-white transition-all duration-200 transform bg-blue-500 rounded-full shadow-lg hover:bg-blue-600 hover:scale-105 active:scale-95"
+            aria-label="Play audio"
+          >
+            <!-- Play Icon -->
+            <svg id="play-icon" class="w-6 h-6 ms-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <!-- Pause Icon -->
+            <svg id="pause-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
+            </svg>
+          </button>
+          <div class="flex-1">
+            <input
+              id="seek-bar"
+              type="range"
+              value="0"
+              min="0"
+              max="100"
+              step="0.1"
+              class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+            />
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between px-2 text-xs text-gray-500 dark:text-gray-400 font-mono">
+          <span id="current-time">0:00</span>
+          <span id="duration-time">0:00</span>
+        </div>
+      </div>
+
+      <audio id="audio-player" preload="metadata">
+        <source src="/assets/1/1.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const audio = document.getElementById('audio-player');
+        const playBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const seekBar = document.getElementById('seek-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationTimeEl = document.getElementById('duration-time');
+
+        function formatTime(time) {
+          if (isNaN(time)) return '0:00';
+          const minutes = Math.floor(time / 60);
+          const seconds = Math.floor(time % 60);
+          return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        if (audio && playBtn && seekBar) {
+          playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+              audio.play();
+              playIcon?.classList.add('hidden');
+              pauseIcon?.classList.remove('hidden');
+            } else {
+              audio.pause();
+              playIcon?.classList.remove('hidden');
+              pauseIcon?.classList.add('hidden');
+            }
+          });
+
+          audio.addEventListener('timeupdate', () => {
+            const current = audio.currentTime;
+            const dur = audio.duration;
+            if (currentTimeEl) currentTimeEl.textContent = formatTime(current);
+            if (dur && seekBar) {
+              seekBar.value = ((current / dur) * 100).toString();
+            }
+          });
+
+          audio.addEventListener('loadedmetadata', () => {
+            if (durationTimeEl) durationTimeEl.textContent = formatTime(audio.duration);
+          });
+
+          audio.addEventListener('ended', () => {
+            playIcon?.classList.remove('hidden');
+            pauseIcon?.classList.add('hidden');
+            if (seekBar) seekBar.value = '0';
+            if (currentTimeEl) currentTimeEl.textContent = '0:00';
+          });
+
+          seekBar.addEventListener('input', () => {
+            if (audio.duration) {
+              audio.currentTime = (parseFloat(seekBar.value) / 100) * audio.duration;
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

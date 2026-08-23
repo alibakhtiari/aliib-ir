@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /1
+Disallow: /1/
+Disallow: /eqm
+Disallow: /eqm/
+Disallow: /api/
+Disallow: /private/
+
+Sitemap: https://aliib.ir/sitemap-index.xml
