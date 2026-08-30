@@ -39,3 +39,6 @@ dist-ssr
 
 # Build artifacts
 *.tsbuildinfo
+
+# Migration artifacts
+migration/
