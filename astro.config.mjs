@@ -9,10 +9,7 @@ export default defineConfig({
   output: 'static',
   integrations: [
     sitemap({
-      filter: (page) => {
-        const url = typeof page === 'string' ? page : (page && page.url) || '';
-        return !url.includes('/1');
-      },
+      filter: (page) => !page.includes('/1'),
       i18n: {
         defaultLocale: 'en',
         locales: {
