@@ -11,7 +11,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const url = typeof page === 'string' ? page : (page && page.url) || '';
-        return !url.includes('/1') && !url.includes('/eqm');
+        return !url.includes('/1');
       },
       i18n: {
         defaultLocale: 'en',
